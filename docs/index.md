@@ -28,11 +28,14 @@ Das Handout wird stetig überarbeitet bzw. erweitert. Über Anmerkungen und Verb
 
 Christoph Mayer: christoph.mayer@uni-leipzig.de
 
-Franz Andersch: franz.andersch@uni-leipzig.de
 
 **Danksagung:** 
 
 Das Handout basiert in Teilen auf bereitgestellten Materialien von Ingo Seifert & Isabel Gebhardt. 
+
+Ehemalige Tutor:innen:
+
+Franz Andersch
 
 Vielen Dank!
 

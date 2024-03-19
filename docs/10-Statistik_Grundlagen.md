@@ -80,7 +80,9 @@ Interquantilabstand  |Differenz aus 3. und 1. Quartile                          
 
 **Zusammenhangsmaße**
 
-Mit Zusammenhangsmaßen können wir untersuchen wie stark zwei Variablen sich gegenseitig beieinflussen (zusammenhägen). Je nach Skalenniveau der betrachteten Variablen wählen wir unterschiedliche Verfahren.^[Benning, V. (2022, 02. Dezember). Zusammenhangsmaße verstehen und anwenden + Beispiele. Scribbr. Abgerufen am 27. Juni 2023, von https://www.scribbr.de/statistik/zusammenhangsmasse/, https://wwwhomes.uni-bielefeld.de/fvan_veen/StatistikII%20SS06/Sonstiges/Interpretationshilfe.pdf]
+Mit Zusammenhangsmaßen können wir untersuchen wie stark zwei Variablen sich gegenseitig beieinflussen (zusammenhängen). Je nach Skalenniveau der betrachteten Variablen wählen wir unterschiedliche Verfahren.^[Benning, V. (2022, 02. Dezember). Zusammenhangsmaße verstehen und anwenden + Beispiele. Scribbr. Abgerufen am 27. Juni 2023, von https://www.scribbr.de/statistik/zusammenhangsmasse/, https://wwwhomes.uni-bielefeld.de/fvan_veen/StatistikII%20SS06/Sonstiges/Interpretationshilfe.pdf]
+
+\tiny 
 
 Skalennivau   | (Dichotom)      | Nominal | Ordinal | Metrisch
 --------------|----------------|---------|---------|-----------
