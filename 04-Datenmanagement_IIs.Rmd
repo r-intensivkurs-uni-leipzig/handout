@@ -1,0 +1,204 @@
+# Datenmanagement II
+
+## Datenbearbeitung
+
+- Wir wissen nun wie Daten eingelesen und zusammengefügt werden
+- Bevor wir mit unserem Datensatz Statistik betreiben können, müssen aber meist noch weitere Schritte der Datenbearbeitung durchgeführt werden
+- Beispieldatensatz:
+
+```{r,comment=""}
+PersonenDaten <- read.table("data/PersonenDaten.txt", header = TRUE)
+head(PersonenDaten, 5)
+```
+
+### Umkodierung
+
+**Situation:** Im PersonDaten- Datensatz ist die Variable \textit{sex} mit 1 und 2 Kodiert. Die Kodierung soll aber 0 und 1 sein.
+ 
+Der *$*-Operator schafft hier Abhilfe wenn:
+
+- eine neue Variable aus einer alten erstellt werden soll
+
+```{r,comment=""}
+PersonenDaten$sexUmkodiert <- PersonenDaten$sex-1
+PersonenDaten$sexUmkodiert
+```
+
+- eine existierende Variable überschrieben werden soll
+
+```{r,comment=""}
+PersonenDaten$sex <- PersonenDaten$sex-1
+PersonenDaten$sex
+```
+
+**Situation:** Einige Items im Datensatz sind umgepolt worden. Für die weitere Verarbeitung sollen sie zurückgepolt werden.
+
+- Anwendung der Formel:  Item_Umkodiert = max(Skala_Item)+ 1 - Item_Original
+
+- Beispiel: Umpolung von Item3 mit 6-stufiger Skala
+
+```{r,comment=""}
+PersonenDaten$item3_umkodiert <- 6 + 1 - PersonenDaten$item3
+```
+```{r, echo=FALSE,comment=""}
+Überprüfung <- data.frame(Original=PersonenDaten$item3,Umkodiert=PersonenDaten$item3_umkodiert)
+head(Überprüfung,5)
+```
+
+### Dichotomisierung
+
+**Situation:** Das Alter der Personen soll in eine Dummy Variable überführt werden, bei der alle maximal 30 jährigen den Wert 0 und alle älter als 30 den Wert 1 haben sollen.
+
+**ifelse(test, yes, no)** liefert die Möglichkeit, R-Befehle abhängig von einer Bedingung auszuführen:<br>   
+- **test**: Bedingung, die überprüft werden soll<br>
+- **yes**: Welcher Wert soll zugewiesen werden, wenn die<br> Bedingung erfüllt ist?
+- **no**: Welcher Wert soll zugewiesen werden, wenn die<br> Bedingung nicht erfüllt ist?
+
+```{r,comment=""}
+PersonenDaten$AlterDichotom <- ifelse(PersonenDaten$age <= 30, 0, 1)
+```
+
+Überprüfung:
+
+```{r,comment=""}
+Überprüfung <- data.frame(Original=PersonenDaten$age,
+                          Umkodiert=PersonenDaten$AlterDichotom)
+head(Überprüfung,5)
+```
+
+### Kategorisierung
+
+**Situation:** Das Alter der Personen soll in eine weitere Variable Altersgruppen überführt werden, bei der:
+ - alle unter 25 den Wert 1
+ - alle von 25 bis 30 den Wert 2
+ - alle von 30 bis 35 den Wert 3
+ - alle über 35 den Wert 4 erhalten
+
+**Dataset$neueVariable[test] <- yes**: Logisches Indizieren ist ein einfacher Weg, Variablenwerte abhängig von Bedingungen festzusetzen
+
+- **test**: Bedingung, die überprüft werden soll
+- **yes**: Welcher Wert soll zugewiesen werden, wenn die Bedingung erfüllt ist?
+
+```{r,comment=""}
+PersonenDaten$Altersgruppen[PersonenDaten$age <= 25] <- 1
+PersonenDaten$Altersgruppen[PersonenDaten$age > 25 
+                            & PersonenDaten$age <= 30] <- 2
+PersonenDaten$Altersgruppen[PersonenDaten$age > 30 
+                            & PersonenDaten$age <= 35] <- 3
+PersonenDaten$Altersgruppen[PersonenDaten$age > 35] <- 4
+```
+ 
+Überprüfung:
+
+```{r, echo=FALSE,comment=""}
+Überprüfung <- data.frame(Original=PersonenDaten$age,Umkodiert=PersonenDaten$Altersgruppen)
+head(Überprüfung,5)
+```
+
+### Skalenbildung
+
+**Situation:** aus den Werten der Items 1 bis 11 soll eine Summenscore/Mittelwertsscore gebildet werden.
+
+**rowSums(x, na.rm = TRUE)** bildet zeilenweise die Summe
+
+**rowMeans(x, na.rm = TRUE)** bildet zeilenweise den Mittelwert
+
+- **x**: Legt den Bereich des Datensatzes fest für den die Funktion durchgeführt werden soll. Hier sollen alle Zeilen und die Spalten von 2 bis 12 einbezigen werden.
+- **na.rm**: Bei **TRUE** werden fehlende Werte bei der Berechnung ausgelassen, bei **FALSE** wird die Berechnung nicht durchgeführt, sobald ein einzelner Wert fehlt
+
+```{r,comment=""}
+PersonenDaten$Mittelwertsscore <- 
+  rowMeans(PersonenDaten[,2:12], na.rm = T)
+PersonenDaten$Summenscore <- 
+  rowSums(PersonenDaten[ ,2:12], na.rm = T)
+```
+
+### Subsets erstellen
+
+**Situation:** Es sollen alle Personen heraus gefiltert werden, deren score von Item 1 über 4 oder von Item 2 über 3 liegt. Der neue Datensatz soll nur die Variablen Person, Item 1 und Item 2 enthalten.
+
+Die **subset(x, subset, select)** -Funktion bietet die Möglichkeit einen Datensatz nach bestimmten Voraussetzungen zu Filtern
+
+- **x**: Datensatz<br>
+- **subset**: logische Aussage, wenn **TRUE** wird der Eintrag in das Subset übernommen, wenn **FALSE** aussortiert.<br>
+- **select**: Variablen die im Subset beibehalten werden sollen
+
+```{r,comment=""}
+PersonenDatenSubset <- subset(PersonenDaten, 
+                              PersonenDaten$item1 > 4|
+                              PersonenDaten$item2 > 3, 
+                              select =
+                              c(Person,item1,item2))
+PersonenDatenSubset
+```
+
+## Long- und Wide-Format
+
+### Wide Format
+
+Alle Datensätz mit denen wir bisher gearbeitet haben, hatten folgende Eigenschaften:   
+- Eine Zeile pro Person
+- Messwiederholungen (Items) als mehrere Variablen (Spalten) dargestellt
+- Häufige Variante für Messwiederholungsdaten bei SPSS
+- Praktisch bei der Dateneingabe
+
+```{r,comment=""}
+Dataset <- read.table("data/Daten.txt",header = TRUE)
+head(Dataset, 5)
+```
+
+### Long-Format
+
+```{r,comment=""}
+DatasetLong <- read.table("data/Daten_Lang.txt", header = TRUE)
+head(DatasetLong,14)
+```
+
+**Eigenschaften:**
+- Eine Zeile pro Bedingung (Item)
+- Mehrere Zeilen pro Person
+- Messwiederholung wird in mehreren Zeilen dargestellt
+
+**Wozu?**
+
+Viele Modelle in R benötigen das Long Format 
+
+###  Long- und Wide-Format
+
+**Wide --> Long**
+
+Mit dem Paket **reshape2** können die Formate ineinander überführt werden.
+
+Für die Umformung wird der Befehl **melt(data, id.vars = "...", variable.name = "...", value.name = "...")** verwendet:   
+- **data**: Datensatz, dessen Format geändert werden soll<br>
+- **id.vars**: Variable(n), die als einzelne Variable beibehalten werden soll(en) und nicht gesplittet werden soll(en). Bennenung muss gleich wie im Ursprungsdatensatz sein!<br>
+- **variable.name**: Bezeichnung der Spalte, in der Variablennamen aufgeführt werden sollen  Achtung: nicht Variablennamen selbst auflisten!<br>
+- **value.name**: Bezeichnung der Spalte, in der die Werte der zugehörigen Variablen aufgeführt werden sollen
+
+```{r,message=FALSE,warning=FALSE,comment=""}
+library(reshape2)
+Dataset <- read.table("data/Daten.txt", header = TRUE)
+DatenLong <- melt(Dataset, id.vars = "Person",
+                  variable.name = "item", value.name = "score")
+head(DatenLong)
+```
+
+- Mit dem Paket reshape2 können die Formate ineinander übergeführt werden
+- Der Befehl dafür **dcast(data, formula, value.var = "...")**
+  - **data**: Datensatz, dessen Format geändert werden soll<br>
+  - **formula**: Welche Variablen sollen nach welcher Bedingung getrennt werden? Format: **A ~ B}**<br>
+    - **A**: ID-Variablen (vgl. **id.vars**)<br>
+    - **B**: Variable(n), die die Messungen (Zeitpunkte, Items, …) enthält --> Bildet neue Spalten (vgl. **variable.name**)<br>
+    - Mit **+** werden mehrere Variablen in **formula** kombiniert<br>
+  - **value.var**: Welche Variable im Long-Format enthält die Werte, die auf gesplittet werden sollen? (vgl. **value.name**)
+
+```{r,comment=""}
+head(DatenLong,3)
+```
+
+```{r, warning=FALSE,comment=""}
+library(reshape2)
+DatenWide <- dcast(DatenLong, Person ~ item, value.var = "score")
+head(DatenWide,5)
+```
+

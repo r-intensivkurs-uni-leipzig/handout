@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Deskriptive Statistik | Handout R-Intensivkurs</title>
+  <meta name="description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Deskriptive Statistik | Handout R-Intensivkurs" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Deskriptive Statistik | Handout R-Intensivkurs" />
+  
+  <meta name="twitter:description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
+  
+
+<meta name="author" content="Christoph Mayer" />
+
+
+<meta name="date" content="2024-03-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="datenmanagement-ii.html"/>
+<link rel="next" href="korrelation-und-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Willkommen</a></li>
+<li class="chapter" data-level="2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html"><i class="fa fa-check"></i><b>2</b> Einführung in R und R Studio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#was-ist-r"><i class="fa fa-check"></i><b>2.1</b> Was ist R?</a></li>
+<li class="chapter" data-level="2.2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#sechs-gründe-r-zu-lernen"><i class="fa fa-check"></i><b>2.2</b> Sechs Gründe R zu lernen</a></li>
+<li class="chapter" data-level="2.3" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#benutzeroberfläche-von-r-und-rstudio"><i class="fa fa-check"></i><b>2.3</b> Benutzeroberfläche von R und RStudio</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#r-gui"><i class="fa fa-check"></i><b>2.3.1</b> R GUI</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#rstudio"><i class="fa fa-check"></i><b>2.3.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#empfohlenes-vorgehen"><i class="fa fa-check"></i><b>2.4</b> Empfohlenes Vorgehen</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#empfohlener-ablauf-einer-analyse"><i class="fa fa-check"></i><b>2.4.1</b> Empfohlener Ablauf einer Analyse</a></li>
+<li class="chapter" data-level="2.4.2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#beispiel-skript"><i class="fa fa-check"></i><b>2.4.2</b> Beispiel Skript</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>3</b> Grundlagen</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="grundlagen.html"><a href="grundlagen.html#fundamentale-datentypen-in-r"><i class="fa fa-check"></i><b>3.1</b> Fundamentale Datentypen in R</a></li>
+<li class="chapter" data-level="3.2" data-path="grundlagen.html"><a href="grundlagen.html#r-als-taschenrechner"><i class="fa fa-check"></i><b>3.2</b> R als Taschenrechner</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="grundlagen.html"><a href="grundlagen.html#dezimalstellen-und-leerzeichen"><i class="fa fa-check"></i><b>3.2.1</b> Dezimalstellen und Leerzeichen</a></li>
+<li class="chapter" data-level="3.2.2" data-path="grundlagen.html"><a href="grundlagen.html#mathematische-operatoren"><i class="fa fa-check"></i><b>3.2.2</b> Mathematische Operatoren</a></li>
+<li class="chapter" data-level="3.2.3" data-path="grundlagen.html"><a href="grundlagen.html#logische-operatoren"><i class="fa fa-check"></i><b>3.2.3</b> Logische Operatoren</a></li>
+<li class="chapter" data-level="3.2.4" data-path="grundlagen.html"><a href="grundlagen.html#exkurs-dokumentation"><i class="fa fa-check"></i><b>3.2.4</b> Exkurs: Dokumentation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="grundlagen.html"><a href="grundlagen.html#variablen-und-objekte"><i class="fa fa-check"></i><b>3.3</b> Variablen und Objekte</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="grundlagen.html"><a href="grundlagen.html#abspeichern-von-variablen"><i class="fa fa-check"></i><b>3.3.1</b> Abspeichern von Variablen</a></li>
+<li class="chapter" data-level="3.3.2" data-path="grundlagen.html"><a href="grundlagen.html#abspeichern-von-variablen-1"><i class="fa fa-check"></i><b>3.3.2</b> Abspeichern von Variablen</a></li>
+<li class="chapter" data-level="3.3.3" data-path="grundlagen.html"><a href="grundlagen.html#hinweise-zur-benennung"><i class="fa fa-check"></i><b>3.3.3</b> Hinweise zur Benennung**</a></li>
+<li class="chapter" data-level="3.3.4" data-path="grundlagen.html"><a href="grundlagen.html#enviroment"><i class="fa fa-check"></i><b>3.3.4</b> Enviroment</a></li>
+<li class="chapter" data-level="3.3.5" data-path="grundlagen.html"><a href="grundlagen.html#befehle-für-zugriff-auf-environment"><i class="fa fa-check"></i><b>3.3.5</b> Befehle für Zugriff auf Environment:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="grundlagen.html"><a href="grundlagen.html#funktionen"><i class="fa fa-check"></i><b>3.4</b> Funktionen</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="grundlagen.html"><a href="grundlagen.html#woraus-besteht-eine-funktion"><i class="fa fa-check"></i><b>3.4.1</b> Woraus besteht eine Funktion?</a></li>
+<li class="chapter" data-level="3.4.2" data-path="grundlagen.html"><a href="grundlagen.html#default-werte-in-funktionen"><i class="fa fa-check"></i><b>3.4.2</b> Default-Werte in Funktionen</a></li>
+<li class="chapter" data-level="3.4.3" data-path="grundlagen.html"><a href="grundlagen.html#exkurs-help-funktion"><i class="fa fa-check"></i><b>3.4.3</b> Exkurs: Help-Funktion</a></li>
+<li class="chapter" data-level="3.4.4" data-path="grundlagen.html"><a href="grundlagen.html#abspeichern-von-output-einer-funktionen"><i class="fa fa-check"></i><b>3.4.4</b> Abspeichern von Output einer Funktionen**</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="grundlagen.html"><a href="grundlagen.html#datenstrukturen"><i class="fa fa-check"></i><b>3.5</b> Datenstrukturen</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="grundlagen.html"><a href="grundlagen.html#übersicht"><i class="fa fa-check"></i><b>3.5.1</b> Übersicht</a></li>
+<li class="chapter" data-level="3.5.2" data-path="grundlagen.html"><a href="grundlagen.html#vektoren"><i class="fa fa-check"></i><b>3.5.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.5.3" data-path="grundlagen.html"><a href="grundlagen.html#matrizen"><i class="fa fa-check"></i><b>3.5.3</b> Matrizen</a></li>
+<li class="chapter" data-level="3.5.4" data-path="grundlagen.html"><a href="grundlagen.html#dataframes"><i class="fa fa-check"></i><b>3.5.4</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="grundlagen.html"><a href="grundlagen.html#packages"><i class="fa fa-check"></i><b>3.6</b> Packages</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="grundlagen.html"><a href="grundlagen.html#installieren-von-packages"><i class="fa fa-check"></i><b>3.6.1</b> Installieren von Packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html"><i class="fa fa-check"></i><b>4</b> Datenmanagement I</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-importieren"><i class="fa fa-check"></i><b>4.1</b> Daten importieren</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#organisation-der-dateien"><i class="fa fa-check"></i><b>4.1.1</b> Organisation der Dateien</a></li>
+<li class="chapter" data-level="4.1.2" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#exkurs-dateipfade"><i class="fa fa-check"></i><b>4.1.2</b> Exkurs: Dateipfade</a></li>
+<li class="chapter" data-level="4.1.3" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-aus-.txt-.csv-.xlsx-und-weiteren-dateiformaten-auslesen"><i class="fa fa-check"></i><b>4.1.3</b> Daten aus .txt, .csv, .xlsx und weiteren Dateiformaten auslesen</a></li>
+<li class="chapter" data-level="4.1.4" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#alternative-per-klickpfad"><i class="fa fa-check"></i><b>4.1.4</b> Alternative per Klickpfad</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-importieren-1"><i class="fa fa-check"></i><b>4.2</b> Daten importieren</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#überblick-verschaffen"><i class="fa fa-check"></i><b>4.2.1</b> Überblick verschaffen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-speichern"><i class="fa fa-check"></i><b>4.3</b> Daten speichern</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#datensatz-exportieren-als-.txt-.csv-.xlsx-oder-.sav"><i class="fa fa-check"></i><b>4.3.1</b> Datensatz exportieren als .txt, .csv, .xlsx oder .sav</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#datensätze-zusammenfügen"><i class="fa fa-check"></i><b>4.4</b> Datensätze zusammenfügen</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#fälle-hinzufügen"><i class="fa fa-check"></i><b>4.4.1</b> Fälle hinzufügen</a></li>
+<li class="chapter" data-level="4.4.2" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#variablen-hinzufügen"><i class="fa fa-check"></i><b>4.4.2</b> Variablen hinzufügen**</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html"><i class="fa fa-check"></i><b>5</b> Datenmanagement II</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#datenbearbeitung"><i class="fa fa-check"></i><b>5.1</b> Datenbearbeitung</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#umkodierung"><i class="fa fa-check"></i><b>5.1.1</b> Umkodierung</a></li>
+<li class="chapter" data-level="5.1.2" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#dichotomisierung"><i class="fa fa-check"></i><b>5.1.2</b> Dichotomisierung</a></li>
+<li class="chapter" data-level="5.1.3" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#kategorisierung"><i class="fa fa-check"></i><b>5.1.3</b> Kategorisierung</a></li>
+<li class="chapter" data-level="5.1.4" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#skalenbildung"><i class="fa fa-check"></i><b>5.1.4</b> Skalenbildung</a></li>
+<li class="chapter" data-level="5.1.5" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#subsets-erstellen"><i class="fa fa-check"></i><b>5.1.5</b> Subsets erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#long--und-wide-format"><i class="fa fa-check"></i><b>5.2</b> Long- und Wide-Format</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#wide-format"><i class="fa fa-check"></i><b>5.2.1</b> Wide Format</a></li>
+<li class="chapter" data-level="5.2.2" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#long-format"><i class="fa fa-check"></i><b>5.2.2</b> Long-Format</a></li>
+<li class="chapter" data-level="5.2.3" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#long--und-wide-format-1"><i class="fa fa-check"></i><b>5.2.3</b> Long- und Wide-Format</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html"><i class="fa fa-check"></i><b>6</b> Deskriptive Statistik</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#absolute-und-relative-häufigkeiten"><i class="fa fa-check"></i><b>6.1</b> Absolute und Relative Häufigkeiten</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#absolute-häufigkeiten"><i class="fa fa-check"></i><b>6.1.1</b> Absolute Häufigkeiten</a></li>
+<li class="chapter" data-level="6.1.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#relative-häufigkeiten"><i class="fa fa-check"></i><b>6.1.2</b> Relative Häufigkeiten</a></li>
+<li class="chapter" data-level="6.1.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#kreuztabellekontingenztafel-für-mehrere-variablen"><i class="fa fa-check"></i><b>6.1.3</b> Kreuztabelle/Kontingenztafel für mehrere Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#grundbefehle"><i class="fa fa-check"></i><b>6.2</b> Grundbefehle</a></li>
+<li class="chapter" data-level="6.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#gruppengetrennte-analyse"><i class="fa fa-check"></i><b>6.3</b> Gruppengetrennte Analyse</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#logisches-indizieren"><i class="fa fa-check"></i><b>6.3.1</b> Logisches Indizieren</a></li>
+<li class="chapter" data-level="6.3.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#funktion-aggregate"><i class="fa fa-check"></i><b>6.3.2</b> Funktion aggregate()</a></li>
+<li class="chapter" data-level="6.3.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#funktion-describeby"><i class="fa fa-check"></i><b>6.3.3</b> Funktion describeBy()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#ergänzungen"><i class="fa fa-check"></i><b>6.4</b> Ergänzungen</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#bedingte-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>6.4.1</b> Bedingte Wahrscheinlichkeiten</a></li>
+<li class="chapter" data-level="6.4.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#skalieren"><i class="fa fa-check"></i><b>6.4.2</b> Skalieren</a></li>
+<li class="chapter" data-level="6.4.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#extremwerte"><i class="fa fa-check"></i><b>6.4.3</b> Extremwerte</a></li>
+<li class="chapter" data-level="6.4.4" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#gruppengetrennte-analyse---funktion-tapply"><i class="fa fa-check"></i><b>6.4.4</b> Gruppengetrennte Analyse - Funktion tapply()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html"><i class="fa fa-check"></i><b>7</b> Korrelation und Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#kovarianz-und-korrelation"><i class="fa fa-check"></i><b>7.1</b> Kovarianz und Korrelation</a></li>
+<li class="chapter" data-level="7.2" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#matrizen-1"><i class="fa fa-check"></i><b>7.2</b> Matrizen</a></li>
+<li class="chapter" data-level="7.3" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#multiple-lineare-regression"><i class="fa fa-check"></i><b>7.3</b> (Multiple) lineare Regression</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#modelldefinition"><i class="fa fa-check"></i><b>7.3.1</b> Modelldefinition</a></li>
+<li class="chapter" data-level="7.3.2" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#modellschätzung"><i class="fa fa-check"></i><b>7.3.2</b> Modellschätzung</a></li>
+<li class="chapter" data-level="7.3.3" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#modellvergleich"><i class="fa fa-check"></i><b>7.3.3</b> Modellvergleich</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#ergänzungen-1"><i class="fa fa-check"></i><b>7.4</b> Ergänzungen</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#matrizen-2"><i class="fa fa-check"></i><b>7.4.1</b> Matrizen</a></li>
+<li class="chapter" data-level="7.4.2" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#weitere-korrelationen"><i class="fa fa-check"></i><b>7.4.2</b> Weitere Korrelationen</a></li>
+<li class="chapter" data-level="7.4.3" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#standartisierte-und-unstandartisierte-regressionkoeffizienten"><i class="fa fa-check"></i><b>7.4.3</b> Standartisierte und unstandartisierte Regressionkoeffizienten</a></li>
+<li class="chapter" data-level="7.4.4" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#vorhergesagte-werte"><i class="fa fa-check"></i><b>7.4.4</b> Vorhergesagte Werte</a></li>
+<li class="chapter" data-level="7.4.5" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#residuen"><i class="fa fa-check"></i><b>7.4.5</b> Residuen</a></li>
+<li class="chapter" data-level="7.4.6" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#modelldefinition-1"><i class="fa fa-check"></i><b>7.4.6</b> Modelldefinition</a></li>
+<li class="chapter" data-level="7.4.7" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#hinweise-zu-weiteren-regressionsmodellen-in-r"><i class="fa fa-check"></i><b>7.4.7</b> Hinweise zu weiteren Regressionsmodellen in R</a></li>
+<li class="chapter" data-level="7.4.8" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#general-linear-model-glm"><i class="fa fa-check"></i><b>7.4.8</b> General Linear Model (GLM)</a></li>
+<li class="chapter" data-level="7.4.9" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#mediation-und-sem"><i class="fa fa-check"></i><b>7.4.9</b> Mediation und SEM</a></li>
+<li class="chapter" data-level="7.4.10" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#linear-mixed-model-lmm"><i class="fa fa-check"></i><b>7.4.10</b> Linear Mixed Model (LMM)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="grafiken.html"><a href="grafiken.html"><i class="fa fa-check"></i><b>8</b> Grafiken</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-univariate-verteilungen"><i class="fa fa-check"></i><b>8.1</b> Grafiken für univariate Verteilungen</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="grafiken.html"><a href="grafiken.html#allgemeines"><i class="fa fa-check"></i><b>8.1.1</b> Allgemeines</a></li>
+<li class="chapter" data-level="8.1.2" data-path="grafiken.html"><a href="grafiken.html#darstellung-von-häufigkeiten"><i class="fa fa-check"></i><b>8.1.2</b> Darstellung von Häufigkeiten</a></li>
+<li class="chapter" data-level="8.1.3" data-path="grafiken.html"><a href="grafiken.html#darstellung-von-häufigkeiten-1"><i class="fa fa-check"></i><b>8.1.3</b> Darstellung von Häufigkeiten</a></li>
+<li class="chapter" data-level="8.1.4" data-path="grafiken.html"><a href="grafiken.html#darstellung-von-verteilung"><i class="fa fa-check"></i><b>8.1.4</b> Darstellung von Verteilung</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-bivariate-verteilungen"><i class="fa fa-check"></i><b>8.2</b> Grafiken für bivariate Verteilungen</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="grafiken.html"><a href="grafiken.html#verteilung-einer-metrischen-auf-eine-kategoriale-variable"><i class="fa fa-check"></i><b>8.2.1</b> Verteilung einer metrischen auf eine kategoriale Variable</a></li>
+<li class="chapter" data-level="8.2.2" data-path="grafiken.html"><a href="grafiken.html#verteilung-zweier-metrischer-variablen"><i class="fa fa-check"></i><b>8.2.2</b> Verteilung zweier metrischer Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="grafiken.html"><a href="grafiken.html#tabellen"><i class="fa fa-check"></i><b>8.3</b> Tabellen</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="grafiken.html"><a href="grafiken.html#mehrfelder-tabelle"><i class="fa fa-check"></i><b>8.3.1</b> Mehrfelder Tabelle</a></li>
+<li class="chapter" data-level="8.3.2" data-path="grafiken.html"><a href="grafiken.html#formatierung"><i class="fa fa-check"></i><b>8.3.2</b> Formatierung</a></li>
+<li class="chapter" data-level="8.3.3" data-path="grafiken.html"><a href="grafiken.html#tabellen-und-modelle"><i class="fa fa-check"></i><b>8.3.3</b> Tabellen und Modelle</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="beispielanalyse.html"><a href="beispielanalyse.html"><i class="fa fa-check"></i><b>9</b> Beispielanalyse</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="beispielanalyse.html"><a href="beispielanalyse.html#forschungsfrage"><i class="fa fa-check"></i><b>9.1</b> Forschungsfrage</a></li>
+<li class="chapter" data-level="9.2" data-path="beispielanalyse.html"><a href="beispielanalyse.html#datensatz"><i class="fa fa-check"></i><b>9.2</b> Datensatz</a></li>
+<li class="chapter" data-level="9.3" data-path="beispielanalyse.html"><a href="beispielanalyse.html#variablen"><i class="fa fa-check"></i><b>9.3</b> Variablen</a></li>
+<li class="chapter" data-level="9.4" data-path="beispielanalyse.html"><a href="beispielanalyse.html#analyse"><i class="fa fa-check"></i><b>9.4</b> Analyse</a></li>
+<li class="chapter" data-level="9.5" data-path="beispielanalyse.html"><a href="beispielanalyse.html#einzelne-schritte"><i class="fa fa-check"></i><b>9.5</b> Einzelne Schritte</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="weiterführende-inhalte.html"><a href="weiterführende-inhalte.html"><i class="fa fa-check"></i><b>10</b> Weiterführende Inhalte</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="weiterführende-inhalte.html"><a href="weiterführende-inhalte.html#r-markdown"><i class="fa fa-check"></i><b>10.1</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="weiterführende-inhalte.html"><a href="weiterführende-inhalte.html#getting-started"><i class="fa fa-check"></i><b>10.1.1</b> Getting Started</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html"><i class="fa fa-check"></i><b>11</b> Statistik Grundlagen</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#skalenniveaus"><i class="fa fa-check"></i><b>11.1</b> Skalenniveaus</a></li>
+<li class="chapter" data-level="11.2" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#häufigkeiten-und-verteilungen"><i class="fa fa-check"></i><b>11.2</b> Häufigkeiten und Verteilungen</a></li>
+<li class="chapter" data-level="11.3" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#deskriptive-statistik-1"><i class="fa fa-check"></i><b>11.3</b> Deskriptive Statistik</a></li>
+<li class="chapter" data-level="11.4" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#induktive-statistik"><i class="fa fa-check"></i><b>11.4</b> Induktive Statistik </a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#grundlagen-der-induktiven-statistik"><i class="fa fa-check"></i><b>11.4.1</b> Grundlagen der induktiven Statistik</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#hypothesentests"><i class="fa fa-check"></i><b>11.5</b> Hypothesentests</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#t-tests"><i class="fa fa-check"></i><b>11.5.1</b> t-Tests</a></li>
+<li class="chapter" data-level="11.5.2" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#chi-quadrat-test"><i class="fa fa-check"></i><b>11.5.2</b> Chi-Quadrat Test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#lineare-regression"><i class="fa fa-check"></i><b>11.6</b> lineare Regression</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#einfache-lineare-regression"><i class="fa fa-check"></i><b>11.6.1</b> einfache lineare Regression</a></li>
+<li class="chapter" data-level="11.6.2" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#multiple-lineare-regression-1"><i class="fa fa-check"></i><b>11.6.2</b> multiple lineare Regression</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Handout R-Intensivkurs</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="deskriptive-statistik" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Deskriptive Statistik<a href="deskriptive-statistik.html#deskriptive-statistik" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="absolute-und-relative-häufigkeiten" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Absolute und Relative Häufigkeiten<a href="deskriptive-statistik.html#absolute-und-relative-häufigkeiten" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="absolute-häufigkeiten" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Absolute Häufigkeiten<a href="deskriptive-statistik.html#absolute-häufigkeiten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Absolute Häufigkeiten können durch <strong>table()</strong> in einer Tabelle ausgegeben werden</li>
+</ul>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="deskriptive-statistik.html#cb95-1" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
+<span id="cb95-2"><a href="deskriptive-statistik.html#cb95-2" tabindex="-1"></a>df_yoga <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/YogaPilates.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb95-3"><a href="deskriptive-statistik.html#cb95-3" tabindex="-1"></a></span>
+<span id="cb95-4"><a href="deskriptive-statistik.html#cb95-4" tabindex="-1"></a><span class="co"># Beispiel für Tabelle</span></span>
+<span id="cb95-5"><a href="deskriptive-statistik.html#cb95-5" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(df_yoga<span class="sc">$</span>gruppe)</span>
+<span id="cb95-6"><a href="deskriptive-statistik.html#cb95-6" tabindex="-1"></a>tab</span>
+<span id="cb95-7"><a href="deskriptive-statistik.html#cb95-7" tabindex="-1"></a></span>
+<span id="cb95-8"><a href="deskriptive-statistik.html#cb95-8" tabindex="-1"></a>kontroll  pilates     yoga </span>
+<span id="cb95-9"><a href="deskriptive-statistik.html#cb95-9" tabindex="-1"></a>      <span class="dv">45</span>       <span class="dv">46</span>       <span class="dv">29</span> </span></code></pre></div>
+<ul>
+<li>Die Gesamtzahl der Beobachtungen kann mit <strong>sum()</strong> ausgegeben werden:</li>
+</ul>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="deskriptive-statistik.html#cb96-1" tabindex="-1"></a><span class="co"># Anzahl der Beobachtungen in einer Kreuztabelle mit sum()</span></span>
+<span id="cb96-2"><a href="deskriptive-statistik.html#cb96-2" tabindex="-1"></a><span class="fu">sum</span>(tab)</span>
+<span id="cb96-3"><a href="deskriptive-statistik.html#cb96-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">120</span></span></code></pre></div>
+</div>
+<div id="relative-häufigkeiten" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Relative Häufigkeiten<a href="deskriptive-statistik.html#relative-häufigkeiten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Berechnung der relativen Häufigkeiten → Welchen Anteil macht eine Kategorie an der Gesamthäufigkeit aus?<br />
+</li>
+<li>Genauso gut können wir die Funktion <strong>prop.table()</strong> verwenden</li>
+</ul>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="deskriptive-statistik.html#cb97-1" tabindex="-1"></a><span class="co"># Kreuztabelle tab_rel mit relativen Häufigkeiten (Anteil/Gesamthäuf.)</span></span>
+<span id="cb97-2"><a href="deskriptive-statistik.html#cb97-2" tabindex="-1"></a>tab_rel <span class="ot">&lt;-</span> tab<span class="sc">/</span><span class="fu">sum</span>(tab)</span>
+<span id="cb97-3"><a href="deskriptive-statistik.html#cb97-3" tabindex="-1"></a></span>
+<span id="cb97-4"><a href="deskriptive-statistik.html#cb97-4" tabindex="-1"></a><span class="co"># Alternative Berechnung mit prop.table()</span></span>
+<span id="cb97-5"><a href="deskriptive-statistik.html#cb97-5" tabindex="-1"></a>tab_rel <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tab)</span>
+<span id="cb97-6"><a href="deskriptive-statistik.html#cb97-6" tabindex="-1"></a></span>
+<span id="cb97-7"><a href="deskriptive-statistik.html#cb97-7" tabindex="-1"></a></span>
+<span id="cb97-8"><a href="deskriptive-statistik.html#cb97-8" tabindex="-1"></a>kontroll  pilates     yoga </span>
+<span id="cb97-9"><a href="deskriptive-statistik.html#cb97-9" tabindex="-1"></a>    <span class="fl">0.38</span>     <span class="fl">0.38</span>     <span class="fl">0.24</span> </span></code></pre></div>
+</div>
+<div id="kreuztabellekontingenztafel-für-mehrere-variablen" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Kreuztabelle/Kontingenztafel für mehrere Variablen<a href="deskriptive-statistik.html#kreuztabellekontingenztafel-für-mehrere-variablen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Wie ist die (absolute und relative) Häufigkeit der Frauen und Männer (geschl) in den einzelnen Gruppen (gruppe)?<br />
+</li>
+<li>Bei Angabe von mehreren Vektoren werden Kreuztabellen erzeugt</li>
+</ul>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="deskriptive-statistik.html#cb98-1" tabindex="-1"></a><span class="co"># Kreuztabelle für Geschlecht und Gruppe</span></span>
+<span id="cb98-2"><a href="deskriptive-statistik.html#cb98-2" tabindex="-1"></a>tab2 <span class="ot">&lt;-</span> <span class="fu">table</span>(df_yoga<span class="sc">$</span>geschl, df_yoga<span class="sc">$</span>gruppe)</span>
+<span id="cb98-3"><a href="deskriptive-statistik.html#cb98-3" tabindex="-1"></a></span>
+<span id="cb98-4"><a href="deskriptive-statistik.html#cb98-4" tabindex="-1"></a><span class="co"># prop.table() für relative Häufigkeiten (auf 2 Stellen gerundet)</span></span>
+<span id="cb98-5"><a href="deskriptive-statistik.html#cb98-5" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab2), <span class="dv">2</span>)</span>
+<span id="cb98-6"><a href="deskriptive-statistik.html#cb98-6" tabindex="-1"></a>   </span>
+<span id="cb98-7"><a href="deskriptive-statistik.html#cb98-7" tabindex="-1"></a>    kontroll pilates yoga</span>
+<span id="cb98-8"><a href="deskriptive-statistik.html#cb98-8" tabindex="-1"></a>  m     <span class="fl">0.12</span>    <span class="fl">0.10</span> <span class="fl">0.05</span></span>
+<span id="cb98-9"><a href="deskriptive-statistik.html#cb98-9" tabindex="-1"></a>  w     <span class="fl">0.26</span>    <span class="fl">0.28</span> <span class="fl">0.19</span></span></code></pre></div>
+</div>
+</div>
+<div id="grundbefehle" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Grundbefehle<a href="deskriptive-statistik.html#grundbefehle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th>R-Befehl</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sum()</td>
+<td>Summe</td>
+</tr>
+<tr class="even">
+<td>mean()</td>
+<td>Mittelwert</td>
+</tr>
+<tr class="odd">
+<td>var()</td>
+<td>Varianz</td>
+</tr>
+<tr class="even">
+<td>sd()</td>
+<td>Standardabweichung</td>
+</tr>
+<tr class="odd">
+<td>min()</td>
+<td>Minimum</td>
+</tr>
+<tr class="even">
+<td>max()</td>
+<td>Maximum</td>
+</tr>
+<tr class="odd">
+<td>quantile()</td>
+<td>Quartile</td>
+</tr>
+<tr class="even">
+<td>range()</td>
+<td>Range</td>
+</tr>
+<tr class="odd">
+<td>median()</td>
+<td>Median</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Beispiele</strong></p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="deskriptive-statistik.html#cb99-1" tabindex="-1"></a><span class="fu">range</span>(df_yoga<span class="sc">$</span>alter)</span>
+<span id="cb99-2"><a href="deskriptive-statistik.html#cb99-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">21</span> <span class="dv">40</span></span>
+<span id="cb99-3"><a href="deskriptive-statistik.html#cb99-3" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter)</span>
+<span id="cb99-4"><a href="deskriptive-statistik.html#cb99-4" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">30.73333</span></span>
+<span id="cb99-5"><a href="deskriptive-statistik.html#cb99-5" tabindex="-1"></a><span class="fu">var</span>(df_yoga<span class="sc">$</span>zufri)</span>
+<span id="cb99-6"><a href="deskriptive-statistik.html#cb99-6" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span></code></pre></div>
+<p><strong>Fehlende Werte</strong></p>
+<p>Enthalten unsere Daten fehlende Werte (<strong>NA</strong>), dann ergeben die deskriptiven Berechnungen auch <strong>NA</strong>. Durch das Argument <strong>na.rm = TRUE</strong> werden <strong>NA</strong>-Werte ignoriert.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="deskriptive-statistik.html#cb100-1" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>zufri)</span>
+<span id="cb100-2"><a href="deskriptive-statistik.html#cb100-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span>
+<span id="cb100-3"><a href="deskriptive-statistik.html#cb100-3" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>zufri, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb100-4"><a href="deskriptive-statistik.html#cb100-4" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">3.543103</span></span></code></pre></div>
+<p><strong>Funktion summary()</strong></p>
+<ul>
+<li>Mit summary() werden verschiedene deskriptive Statistiken ausgegeben:</li>
+</ul>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="deskriptive-statistik.html#cb101-1" tabindex="-1"></a><span class="fu">summary</span>(df_yoga<span class="sc">$</span>alter)</span>
+<span id="cb101-2"><a href="deskriptive-statistik.html#cb101-2" tabindex="-1"></a>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span id="cb101-3"><a href="deskriptive-statistik.html#cb101-3" tabindex="-1"></a>  <span class="fl">21.00</span>   <span class="fl">26.00</span>   <span class="fl">30.50</span>   <span class="fl">30.73</span>   <span class="fl">35.25</span>   <span class="fl">40.00</span> </span></code></pre></div>
+<ul>
+<li>summary() gibt zudem die Anzahl fehlender Werte an:</li>
+</ul>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="deskriptive-statistik.html#cb102-1" tabindex="-1"></a><span class="fu">summary</span>(df_yoga<span class="sc">$</span>zufri)</span>
+<span id="cb102-2"><a href="deskriptive-statistik.html#cb102-2" tabindex="-1"></a>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA<span class="st">&#39;s </span></span>
+<span id="cb102-3"><a href="deskriptive-statistik.html#cb102-3" tabindex="-1"></a><span class="st">  1.000   3.000   4.000   3.543   4.000   5.000       4 </span></span></code></pre></div>
+<p><strong>Paket psych</strong></p>
+<p>Mit der Funktion describe() aus dem Paket <strong>psych</strong> lassen sich eine Vielzahl von Verteilungsparametern gleichzeitig ausgeben:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="deskriptive-statistik.html#cb103-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb103-2"><a href="deskriptive-statistik.html#cb103-2" tabindex="-1"></a><span class="fu">describe</span>(df_yoga<span class="sc">$</span>alter, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb103-3"><a href="deskriptive-statistik.html#cb103-3" tabindex="-1"></a>   vars   n  mean   sd min max range   se</span>
+<span id="cb103-4"><a href="deskriptive-statistik.html#cb103-4" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">120</span> <span class="fl">30.73</span> <span class="fl">5.76</span>  <span class="dv">21</span>  <span class="dv">40</span>    <span class="dv">19</span> <span class="fl">0.53</span></span></code></pre></div>
+<p>Optionale Argumente:<br />
+- skew = FALSE, um Schiefe und Kurtosis nicht auszugeben<br />
+- ranges = FALSE, um u.a. Median, Minimum und Maximum nicht auszugeben<br />
+- IQR = TRUE, um Interquartilbereich auszugeben</p>
+</div>
+<div id="gruppengetrennte-analyse" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Gruppengetrennte Analyse<a href="deskriptive-statistik.html#gruppengetrennte-analyse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Wie können die Variablen <em>alter</em>, <em>zufri</em> und <em>angst</em> deskriptiv in den einzelnen Gruppen berechnet werden?</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="deskriptive-statistik.html#cb104-1" tabindex="-1"></a><span class="co"># Ersten 5 Zeilen Beispieldatasatz</span></span>
+<span id="cb104-2"><a href="deskriptive-statistik.html#cb104-2" tabindex="-1"></a><span class="fu">head</span>(df_yoga, <span class="dv">5</span>)</span>
+<span id="cb104-3"><a href="deskriptive-statistik.html#cb104-3" tabindex="-1"></a>    vp geschl alter  gruppe zufri angst</span>
+<span id="cb104-4"><a href="deskriptive-statistik.html#cb104-4" tabindex="-1"></a><span class="dv">1</span> AA21      w    <span class="dv">37</span>    yoga     <span class="dv">5</span>     <span class="dv">1</span></span>
+<span id="cb104-5"><a href="deskriptive-statistik.html#cb104-5" tabindex="-1"></a><span class="dv">2</span> AW14      m    <span class="dv">31</span> pilates     <span class="dv">4</span>     <span class="dv">4</span></span>
+<span id="cb104-6"><a href="deskriptive-statistik.html#cb104-6" tabindex="-1"></a><span class="dv">3</span> BA55      w    <span class="dv">38</span>    yoga     <span class="dv">4</span>     <span class="dv">2</span></span>
+<span id="cb104-7"><a href="deskriptive-statistik.html#cb104-7" tabindex="-1"></a><span class="dv">4</span> BA76      m    <span class="dv">35</span>    yoga     <span class="dv">5</span>     <span class="dv">2</span></span>
+<span id="cb104-8"><a href="deskriptive-statistik.html#cb104-8" tabindex="-1"></a><span class="dv">5</span> BP45      w    <span class="dv">23</span> pilates     <span class="dv">4</span>     <span class="dv">1</span></span></code></pre></div>
+<div id="logisches-indizieren" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Logisches Indizieren<a href="deskriptive-statistik.html#logisches-indizieren" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Jeweils Teile der Daten durch logisches Indizieren auswählen
+„Berechne Mittelwert der Spalte <em>$alter</em>, aber wähle hierfür nur Werte der Personen aus Gruppe Yoga“</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="deskriptive-statistik.html#cb105-1" tabindex="-1"></a><span class="co"># Durchschnittsalter, Gruppe = yoga</span></span>
+<span id="cb105-2"><a href="deskriptive-statistik.html#cb105-2" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter[df_yoga<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">&quot;yoga&quot;</span>])</span>
+<span id="cb105-3"><a href="deskriptive-statistik.html#cb105-3" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">31.13793</span></span>
+<span id="cb105-4"><a href="deskriptive-statistik.html#cb105-4" tabindex="-1"></a></span>
+<span id="cb105-5"><a href="deskriptive-statistik.html#cb105-5" tabindex="-1"></a><span class="co"># Durchschnittsalter, Gruppe = pilates</span></span>
+<span id="cb105-6"><a href="deskriptive-statistik.html#cb105-6" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter[df_yoga<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">&quot;pilates&quot;</span>])</span>
+<span id="cb105-7"><a href="deskriptive-statistik.html#cb105-7" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">30.86957</span></span>
+<span id="cb105-8"><a href="deskriptive-statistik.html#cb105-8" tabindex="-1"></a></span>
+<span id="cb105-9"><a href="deskriptive-statistik.html#cb105-9" tabindex="-1"></a><span class="co"># Durchschnittsalt,er, Gruppe = kontroll</span></span>
+<span id="cb105-10"><a href="deskriptive-statistik.html#cb105-10" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter[df_yoga<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">&quot;kontroll&quot;</span>])</span>
+<span id="cb105-11"><a href="deskriptive-statistik.html#cb105-11" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">30.33333</span></span></code></pre></div>
+</div>
+<div id="funktion-aggregate" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Funktion aggregate()<a href="deskriptive-statistik.html#funktion-aggregate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Mit <strong>aggregate()</strong> können Funktionen für verschiedene Faktorenstufen (und deren Kombination) getrennt berechnet werden:<br />
+</p></li>
+<li><p><strong>aggregate(AV ~ UV, FUN = …, data = …)</strong><br />
+</p>
+<ul>
+<li><strong>AV</strong>: Variable, deren Werte analysiert werden sollen<br />
+</li>
+<li><strong>UV</strong>: Faktor(en), mehrere Faktoren werden mit + verbunden<br />
+</li>
+<li><strong>FUN</strong>: Welche Funktion (deskriptive Statistik) soll berechnet werden?<br />
+</li>
+<li><strong>data</strong>: datasatz</li>
+</ul></li>
+</ul>
+<p><strong>Beispiel</strong></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="deskriptive-statistik.html#cb106-1" tabindex="-1"></a><span class="co"># Durchschnitt Zufriedenheit, Gruppen = geschl, gruppe</span></span>
+<span id="cb106-2"><a href="deskriptive-statistik.html#cb106-2" tabindex="-1"></a><span class="fu">aggregate</span>(zufri <span class="sc">~</span> geschl <span class="sc">+</span> gruppe, <span class="at">FUN =</span> mean, <span class="at">data =</span> df_yoga)</span>
+<span id="cb106-3"><a href="deskriptive-statistik.html#cb106-3" tabindex="-1"></a>  geschl   gruppe    zufri</span>
+<span id="cb106-4"><a href="deskriptive-statistik.html#cb106-4" tabindex="-1"></a><span class="dv">1</span>      m kontroll <span class="fl">3.785714</span></span>
+<span id="cb106-5"><a href="deskriptive-statistik.html#cb106-5" tabindex="-1"></a><span class="dv">2</span>      w kontroll <span class="fl">3.258065</span></span>
+<span id="cb106-6"><a href="deskriptive-statistik.html#cb106-6" tabindex="-1"></a><span class="dv">3</span>      m  pilates <span class="fl">3.181818</span></span>
+<span id="cb106-7"><a href="deskriptive-statistik.html#cb106-7" tabindex="-1"></a><span class="dv">4</span>      w  pilates <span class="fl">3.454545</span></span>
+<span id="cb106-8"><a href="deskriptive-statistik.html#cb106-8" tabindex="-1"></a><span class="dv">5</span>      m     yoga <span class="fl">4.166667</span></span>
+<span id="cb106-9"><a href="deskriptive-statistik.html#cb106-9" tabindex="-1"></a><span class="dv">6</span>      w     yoga <span class="fl">3.952381</span></span></code></pre></div>
+</div>
+<div id="funktion-describeby" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Funktion describeBy()<a href="deskriptive-statistik.html#funktion-describeby" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>aus dem Paket <em>psych</em><br />
+</li>
+<li>Anwendung der describe-Funktion getrennt nach Faktor(en)<br />
+</li>
+<li><strong>describeBy(x = …, group = list(…), …)</strong>
+<ul>
+<li><strong>x</strong>: Variable, deren Werte analysiert werden sollen (wie AV bei <strong>aggregate()</strong>)</li>
+<li><strong>group = list()</strong>: Faktor(en), mehrere Faktoren werden mit “,” verbunden (wie UV bei <strong>aggregate()</strong>)</li>
+</ul></li>
+</ul>
+<p><strong>Beispiel describeBy()</strong></p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="deskriptive-statistik.html#cb107-1" tabindex="-1"></a><span class="co"># Deskriptive Statistiken nach Gruppe(=geschl)</span></span>
+<span id="cb107-2"><a href="deskriptive-statistik.html#cb107-2" tabindex="-1"></a><span class="fu">describeBy</span>(<span class="at">x =</span> df_yoga<span class="sc">$</span>zufri, <span class="at">group =</span> <span class="fu">list</span>(df_yoga<span class="sc">$</span>geschl), <span class="at">skew =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb107-3"><a href="deskriptive-statistik.html#cb107-3" tabindex="-1"></a></span>
+<span id="cb107-4"><a href="deskriptive-statistik.html#cb107-4" tabindex="-1"></a> Descriptive statistics by group </span>
+<span id="cb107-5"><a href="deskriptive-statistik.html#cb107-5" tabindex="-1"></a><span class="sc">:</span> m</span>
+<span id="cb107-6"><a href="deskriptive-statistik.html#cb107-6" tabindex="-1"></a>   vars  n mean   sd min max range   se</span>
+<span id="cb107-7"><a href="deskriptive-statistik.html#cb107-7" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">31</span> <span class="fl">3.65</span> <span class="fl">0.95</span>   <span class="dv">2</span>   <span class="dv">5</span>     <span class="dv">3</span> <span class="fl">0.17</span></span>
+<span id="cb107-8"><a href="deskriptive-statistik.html#cb107-8" tabindex="-1"></a><span class="sc">---------------------------------------------</span> </span>
+<span id="cb107-9"><a href="deskriptive-statistik.html#cb107-9" tabindex="-1"></a><span class="er">:</span> w</span>
+<span id="cb107-10"><a href="deskriptive-statistik.html#cb107-10" tabindex="-1"></a>   vars  n mean   sd min max range   se</span>
+<span id="cb107-11"><a href="deskriptive-statistik.html#cb107-11" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">85</span> <span class="fl">3.51</span> <span class="fl">1.06</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span> <span class="fl">0.12</span></span></code></pre></div>
+</div>
+</div>
+<div id="ergänzungen" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Ergänzungen<a href="deskriptive-statistik.html#ergänzungen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bedingte-wahrscheinlichkeiten" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Bedingte Wahrscheinlichkeiten<a href="deskriptive-statistik.html#bedingte-wahrscheinlichkeiten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mit <strong>prop.table(…, margin = …)</strong> werden bedingte Wahrscheinlichkeiten für ein Merkmal ausgegeben. (margin 1 = zeilenweise, margin 2 = spaltenweise)</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="deskriptive-statistik.html#cb108-1" tabindex="-1"></a><span class="co"># Bedingte Wahrscheinlichkeit, zeilenweise, gerundet auf 2 Stellen</span></span>
+<span id="cb108-2"><a href="deskriptive-statistik.html#cb108-2" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab2, <span class="at">margin =</span> <span class="dv">1</span>), <span class="dv">2</span>)</span>
+<span id="cb108-3"><a href="deskriptive-statistik.html#cb108-3" tabindex="-1"></a>   </span>
+<span id="cb108-4"><a href="deskriptive-statistik.html#cb108-4" tabindex="-1"></a>    kontroll pilates yoga</span>
+<span id="cb108-5"><a href="deskriptive-statistik.html#cb108-5" tabindex="-1"></a>  m     <span class="fl">0.44</span>    <span class="fl">0.38</span> <span class="fl">0.19</span></span>
+<span id="cb108-6"><a href="deskriptive-statistik.html#cb108-6" tabindex="-1"></a>  w     <span class="fl">0.35</span>    <span class="fl">0.39</span> <span class="fl">0.26</span></span>
+<span id="cb108-7"><a href="deskriptive-statistik.html#cb108-7" tabindex="-1"></a></span>
+<span id="cb108-8"><a href="deskriptive-statistik.html#cb108-8" tabindex="-1"></a><span class="co"># Bedingte Wahrscheinlichkeit, spaltenweise, gerundet auf 2 Stellen</span></span>
+<span id="cb108-9"><a href="deskriptive-statistik.html#cb108-9" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab2, <span class="at">margin =</span> <span class="dv">2</span>), <span class="dv">2</span>)</span>
+<span id="cb108-10"><a href="deskriptive-statistik.html#cb108-10" tabindex="-1"></a>   </span>
+<span id="cb108-11"><a href="deskriptive-statistik.html#cb108-11" tabindex="-1"></a>    kontroll pilates yoga</span>
+<span id="cb108-12"><a href="deskriptive-statistik.html#cb108-12" tabindex="-1"></a>  m     <span class="fl">0.31</span>    <span class="fl">0.26</span> <span class="fl">0.21</span></span>
+<span id="cb108-13"><a href="deskriptive-statistik.html#cb108-13" tabindex="-1"></a>  w     <span class="fl">0.69</span>    <span class="fl">0.74</span> <span class="fl">0.79</span></span></code></pre></div>
+</div>
+<div id="skalieren" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Skalieren<a href="deskriptive-statistik.html#skalieren" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Mit dem Befehl <strong>scale(…, center = …, scale = …)</strong> können Variablen zentriert und z-standardisiert werden.
+<ul>
+<li><strong>center</strong>: Soll von jedem Wert in der Variable der Variablenmittelwert abgezogen werden? (TRUE = ja)<br />
+</li>
+<li><strong>scale</strong>: Soll jeder Wert in der Variable durch die Variablenstandardabweichung dividiert werden? (TRUE = ja)<br />
+</li>
+<li>Zentrierung, wenn nur <strong>center = TRUE</strong>, z-Standardisierung, wenn beide Argumente mit TRUE definiert wurden.</li>
+</ul></li>
+</ul>
+</div>
+<div id="extremwerte" class="section level3 hasAnchor" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Extremwerte<a href="deskriptive-statistik.html#extremwerte" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Mit dem Argument <strong>trim = …</strong> im Befehl <strong>mean()</strong> kann der Anteil ausgeschlossener Extremwerte definiert werden</p></li>
+<li><p>Das Paket moments gibt mit dem Befehl <strong>all.moments()</strong> alle statistischen Momente aus, mit <strong>skewness()</strong> die Schiefe und mit <strong>kurtosis()</strong> den Exzess</p></li>
+</ul>
+</div>
+<div id="gruppengetrennte-analyse---funktion-tapply" class="section level3 hasAnchor" number="6.4.4">
+<h3><span class="header-section-number">6.4.4</span> Gruppengetrennte Analyse - Funktion tapply()<a href="deskriptive-statistik.html#gruppengetrennte-analyse---funktion-tapply" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>tapply(X = …, INDEX = list(…), FUN = …)</strong></p>
+<ul>
+<li><strong>X</strong>: Variable, deren Werte analysiert werden sollen (wie AV bei <strong>aggregate()</strong>)</li>
+<li><strong>INDEX = list()</strong>: Faktor(en), mehrere Faktoren werden mit “,” verbunden (wie UV bei <strong>aggregate()</strong>)
+<ul>
+<li>Bei einem Faktor muss <strong>list()</strong> nicht angegeben werden</li>
+</ul></li>
+<li><strong>FUN</strong>: Welche Funktion (deskriptive Statistik) soll berechnet werden? (wie bei <strong>aggregate()</strong>)</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="datenmanagement-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="korrelation-und-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+book_filename: "Handout R-Kurs"
+new_session: true
+before_chapter_script: _common.R
+delete_merged_file: true
+language:
+  ui:

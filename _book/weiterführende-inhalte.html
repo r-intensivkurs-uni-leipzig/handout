@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Weiterführende Inhalte | Handout R-Intensivkurs</title>
+  <meta name="description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Weiterführende Inhalte | Handout R-Intensivkurs" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Weiterführende Inhalte | Handout R-Intensivkurs" />
+  
+  <meta name="twitter:description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
+  
+
+<meta name="author" content="Christoph Mayer" />
+
+
+<meta name="date" content="2024-03-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="beispielanalyse.html"/>
+<link rel="next" href="statistik-grundlagen.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Willkommen</a></li>
+<li class="chapter" data-level="2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html"><i class="fa fa-check"></i><b>2</b> Einführung in R und R Studio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#was-ist-r"><i class="fa fa-check"></i><b>2.1</b> Was ist R?</a></li>
+<li class="chapter" data-level="2.2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#sechs-gründe-r-zu-lernen"><i class="fa fa-check"></i><b>2.2</b> Sechs Gründe R zu lernen</a></li>
+<li class="chapter" data-level="2.3" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#benutzeroberfläche-von-r-und-rstudio"><i class="fa fa-check"></i><b>2.3</b> Benutzeroberfläche von R und RStudio</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#r-gui"><i class="fa fa-check"></i><b>2.3.1</b> R GUI</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#rstudio"><i class="fa fa-check"></i><b>2.3.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#empfohlenes-vorgehen"><i class="fa fa-check"></i><b>2.4</b> Empfohlenes Vorgehen</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#empfohlener-ablauf-einer-analyse"><i class="fa fa-check"></i><b>2.4.1</b> Empfohlener Ablauf einer Analyse</a></li>
+<li class="chapter" data-level="2.4.2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#beispiel-skript"><i class="fa fa-check"></i><b>2.4.2</b> Beispiel Skript</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>3</b> Grundlagen</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="grundlagen.html"><a href="grundlagen.html#fundamentale-datentypen-in-r"><i class="fa fa-check"></i><b>3.1</b> Fundamentale Datentypen in R</a></li>
+<li class="chapter" data-level="3.2" data-path="grundlagen.html"><a href="grundlagen.html#r-als-taschenrechner"><i class="fa fa-check"></i><b>3.2</b> R als Taschenrechner</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="grundlagen.html"><a href="grundlagen.html#dezimalstellen-und-leerzeichen"><i class="fa fa-check"></i><b>3.2.1</b> Dezimalstellen und Leerzeichen</a></li>
+<li class="chapter" data-level="3.2.2" data-path="grundlagen.html"><a href="grundlagen.html#mathematische-operatoren"><i class="fa fa-check"></i><b>3.2.2</b> Mathematische Operatoren</a></li>
+<li class="chapter" data-level="3.2.3" data-path="grundlagen.html"><a href="grundlagen.html#logische-operatoren"><i class="fa fa-check"></i><b>3.2.3</b> Logische Operatoren</a></li>
+<li class="chapter" data-level="3.2.4" data-path="grundlagen.html"><a href="grundlagen.html#exkurs-dokumentation"><i class="fa fa-check"></i><b>3.2.4</b> Exkurs: Dokumentation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="grundlagen.html"><a href="grundlagen.html#variablen-und-objekte"><i class="fa fa-check"></i><b>3.3</b> Variablen und Objekte</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="grundlagen.html"><a href="grundlagen.html#abspeichern-von-variablen"><i class="fa fa-check"></i><b>3.3.1</b> Abspeichern von Variablen</a></li>
+<li class="chapter" data-level="3.3.2" data-path="grundlagen.html"><a href="grundlagen.html#abspeichern-von-variablen-1"><i class="fa fa-check"></i><b>3.3.2</b> Abspeichern von Variablen</a></li>
+<li class="chapter" data-level="3.3.3" data-path="grundlagen.html"><a href="grundlagen.html#hinweise-zur-benennung"><i class="fa fa-check"></i><b>3.3.3</b> Hinweise zur Benennung**</a></li>
+<li class="chapter" data-level="3.3.4" data-path="grundlagen.html"><a href="grundlagen.html#enviroment"><i class="fa fa-check"></i><b>3.3.4</b> Enviroment</a></li>
+<li class="chapter" data-level="3.3.5" data-path="grundlagen.html"><a href="grundlagen.html#befehle-für-zugriff-auf-environment"><i class="fa fa-check"></i><b>3.3.5</b> Befehle für Zugriff auf Environment:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="grundlagen.html"><a href="grundlagen.html#funktionen"><i class="fa fa-check"></i><b>3.4</b> Funktionen</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="grundlagen.html"><a href="grundlagen.html#woraus-besteht-eine-funktion"><i class="fa fa-check"></i><b>3.4.1</b> Woraus besteht eine Funktion?</a></li>
+<li class="chapter" data-level="3.4.2" data-path="grundlagen.html"><a href="grundlagen.html#default-werte-in-funktionen"><i class="fa fa-check"></i><b>3.4.2</b> Default-Werte in Funktionen</a></li>
+<li class="chapter" data-level="3.4.3" data-path="grundlagen.html"><a href="grundlagen.html#exkurs-help-funktion"><i class="fa fa-check"></i><b>3.4.3</b> Exkurs: Help-Funktion</a></li>
+<li class="chapter" data-level="3.4.4" data-path="grundlagen.html"><a href="grundlagen.html#abspeichern-von-output-einer-funktionen"><i class="fa fa-check"></i><b>3.4.4</b> Abspeichern von Output einer Funktionen**</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="grundlagen.html"><a href="grundlagen.html#datenstrukturen"><i class="fa fa-check"></i><b>3.5</b> Datenstrukturen</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="grundlagen.html"><a href="grundlagen.html#übersicht"><i class="fa fa-check"></i><b>3.5.1</b> Übersicht</a></li>
+<li class="chapter" data-level="3.5.2" data-path="grundlagen.html"><a href="grundlagen.html#vektoren"><i class="fa fa-check"></i><b>3.5.2</b> Vektoren</a></li>
+<li class="chapter" data-level="3.5.3" data-path="grundlagen.html"><a href="grundlagen.html#matrizen"><i class="fa fa-check"></i><b>3.5.3</b> Matrizen</a></li>
+<li class="chapter" data-level="3.5.4" data-path="grundlagen.html"><a href="grundlagen.html#dataframes"><i class="fa fa-check"></i><b>3.5.4</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="grundlagen.html"><a href="grundlagen.html#packages"><i class="fa fa-check"></i><b>3.6</b> Packages</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="grundlagen.html"><a href="grundlagen.html#installieren-von-packages"><i class="fa fa-check"></i><b>3.6.1</b> Installieren von Packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html"><i class="fa fa-check"></i><b>4</b> Datenmanagement I</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-importieren"><i class="fa fa-check"></i><b>4.1</b> Daten importieren</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#organisation-der-dateien"><i class="fa fa-check"></i><b>4.1.1</b> Organisation der Dateien</a></li>
+<li class="chapter" data-level="4.1.2" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#exkurs-dateipfade"><i class="fa fa-check"></i><b>4.1.2</b> Exkurs: Dateipfade</a></li>
+<li class="chapter" data-level="4.1.3" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-aus-.txt-.csv-.xlsx-und-weiteren-dateiformaten-auslesen"><i class="fa fa-check"></i><b>4.1.3</b> Daten aus .txt, .csv, .xlsx und weiteren Dateiformaten auslesen</a></li>
+<li class="chapter" data-level="4.1.4" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#alternative-per-klickpfad"><i class="fa fa-check"></i><b>4.1.4</b> Alternative per Klickpfad</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-importieren-1"><i class="fa fa-check"></i><b>4.2</b> Daten importieren</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#überblick-verschaffen"><i class="fa fa-check"></i><b>4.2.1</b> Überblick verschaffen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-speichern"><i class="fa fa-check"></i><b>4.3</b> Daten speichern</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#datensatz-exportieren-als-.txt-.csv-.xlsx-oder-.sav"><i class="fa fa-check"></i><b>4.3.1</b> Datensatz exportieren als .txt, .csv, .xlsx oder .sav</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#datensätze-zusammenfügen"><i class="fa fa-check"></i><b>4.4</b> Datensätze zusammenfügen</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#fälle-hinzufügen"><i class="fa fa-check"></i><b>4.4.1</b> Fälle hinzufügen</a></li>
+<li class="chapter" data-level="4.4.2" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#variablen-hinzufügen"><i class="fa fa-check"></i><b>4.4.2</b> Variablen hinzufügen**</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html"><i class="fa fa-check"></i><b>5</b> Datenmanagement II</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#datenbearbeitung"><i class="fa fa-check"></i><b>5.1</b> Datenbearbeitung</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#umkodierung"><i class="fa fa-check"></i><b>5.1.1</b> Umkodierung</a></li>
+<li class="chapter" data-level="5.1.2" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#dichotomisierung"><i class="fa fa-check"></i><b>5.1.2</b> Dichotomisierung</a></li>
+<li class="chapter" data-level="5.1.3" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#kategorisierung"><i class="fa fa-check"></i><b>5.1.3</b> Kategorisierung</a></li>
+<li class="chapter" data-level="5.1.4" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#skalenbildung"><i class="fa fa-check"></i><b>5.1.4</b> Skalenbildung</a></li>
+<li class="chapter" data-level="5.1.5" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#subsets-erstellen"><i class="fa fa-check"></i><b>5.1.5</b> Subsets erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#long--und-wide-format"><i class="fa fa-check"></i><b>5.2</b> Long- und Wide-Format</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#wide-format"><i class="fa fa-check"></i><b>5.2.1</b> Wide Format</a></li>
+<li class="chapter" data-level="5.2.2" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#long-format"><i class="fa fa-check"></i><b>5.2.2</b> Long-Format</a></li>
+<li class="chapter" data-level="5.2.3" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#long--und-wide-format-1"><i class="fa fa-check"></i><b>5.2.3</b> Long- und Wide-Format</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html"><i class="fa fa-check"></i><b>6</b> Deskriptive Statistik</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#absolute-und-relative-häufigkeiten"><i class="fa fa-check"></i><b>6.1</b> Absolute und Relative Häufigkeiten</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#absolute-häufigkeiten"><i class="fa fa-check"></i><b>6.1.1</b> Absolute Häufigkeiten</a></li>
+<li class="chapter" data-level="6.1.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#relative-häufigkeiten"><i class="fa fa-check"></i><b>6.1.2</b> Relative Häufigkeiten</a></li>
+<li class="chapter" data-level="6.1.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#kreuztabellekontingenztafel-für-mehrere-variablen"><i class="fa fa-check"></i><b>6.1.3</b> Kreuztabelle/Kontingenztafel für mehrere Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#grundbefehle"><i class="fa fa-check"></i><b>6.2</b> Grundbefehle</a></li>
+<li class="chapter" data-level="6.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#gruppengetrennte-analyse"><i class="fa fa-check"></i><b>6.3</b> Gruppengetrennte Analyse</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#logisches-indizieren"><i class="fa fa-check"></i><b>6.3.1</b> Logisches Indizieren</a></li>
+<li class="chapter" data-level="6.3.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#funktion-aggregate"><i class="fa fa-check"></i><b>6.3.2</b> Funktion aggregate()</a></li>
+<li class="chapter" data-level="6.3.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#funktion-describeby"><i class="fa fa-check"></i><b>6.3.3</b> Funktion describeBy()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#ergänzungen"><i class="fa fa-check"></i><b>6.4</b> Ergänzungen</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#bedingte-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>6.4.1</b> Bedingte Wahrscheinlichkeiten</a></li>
+<li class="chapter" data-level="6.4.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#skalieren"><i class="fa fa-check"></i><b>6.4.2</b> Skalieren</a></li>
+<li class="chapter" data-level="6.4.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#extremwerte"><i class="fa fa-check"></i><b>6.4.3</b> Extremwerte</a></li>
+<li class="chapter" data-level="6.4.4" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#gruppengetrennte-analyse---funktion-tapply"><i class="fa fa-check"></i><b>6.4.4</b> Gruppengetrennte Analyse - Funktion tapply()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html"><i class="fa fa-check"></i><b>7</b> Korrelation und Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#kovarianz-und-korrelation"><i class="fa fa-check"></i><b>7.1</b> Kovarianz und Korrelation</a></li>
+<li class="chapter" data-level="7.2" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#matrizen-1"><i class="fa fa-check"></i><b>7.2</b> Matrizen</a></li>
+<li class="chapter" data-level="7.3" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#multiple-lineare-regression"><i class="fa fa-check"></i><b>7.3</b> (Multiple) lineare Regression</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#modelldefinition"><i class="fa fa-check"></i><b>7.3.1</b> Modelldefinition</a></li>
+<li class="chapter" data-level="7.3.2" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#modellschätzung"><i class="fa fa-check"></i><b>7.3.2</b> Modellschätzung</a></li>
+<li class="chapter" data-level="7.3.3" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#modellvergleich"><i class="fa fa-check"></i><b>7.3.3</b> Modellvergleich</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#ergänzungen-1"><i class="fa fa-check"></i><b>7.4</b> Ergänzungen</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#matrizen-2"><i class="fa fa-check"></i><b>7.4.1</b> Matrizen</a></li>
+<li class="chapter" data-level="7.4.2" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#weitere-korrelationen"><i class="fa fa-check"></i><b>7.4.2</b> Weitere Korrelationen</a></li>
+<li class="chapter" data-level="7.4.3" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#standartisierte-und-unstandartisierte-regressionkoeffizienten"><i class="fa fa-check"></i><b>7.4.3</b> Standartisierte und unstandartisierte Regressionkoeffizienten</a></li>
+<li class="chapter" data-level="7.4.4" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#vorhergesagte-werte"><i class="fa fa-check"></i><b>7.4.4</b> Vorhergesagte Werte</a></li>
+<li class="chapter" data-level="7.4.5" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#residuen"><i class="fa fa-check"></i><b>7.4.5</b> Residuen</a></li>
+<li class="chapter" data-level="7.4.6" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#modelldefinition-1"><i class="fa fa-check"></i><b>7.4.6</b> Modelldefinition</a></li>
+<li class="chapter" data-level="7.4.7" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#hinweise-zu-weiteren-regressionsmodellen-in-r"><i class="fa fa-check"></i><b>7.4.7</b> Hinweise zu weiteren Regressionsmodellen in R</a></li>
+<li class="chapter" data-level="7.4.8" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#general-linear-model-glm"><i class="fa fa-check"></i><b>7.4.8</b> General Linear Model (GLM)</a></li>
+<li class="chapter" data-level="7.4.9" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#mediation-und-sem"><i class="fa fa-check"></i><b>7.4.9</b> Mediation und SEM</a></li>
+<li class="chapter" data-level="7.4.10" data-path="korrelation-und-regression.html"><a href="korrelation-und-regression.html#linear-mixed-model-lmm"><i class="fa fa-check"></i><b>7.4.10</b> Linear Mixed Model (LMM)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="grafiken.html"><a href="grafiken.html"><i class="fa fa-check"></i><b>8</b> Grafiken</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-univariate-verteilungen"><i class="fa fa-check"></i><b>8.1</b> Grafiken für univariate Verteilungen</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="grafiken.html"><a href="grafiken.html#allgemeines"><i class="fa fa-check"></i><b>8.1.1</b> Allgemeines</a></li>
+<li class="chapter" data-level="8.1.2" data-path="grafiken.html"><a href="grafiken.html#darstellung-von-häufigkeiten"><i class="fa fa-check"></i><b>8.1.2</b> Darstellung von Häufigkeiten</a></li>
+<li class="chapter" data-level="8.1.3" data-path="grafiken.html"><a href="grafiken.html#darstellung-von-häufigkeiten-1"><i class="fa fa-check"></i><b>8.1.3</b> Darstellung von Häufigkeiten</a></li>
+<li class="chapter" data-level="8.1.4" data-path="grafiken.html"><a href="grafiken.html#darstellung-von-verteilung"><i class="fa fa-check"></i><b>8.1.4</b> Darstellung von Verteilung</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-bivariate-verteilungen"><i class="fa fa-check"></i><b>8.2</b> Grafiken für bivariate Verteilungen</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="grafiken.html"><a href="grafiken.html#verteilung-einer-metrischen-auf-eine-kategoriale-variable"><i class="fa fa-check"></i><b>8.2.1</b> Verteilung einer metrischen auf eine kategoriale Variable</a></li>
+<li class="chapter" data-level="8.2.2" data-path="grafiken.html"><a href="grafiken.html#verteilung-zweier-metrischer-variablen"><i class="fa fa-check"></i><b>8.2.2</b> Verteilung zweier metrischer Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="grafiken.html"><a href="grafiken.html#tabellen"><i class="fa fa-check"></i><b>8.3</b> Tabellen</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="grafiken.html"><a href="grafiken.html#mehrfelder-tabelle"><i class="fa fa-check"></i><b>8.3.1</b> Mehrfelder Tabelle</a></li>
+<li class="chapter" data-level="8.3.2" data-path="grafiken.html"><a href="grafiken.html#formatierung"><i class="fa fa-check"></i><b>8.3.2</b> Formatierung</a></li>
+<li class="chapter" data-level="8.3.3" data-path="grafiken.html"><a href="grafiken.html#tabellen-und-modelle"><i class="fa fa-check"></i><b>8.3.3</b> Tabellen und Modelle</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="beispielanalyse.html"><a href="beispielanalyse.html"><i class="fa fa-check"></i><b>9</b> Beispielanalyse</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="beispielanalyse.html"><a href="beispielanalyse.html#forschungsfrage"><i class="fa fa-check"></i><b>9.1</b> Forschungsfrage</a></li>
+<li class="chapter" data-level="9.2" data-path="beispielanalyse.html"><a href="beispielanalyse.html#datensatz"><i class="fa fa-check"></i><b>9.2</b> Datensatz</a></li>
+<li class="chapter" data-level="9.3" data-path="beispielanalyse.html"><a href="beispielanalyse.html#variablen"><i class="fa fa-check"></i><b>9.3</b> Variablen</a></li>
+<li class="chapter" data-level="9.4" data-path="beispielanalyse.html"><a href="beispielanalyse.html#analyse"><i class="fa fa-check"></i><b>9.4</b> Analyse</a></li>
+<li class="chapter" data-level="9.5" data-path="beispielanalyse.html"><a href="beispielanalyse.html#einzelne-schritte"><i class="fa fa-check"></i><b>9.5</b> Einzelne Schritte</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="weiterführende-inhalte.html"><a href="weiterführende-inhalte.html"><i class="fa fa-check"></i><b>10</b> Weiterführende Inhalte</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="weiterführende-inhalte.html"><a href="weiterführende-inhalte.html#r-markdown"><i class="fa fa-check"></i><b>10.1</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="weiterführende-inhalte.html"><a href="weiterführende-inhalte.html#getting-started"><i class="fa fa-check"></i><b>10.1.1</b> Getting Started</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html"><i class="fa fa-check"></i><b>11</b> Statistik Grundlagen</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#skalenniveaus"><i class="fa fa-check"></i><b>11.1</b> Skalenniveaus</a></li>
+<li class="chapter" data-level="11.2" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#häufigkeiten-und-verteilungen"><i class="fa fa-check"></i><b>11.2</b> Häufigkeiten und Verteilungen</a></li>
+<li class="chapter" data-level="11.3" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#deskriptive-statistik-1"><i class="fa fa-check"></i><b>11.3</b> Deskriptive Statistik</a></li>
+<li class="chapter" data-level="11.4" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#induktive-statistik"><i class="fa fa-check"></i><b>11.4</b> Induktive Statistik </a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#grundlagen-der-induktiven-statistik"><i class="fa fa-check"></i><b>11.4.1</b> Grundlagen der induktiven Statistik</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#hypothesentests"><i class="fa fa-check"></i><b>11.5</b> Hypothesentests</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#t-tests"><i class="fa fa-check"></i><b>11.5.1</b> t-Tests</a></li>
+<li class="chapter" data-level="11.5.2" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#chi-quadrat-test"><i class="fa fa-check"></i><b>11.5.2</b> Chi-Quadrat Test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#lineare-regression"><i class="fa fa-check"></i><b>11.6</b> lineare Regression</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#einfache-lineare-regression"><i class="fa fa-check"></i><b>11.6.1</b> einfache lineare Regression</a></li>
+<li class="chapter" data-level="11.6.2" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#multiple-lineare-regression-1"><i class="fa fa-check"></i><b>11.6.2</b> multiple lineare Regression</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Handout R-Intensivkurs</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="weiterführende-inhalte" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Weiterführende Inhalte<a href="weiterführende-inhalte.html#weiterführende-inhalte" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="r-markdown" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> R Markdown<a href="weiterführende-inhalte.html#r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In Markdown können wir alles was wir bisher gelernt haben und noch viel mehr (z.B. auch andere Programmiersprachen) in einem Textdokument, einer Präsentation oder Sonstigem ausgeben lassen. Insbesondere wenn wir Code, Tabellen und Grafiken in unserer Arbeit darstellen möchten, bietet es sich an R Markdown zu verwenden, da hier die Formatierung um ein Vielfaches einfacher ist und besser aussieht, als in herkömmlichen Texteditoren, wie z.B. Microsoft-Word oder LibreOffice.</p>
+<p>Hier kommt ihr zur RStudio-Seite von Markdown: (link)<a href="https://rmarkdown.rstudio.com/" class="uri">https://rmarkdown.rstudio.com/</a></p>
+<p>Cheatsheet-PDF: (link)<a href="https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf</a></p>
+<div id="getting-started" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Getting Started<a href="weiterführende-inhalte.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Um R Markdown in eurer RStudio Umgebung freizuschalten müsst ihr es, falls noch nicht geschehen, zunächst installieren und laden:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="weiterführende-inhalte.html#cb139-1" tabindex="-1"></a><span class="do">## R Markdown installieren</span></span>
+<span id="cb139-2"><a href="weiterführende-inhalte.html#cb139-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb139-3"><a href="weiterführende-inhalte.html#cb139-3" tabindex="-1"></a></span>
+<span id="cb139-4"><a href="weiterführende-inhalte.html#cb139-4" tabindex="-1"></a><span class="do">## R Markdown laden</span></span>
+<span id="cb139-5"><a href="weiterführende-inhalte.html#cb139-5" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="beispielanalyse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistik-grundlagen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+--- 
+title: "Handout R-Intensivkurs"
+author: "Christoph Mayer"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://steady-cajeta-20d724.netlify.app/grafiken.html
+description: |
+  This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig.
+biblio-style: apalike
+csl: chicago-fullnote-bibliography.csl
+---
+# Willkommen
+
+Schön, dass ihr Interesse an der Programmiersprache R habt!
+
+Hier seid ihr auf der Seite des kursbegleitenden Handouts für den R Intensivkurs. 
+Teilnehmende des Kurses sollen hiermit die Möglichkeit bekommen, während bzw. nach dem Kurs Inhalte erneut einzusehen.
+
+**Hinweis:** 
+
+Das Handout wird stetig überarbeitet bzw. erweitert. Über Anmerkungen und Verbesserungsvorschläge freuen wir uns :)
+
+
+**Kontakt:**
+
+Christoph Mayer: christoph.mayer@uni-leipzig.de
+
+Franz Andersch: franz.andersch@uni-leipzig.de
+
+**Danksagung:** 
+
+Das Handout basiert in Teilen auf bereitgestellten Materialien von Ingo Seifert & Isabel Gebhardt. 
+
+Vielen Dank!
+
+\centering
+<img src="Abbildungen/2022_URZ_Förderung-IT-Kurse.jpg" alt="" width="350"/>
