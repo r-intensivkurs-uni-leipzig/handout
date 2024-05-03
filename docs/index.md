@@ -16,17 +16,12 @@ csl: chicago-fullnote-bibliography.csl
 
 Schön, dass ihr Interesse an der Programmiersprache R habt!
 
-Hier seid ihr auf der Seite des kursbegleitenden Handouts für den R Intensivkurs. 
+Hier seid ihr auf der Seite des kursbegleitenden Handouts für den R Intensivkurs des Unirechenzentrums Leipzig in Kooperation mit dem Academic Lab. 
 Teilnehmende des Kurses sollen hiermit die Möglichkeit bekommen, während bzw. nach dem Kurs Inhalte erneut einzusehen.
 
 **Hinweis:** 
 
 Das Handout wird stetig überarbeitet bzw. erweitert. Über Anmerkungen und Verbesserungsvorschläge freuen wir uns :)
-
-
-**Kontakt:**
-
-Christoph Mayer: christoph.mayer[ät]uni-leipzig.de
 
 
 **Danksagung:** 

@@ -130,12 +130,6 @@ mehrfelder-tabelle
 korrelations-matrizen
 formatierung
 anwendung-an-beispielen
-beispielanalyse
-forschungsfrage
-datensatz
-variablen
-analyse
-einzelne-schritte
 weiterführende-inhalte
 r-markdown
 getting-started

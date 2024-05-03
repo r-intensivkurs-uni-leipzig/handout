@@ -327,7 +327,7 @@ ggplot(data = df_regio)
 <img src="07-Grafiken_files/figure-html/unnamed-chunk-20-1.png" width="\textwidth" />
 
 
-## Aesthetics
+### Aesthetics
 
 Im nächsten Schritt werden über das sogenannte *Mapping* die **Aesthetics**
 festgelegt. Hierbei wird festgelegt, welches graphische Merkmal die Daten 

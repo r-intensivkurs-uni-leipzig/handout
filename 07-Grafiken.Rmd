@@ -357,7 +357,7 @@ ggplot(data = df_regio)
 ```
 
 
-## Aesthetics
+### Aesthetics
 
 Im nächsten Schritt werden über das sogenannte *Mapping* die **Aesthetics**
 festgelegt. Hierbei wird festgelegt, welches graphische Merkmal die Daten 
