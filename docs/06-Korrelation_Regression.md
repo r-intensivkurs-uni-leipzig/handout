@@ -249,8 +249,6 @@ head(df_yoga, n=5)
 5 BP45      w    23 pilates     4     1        1        4
 ```
 
-## Statistisches Testen
-
 **Einfaktorielle ANOVA: Within-Faktoren**
 
 **Achtung!**: Für ANOVA müssen auch within-Faktoren ins Long-Format gebracht werden

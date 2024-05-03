@@ -80,7 +80,6 @@ statistisches-testen
 chi2-test
 t-test
 anova
-statistisches-testen-1
 zusammenhangsmaße
 matrizen-1
 lineare-regressionsmodelle

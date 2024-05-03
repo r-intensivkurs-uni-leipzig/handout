@@ -167,8 +167,6 @@ df_yoga$zufri_t2 <- df_yoga$zufri
 head(df_yoga, n=5)
 ```
 
-## Statistisches Testen
-
 **Einfaktorielle ANOVA: Within-Faktoren**
 
 **Achtung!**: Für ANOVA müssen auch within-Faktoren ins Long-Format gebracht werden
