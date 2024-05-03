@@ -5,16 +5,65 @@
 In R existieren verschiedene atomare Datentypen aus welchen sich
 wiederum komplexere Datentypen konstruieren lassen.
 
+In R existieren verschiedene atomare Datentypen aus welchen sich
+wiederum komplexere Datentypen konstruieren lassen.
+
 Datentyp           |  Beschreibung                       | Beispiel 
 -------------------|-------------------------------------|----------
-integer            |    ganze Zahlen                     |      -2       
-numeric            |   reelle Zahlen                     |      5.2456   
-logic              |   logische Werte                    |     TRUE     
-character          |    Zeichenfolge                     |    "Mexico" 
-NA,NULL,NaN        |   Unbestimmt, Leer, Undefiniert     |            
-Inf                |    Unendlich                                        
+integer            |    ganze Zahlen                     |    -2L       
+numeric            |   reelle Zahlen                     |    5.2456   
+logic              |   logische Werte                    |    TRUE, FALSE     
+character          |    Zeichenfolge                     |    'a', "Mexico" 
+
 
 Textelemente müssen immer in Anführungszeichen stehen, also entweder <font style="font-family:Times New Roman">"..."</font> oder <font style="font-family:monospace">'...'</font>
+
+In R können manche atomare Datentypen besondere Ausprägungen annehmen.
+
+Datentyp           |  Ausprägung       | Bedeutung 
+-------------------|-------------------|----------
+numeric            |   NaN             | "Not a Number"
+numeric            |   Inf             | Unendlich
+logic              |   NA              | Unbestimmt    
+NULL               |   NULL            | Leer   
+
+### Umformung
+
+Gelegentlich kommt es vor, dass beim Import von Datensätzen die Daten im falschen Format übernommen werden, diese können wieder umgeformt werden 
+
+\vspace*{0.5cm}
+
+character $\rightarrow$ numeric
+
+
+```r
+as.numeric("2")
+[1] 2
+```
+
+logical $\rightarrow$ numeric (`FALSE` = 0, `TRUE` = 1)
+
+
+```r
+as.numeric(TRUE)
+[1] 1
+```
+
+numeric $\rightarrow$ character 
+
+
+```r
+as.character(2024)
+[1] "2024"
+```
+
+numeric $\rightarrow$ logical (0 = `FALSE`, jede andere Zahl = `TRUE`) 
+
+
+```r
+as.logical(5)
+[1] TRUE
+```
 
 ## R als Taschenrechner
 
@@ -110,14 +159,6 @@ R Befehl |Bedeutung
 [1] FALSE
 ```
 
-### Exkurs: Dokumentation
-
-- Alles in einer Zeile nach # gilt als Kommentar und wird nicht in der Konsole ausgeführt
-- Dabei gilt # = Überschrift, ## Unter-überschrift, ### Unter-unter-Überschrift usw.
-- Überschrift $----$ ermöglicht eine Dropdownfunktion 
-
-![](Abbildungen/Kommentieren.png)
-
 ## Variablen und Objekte
 
 ### Abspeichern von Variablen
@@ -126,19 +167,16 @@ R Befehl |Bedeutung
 
 
 ```r
-x <- 5+3
+x <- 5 + 3
 ```
 
 - Objekte sind nach der Zuweisung mit ihrem Namen abrufbar
 
 
 ```r
-x <- 5+3
 x
 [1] 8
 ```
-
-### Abspeichern von Variablen
 
 - Gespeicherte Objekte können weiterverwendet werden
 
@@ -150,40 +188,46 @@ x + 10
 ```
 
 ```r
-y <- 2*3
-y+x
+y <- 2 * 3
+y + x
 [1] 11
 ```
 
 ```r
-z <- y+x
+z <- y + x
+z
+[1] 11
 ```
 
 - Es können alle möglichen Elemente in Objekten gespeichert werden
   - Text:
+  
 
 ```r
 z <- "Textelement"
 z
 [1] "Textelement"
 ```
-  - Vergleichsergebnisse
+  
+  - logische Werte:
+  
 
 ```r
-y <- 5<4
+y <- 5 < 4
 y
 [1] FALSE
 ```
 
 
-### Hinweise zur Benennung**
+### Hinweise zur Benennung
 
 - R unterscheidet Groß- und Kleinschreibung:
-  - $\texttt{X}$ und $\texttt{x""}$ sind nicht das Gleiche
+  - `X` und `x` sind nicht das Gleiche
 - Variablennamen dürfen nur Buchstaben, Zahlen, Unterstrich und Punkt enthalten
 - Variablennamen sollten keine Leerzeichen enthalten
 - Umlaute und ß wenn möglich vermeiden
 - Variablennamen dürfen nicht mit einer Zahl oder einem Unterstrich beginnen
+
 
 ```r
 7b <- 5+5
@@ -199,28 +243,28 @@ Error: <text>:1:2: unexpected symbol
 - Gespeicherte Objekte sind im Workspace (Environment) mit zusätzlichen Informationen aufgelistet
 - Objekte können durch das Kästchen ausgewählt und durch das Besensymbol gelöscht werden
 
-### Befehle für Zugriff auf Environment:
+#### Befehle für Zugriff auf Environment:
 
 
-- **ls()** listet in der R-Konsole den Workspace auf
-- Mit **rm("objektname1","objektname2")** werden Objekte entfernt
-- Mit **rm(list = ls()** werden alle Objekte entfernt
+- `ls()` listet in der R-Konsole den Workspace auf
+- Mit `rm("objektname1","objektname2")` werden Objekte entfernt
+- Mit `rm(list = ls())` werden alle Objekte entfernt
 
 ## Funktionen
 
-### Woraus besteht eine Funktion?
+**Woraus besteht eine Funktion?**
 
 - R beinhaltet eine große Menge an Grundfunktionen
-- Allgemeine Struktur: **Funktion(Argument1, Argument2, …)**
+- Allgemeine Struktur: `Funktion(Argument1, Argument2, …)`
 - Die Argumente definieren und spezifizieren die Funktion
 - Beispiele für einfache Funktionen (hier nur ein Argument):
-  - **sqrt(x)** berechnet Quadratwurzel 
-  - **mean(X)** berechnet Mittelwert eines Vektors
+  - `sqrt(x)` berechnet Quadratwurzel 
+  - `mean(X)` berechnet Mittelwert eines Vektors
 
-#### Funktionen mit mehreren Argumenten
+### Funktionen mit mehreren Argumenten
 
-- **c(Argument1, Argument2, Argument3)}** definiert einen Vektor mit drei Werten (z.B. Spaltennamen)
-
+- `c(Argument1, Argument2, Argument3)` definiert einen Vektor mit drei Werten (z.B. Spaltennamen)
+  
 
 ```r
 c(1,2,3,4,5)
@@ -233,7 +277,7 @@ c("Hund","Katze","Maus")
 ```
 
 	  
-- **round(x, digits = 2)}** rundet x auf 2 Nachkommastellen
+- `round(x, digits = 2)` rundet x auf 2 Nachkommastellen
 
 ```r
 round(3.141593, digits = 2)
@@ -244,15 +288,14 @@ round(3.141593, digits = 2)
 
 - Nicht alle Argumente von Funktionen müssen angegeben werden
 - Diese optionalen Argumente nehmen dann default-Werte ein
-- Beispielsweise bei $\texttt{round()}$ ist der Default-Wert $\texttt{digits = 0}$
+- Beispielsweise bei `round()` ist der Default-Wert `digits = 0`
+- default-Werte können in R Documentation nachgesehen werden (s. Help-Funktion)
 
 
 ```r
 round(3.141593)
 [1] 3
 ```
-
-- default-Werte können in R Documentation nachgesehen werden (s. Help-Funktion)
 
 
 - Die Argumente müssen nicht explizit benannt werden
@@ -267,12 +310,14 @@ round(3.141593,2)
 round(2,3.141593)
 [1] 2
 ```
+
 - Dann ist aber die Reihenfolge wichtig, in der die Werte der Argumente eingegeben werden
 - Benennen ist allerdings nachvollziehbarer (hilft, Fehler zu vermeiden)
 
+
 ### Exkurs: Help-Funktion
 
-- Durch die Funktion $\texttt{help()}$ und $\texttt{?}$ lässt sich unter anderem herausfinden, welche Funktion welche Argumente benötigt
+- Durch die Funktion `help()` und `?` lässt sich unter anderem herausfinden, welche Funktion welche Argumente benötigt
 
 
 ```r
@@ -285,7 +330,7 @@ help(round)
 
 ![](Abbildungen/Help.png)
 
-### Abspeichern von Output einer Funktionen**
+### Abspeichern von Output einer Funktionen
 
 - Die Ergebnisse von Funktionen können ebenfalls unter Objekten abgespeichert (und weiterverwendet) werden
 
@@ -304,7 +349,7 @@ r+5
 
 ## Datenstrukturen
 
-### Übersicht
+**Übersicht**
 
 ![](Abbildungen/Modul2_uebersicht.png)
 
@@ -326,7 +371,8 @@ x>3
 [1] FALSE FALSE FALSE  TRUE  TRUE
 ```
 
-Durch eckige Klammern $\texttt{[]}$ können durch Angabe ihrer Position einzelne Elemente eines Vektors ausgewählt (indiziert) werden. 
+Durch eckige Klammern `[]` können durch Angabe ihrer Position einzelne Elemente eines Vektors ausgewählt (indiziert) werden. 
+
 (**Wichtig**: in R beginnt der Index immer mit 1)
 
 
@@ -384,7 +430,7 @@ x[c(-1,-3)]
 [1] 2 4 5
 ```
 
-Soll eine gewisse Reihe von angrenzenden Elementen (von Element i bis Element j) vektorisiert werden, werden die Indizes mit $\texttt{:}$ verbunden (also $\texttt{i:j}$)
+Soll eine gewisse Reihe von angrenzenden Elementen (von Element `i` bis Element `j`) vektorisiert werden, werden die Indizes mit `:` verbunden (also `i:j`).
 
 
 ```r
@@ -401,18 +447,18 @@ x[1:3]
 ### Matrizen
 
 - Zweidimensionale Datenstruktur
-- Matrizen werden in R mit $\texttt{matrix(data = …, nrow = …, ncol = …, byrow = …)}$ erstellt
-  - **data** ist ein Vektor, der die Elemente der Matrix enthält
-  - **nrow** definiert die Anzahl der Zeilen der Matrix
-  - **ncol** definiert die Anzahl der Spalten der Matrix
-  - Wird die Matrix zeilenweise (**byrow = TRUE**) oder spaltenweise (**byrow = FALSE**) mit den Elementen befüllt?
+- Matrizen werden in R mit `matrix(data = …, nrow = …, ncol = …, byrow = …)` erstellt
+  - `data` ist ein Vektor, der die Elemente der Matrix enthält
+  - `nrow` definiert die Anzahl der Zeilen der Matrix
+  - `ncol` definiert die Anzahl der Spalten der Matrix
+  - Wird die Matrix zeilenweise (`byrow = TRUE`) oder spaltenweise (`byrow = FALSE`) mit den Elementen befüllt?
 
 
 
 ```r
 d <- c(1:9)
-M <- matrix(data = d,nrow = 3,ncol = 3,byrow = TRUE)
-M
+m <- matrix(data = d, nrow = 3, ncol = 3, byrow = TRUE)
+m
      [,1] [,2] [,3]
 [1,]    1    2    3
 [2,]    4    5    6
@@ -425,7 +471,7 @@ Die Auswahl von Matrixelementen ist analog zu der Auswahl von Elementen aus eine
   
 
 ```r
-M
+m
      [,1] [,2] [,3]
 [1,]    1    2    3
 [2,]    4    5    6
@@ -433,7 +479,7 @@ M
 ```
 
 ```r
-M[3,2]
+m[3,2]
 [1] 8
 ```
 
@@ -443,7 +489,7 @@ M[3,2]
 
 
 ```r
-M
+m
      [,1] [,2] [,3]
 [1,]    1    2    3
 [2,]    4    5    6
@@ -451,12 +497,12 @@ M
 ```
 
 ```r
-M[3,]
+m[3,]
 [1] 7 8 9
 ```
 
 ```r
-M[,2]
+m[,2]
 [1] 2 5 8
 ```
 
@@ -464,15 +510,15 @@ M[,2]
 
 - Ein Dataframe ist eine Datenstruktur ähnlich zur Matrix 
 - jede Spalte beinhaltet Werte einer Variable und jede Reihe Werte von jeder Variable (Spalten müssen gleichlang sein)
-- Data Frames können mit **data.frame()}** aus mehreren (gleichlangen) Vektoren erstellt werden
+- Data Frames können mit `data.frame()` aus mehreren (gleichlangen) Vektoren erstellt werden
 
 
 ```r
-Alter <- c(16,17,15,22)
-Geschlecht <- c("w","w","m","m")
-Dataframe <- data.frame(Alter,Geschlecht)
-Dataframe
-  Alter Geschlecht
+alter <- c(16,17,15,22)
+geschlecht <- c("w","w","m","m")
+dataframe <- data.frame(alter, geschlecht)
+dataframe
+  alter geschlecht
 1    16          w
 2    17          w
 3    15          m
@@ -485,7 +531,7 @@ Verschieden Möglichkeiten für Elementauswahl
 
 
 ```r
-Dataframe[2,1]
+dataframe[2,1]
 [1] 17
 ```
 
@@ -493,27 +539,27 @@ Dataframe[2,1]
 
 
 ```r
-Dataframe$Alter
+dataframe$alter
 [1] 16 17 15 22
 ```
 
 ```r
-Dataframe$Alter[2]
+dataframe$alter[2]
 [1] 17
 ```
 
-- Mit dem **$** Operator können zudem einzelne Werte verändert werden
+- Mit dem `\$` Operator können zudem einzelne Werte verändert werden
 
 
 ```r
-Dataframe$Geschlecht[2] <- "m"
+dataframe$geschlecht[2] <- "m"
 ```
 
 - ... oder ganze Variablen gelöscht werden
 
 
 ```r
-Dataframe$Geschlecht <- NULL
+dataframe$geschlecht <- NULL
 ```
 
 
@@ -523,20 +569,20 @@ Dataframe$Geschlecht <- NULL
 
 
 ```r
-Dataframe$Aktuelles_Jahr <- rep(2022,times=4)
+dataframe$aktuellesJahr <- rep(2022, times = 4)
 ```
 
 - ...oder aus bestehenden Variablen gebildet werden
 
 
 ```r
-Dataframe$Geburtsjahr <- Dataframe$Aktuelles_Jahr - Dataframe$Alter
-Dataframe
-  Alter Aktuelles_Jahr Geburtsjahr
-1    16           2022        2006
-2    17           2022        2005
-3    15           2022        2007
-4    22           2022        2000
+dataframe$geburtsjahr <- dataframe$aktuellesJahr - dataframe$alter
+dataframe
+  alter aktuellesJahr geburtsjahr
+1    16          2022        2006
+2    17          2022        2005
+3    15          2022        2007
+4    22          2022        2000
 ```
 
 ## Packages
@@ -549,6 +595,7 @@ Dataframe
 
 ### Installieren von Packages
 
-- **library()}**: Auflistung aller bereits installierten Pakete
-- **install.packages("NamedesPakets")}** (**!Hier unbedingt in Anführungszeichen**): Paket installieren (einmalig), Internetverbindung benötigt
-- **library(NamedesPakets)}**: Laden eines Pakets (in jeder R-Sitzung nötig)
+- `library()`: Auflistung aller bereits installierten Pakete
+- `install.packages("NameDesPakets")`^[**!Hier unbedingt in Anführungszeichen**]: Paket installieren (einmalig), Internetverbindung benötigt
+- `library(NameDesPakets)`: Laden eines Pakets (in jeder R-Sitzung nötig)
+

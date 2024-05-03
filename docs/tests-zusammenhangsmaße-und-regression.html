@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Tests, Zusammenhangsmaße und Regression | Handout R-Intensivkurs</title>
+  <meta name="description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Tests, Zusammenhangsmaße und Regression | Handout R-Intensivkurs" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Tests, Zusammenhangsmaße und Regression | Handout R-Intensivkurs" />
+  
+  <meta name="twitter:description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
+  
+
+<meta name="author" content="Christoph Mayer" />
+
+
+<meta name="date" content="2024-05-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="deskriptive-statistik.html"/>
+<link rel="next" href="grafiken.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Willkommen</a></li>
+<li class="chapter" data-level="2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html"><i class="fa fa-check"></i><b>2</b> Einführung in R und R Studio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#was-ist-r"><i class="fa fa-check"></i><b>2.1</b> Was ist R?</a></li>
+<li class="chapter" data-level="2.2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#sechs-gründe-r-zu-lernen"><i class="fa fa-check"></i><b>2.2</b> Sechs Gründe R zu lernen</a></li>
+<li class="chapter" data-level="2.3" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#benutzeroberfläche-von-r-und-rstudio"><i class="fa fa-check"></i><b>2.3</b> Benutzeroberfläche von R und RStudio</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#r-gui"><i class="fa fa-check"></i><b>2.3.1</b> R GUI</a></li>
+<li class="chapter" data-level="2.3.2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#rstudio"><i class="fa fa-check"></i><b>2.3.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#empfohlenes-vorgehen"><i class="fa fa-check"></i><b>2.4</b> Empfohlenes Vorgehen</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#empfohlener-ablauf-einer-analyse"><i class="fa fa-check"></i><b>2.4.1</b> Empfohlener Ablauf einer Analyse</a></li>
+<li class="chapter" data-level="2.4.2" data-path="einführung-in-r-und-r-studio.html"><a href="einführung-in-r-und-r-studio.html#beispiel-skript"><i class="fa fa-check"></i><b>2.4.2</b> Beispiel Skript</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="grundlagen.html"><a href="grundlagen.html"><i class="fa fa-check"></i><b>3</b> Grundlagen</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="grundlagen.html"><a href="grundlagen.html#fundamentale-datentypen-in-r"><i class="fa fa-check"></i><b>3.1</b> Fundamentale Datentypen in R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="grundlagen.html"><a href="grundlagen.html#umformung"><i class="fa fa-check"></i><b>3.1.1</b> Umformung</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="grundlagen.html"><a href="grundlagen.html#r-als-taschenrechner"><i class="fa fa-check"></i><b>3.2</b> R als Taschenrechner</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="grundlagen.html"><a href="grundlagen.html#dezimalstellen-und-leerzeichen"><i class="fa fa-check"></i><b>3.2.1</b> Dezimalstellen und Leerzeichen</a></li>
+<li class="chapter" data-level="3.2.2" data-path="grundlagen.html"><a href="grundlagen.html#mathematische-operatoren"><i class="fa fa-check"></i><b>3.2.2</b> Mathematische Operatoren</a></li>
+<li class="chapter" data-level="3.2.3" data-path="grundlagen.html"><a href="grundlagen.html#logische-operatoren"><i class="fa fa-check"></i><b>3.2.3</b> Logische Operatoren</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="grundlagen.html"><a href="grundlagen.html#variablen-und-objekte"><i class="fa fa-check"></i><b>3.3</b> Variablen und Objekte</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="grundlagen.html"><a href="grundlagen.html#abspeichern-von-variablen"><i class="fa fa-check"></i><b>3.3.1</b> Abspeichern von Variablen</a></li>
+<li class="chapter" data-level="3.3.2" data-path="grundlagen.html"><a href="grundlagen.html#hinweise-zur-benennung"><i class="fa fa-check"></i><b>3.3.2</b> Hinweise zur Benennung</a></li>
+<li class="chapter" data-level="3.3.3" data-path="grundlagen.html"><a href="grundlagen.html#enviroment"><i class="fa fa-check"></i><b>3.3.3</b> Enviroment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="grundlagen.html"><a href="grundlagen.html#funktionen"><i class="fa fa-check"></i><b>3.4</b> Funktionen</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="grundlagen.html"><a href="grundlagen.html#funktionen-mit-mehreren-argumenten"><i class="fa fa-check"></i><b>3.4.1</b> Funktionen mit mehreren Argumenten</a></li>
+<li class="chapter" data-level="3.4.2" data-path="grundlagen.html"><a href="grundlagen.html#default-werte-in-funktionen"><i class="fa fa-check"></i><b>3.4.2</b> Default-Werte in Funktionen</a></li>
+<li class="chapter" data-level="3.4.3" data-path="grundlagen.html"><a href="grundlagen.html#exkurs-help-funktion"><i class="fa fa-check"></i><b>3.4.3</b> Exkurs: Help-Funktion</a></li>
+<li class="chapter" data-level="3.4.4" data-path="grundlagen.html"><a href="grundlagen.html#abspeichern-von-output-einer-funktionen"><i class="fa fa-check"></i><b>3.4.4</b> Abspeichern von Output einer Funktionen</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="grundlagen.html"><a href="grundlagen.html#datenstrukturen"><i class="fa fa-check"></i><b>3.5</b> Datenstrukturen</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="grundlagen.html"><a href="grundlagen.html#vektoren"><i class="fa fa-check"></i><b>3.5.1</b> Vektoren</a></li>
+<li class="chapter" data-level="3.5.2" data-path="grundlagen.html"><a href="grundlagen.html#matrizen"><i class="fa fa-check"></i><b>3.5.2</b> Matrizen</a></li>
+<li class="chapter" data-level="3.5.3" data-path="grundlagen.html"><a href="grundlagen.html#dataframes"><i class="fa fa-check"></i><b>3.5.3</b> Dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="grundlagen.html"><a href="grundlagen.html#packages"><i class="fa fa-check"></i><b>3.6</b> Packages</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="grundlagen.html"><a href="grundlagen.html#installieren-von-packages"><i class="fa fa-check"></i><b>3.6.1</b> Installieren von Packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html"><i class="fa fa-check"></i><b>4</b> Datenmanagement I</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-importieren"><i class="fa fa-check"></i><b>4.1</b> Daten importieren</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#organisation-von-dateien"><i class="fa fa-check"></i><b>4.1.1</b> Organisation von Dateien</a></li>
+<li class="chapter" data-level="4.1.2" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#exkurs-dateipfade"><i class="fa fa-check"></i><b>4.1.2</b> Exkurs: Dateipfade</a></li>
+<li class="chapter" data-level="4.1.3" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-aus-.txt-.csv-.xlsx-und-weiteren-dateiformaten-auslesen"><i class="fa fa-check"></i><b>4.1.3</b> Daten aus .txt, .csv, .xlsx und weiteren Dateiformaten auslesen</a></li>
+<li class="chapter" data-level="4.1.4" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#alternative-per-klickpfad"><i class="fa fa-check"></i><b>4.1.4</b> Alternative per Klickpfad</a></li>
+<li class="chapter" data-level="4.1.5" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#überblick-verschaffen"><i class="fa fa-check"></i><b>4.1.5</b> Überblick verschaffen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#daten-speichern"><i class="fa fa-check"></i><b>4.2</b> Daten speichern</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#datensatz-exportieren-als-.txt-.csv-.xlsx-oder-.sav"><i class="fa fa-check"></i><b>4.2.1</b> Datensatz exportieren als .txt, .csv, .xlsx oder .sav</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#datensätze-zusammenfügen"><i class="fa fa-check"></i><b>4.3</b> Datensätze zusammenfügen</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#fälle-hinzufügen"><i class="fa fa-check"></i><b>4.3.1</b> Fälle hinzufügen</a></li>
+<li class="chapter" data-level="4.3.2" data-path="datenmanagement-i.html"><a href="datenmanagement-i.html#variablen-hinzufügen"><i class="fa fa-check"></i><b>4.3.2</b> Variablen hinzufügen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html"><i class="fa fa-check"></i><b>5</b> Datenmanagement II</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#datenbearbeitung"><i class="fa fa-check"></i><b>5.1</b> Datenbearbeitung</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#umkodierung"><i class="fa fa-check"></i><b>5.1.1</b> Umkodierung</a></li>
+<li class="chapter" data-level="5.1.2" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#dichotomisierung"><i class="fa fa-check"></i><b>5.1.2</b> Dichotomisierung</a></li>
+<li class="chapter" data-level="5.1.3" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#kategorisierung"><i class="fa fa-check"></i><b>5.1.3</b> Kategorisierung</a></li>
+<li class="chapter" data-level="5.1.4" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#skalenbildung"><i class="fa fa-check"></i><b>5.1.4</b> Skalenbildung</a></li>
+<li class="chapter" data-level="5.1.5" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#arbeiten-mit-daten-datum"><i class="fa fa-check"></i><b>5.1.5</b> Arbeiten mit Daten (Datum)</a></li>
+<li class="chapter" data-level="5.1.6" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#subsets-erstellen"><i class="fa fa-check"></i><b>5.1.6</b> Subsets erstellen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#long--und-wide-format"><i class="fa fa-check"></i><b>5.2</b> Long- und Wide-Format</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="datenmanagement-ii.html"><a href="datenmanagement-ii.html#umwandlung-long--und-wide-format"><i class="fa fa-check"></i><b>5.2.1</b> Umwandlung Long- und Wide-Format</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html"><i class="fa fa-check"></i><b>6</b> Deskriptive Statistik</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#absolute-und-relative-häufigkeiten"><i class="fa fa-check"></i><b>6.1</b> Absolute und Relative Häufigkeiten</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#absolute-häufigkeiten"><i class="fa fa-check"></i><b>6.1.1</b> Absolute Häufigkeiten</a></li>
+<li class="chapter" data-level="6.1.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#relative-häufigkeiten"><i class="fa fa-check"></i><b>6.1.2</b> Relative Häufigkeiten</a></li>
+<li class="chapter" data-level="6.1.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#kreuztabelle-für-mehrere-variablen"><i class="fa fa-check"></i><b>6.1.3</b> Kreuztabelle für mehrere Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#grundbefehle"><i class="fa fa-check"></i><b>6.2</b> Grundbefehle</a></li>
+<li class="chapter" data-level="6.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#gruppengetrennte-analyse"><i class="fa fa-check"></i><b>6.3</b> Gruppengetrennte Analyse</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#logisches-indizieren"><i class="fa fa-check"></i><b>6.3.1</b> Logisches Indizieren</a></li>
+<li class="chapter" data-level="6.3.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#funktion-aggregate"><i class="fa fa-check"></i><b>6.3.2</b> Funktion aggregate()</a></li>
+<li class="chapter" data-level="6.3.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#funktion-describeby"><i class="fa fa-check"></i><b>6.3.3</b> Funktion describeBy()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#ergänzungen"><i class="fa fa-check"></i><b>6.4</b> Ergänzungen</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#bedingte-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>6.4.1</b> Bedingte Wahrscheinlichkeiten</a></li>
+<li class="chapter" data-level="6.4.2" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#skalieren"><i class="fa fa-check"></i><b>6.4.2</b> Skalieren</a></li>
+<li class="chapter" data-level="6.4.3" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#extremwerte"><i class="fa fa-check"></i><b>6.4.3</b> Extremwerte</a></li>
+<li class="chapter" data-level="6.4.4" data-path="deskriptive-statistik.html"><a href="deskriptive-statistik.html#gruppengetrennte-analyse---funktion-tapply"><i class="fa fa-check"></i><b>6.4.4</b> Gruppengetrennte Analyse - Funktion tapply()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html"><i class="fa fa-check"></i><b>7</b> Tests, Zusammenhangsmaße und Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#statistisches-testen"><i class="fa fa-check"></i><b>7.1</b> Statistisches Testen</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#chi2-test"><i class="fa fa-check"></i><b>7.1.1</b> <span class="math inline">\(\chi^2\)</span>-Test</a></li>
+<li class="chapter" data-level="7.1.2" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#t-test"><i class="fa fa-check"></i><b>7.1.2</b> t-Test</a></li>
+<li class="chapter" data-level="7.1.3" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#anova"><i class="fa fa-check"></i><b>7.1.3</b> ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#statistisches-testen-1"><i class="fa fa-check"></i><b>7.2</b> Statistisches Testen</a></li>
+<li class="chapter" data-level="7.3" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#zusammenhangsmaße"><i class="fa fa-check"></i><b>7.3</b> Zusammenhangsmaße</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#matrizen-1"><i class="fa fa-check"></i><b>7.3.1</b> Matrizen</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#lineare-regressionsmodelle"><i class="fa fa-check"></i><b>7.4</b> Lineare Regressionsmodelle</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#modelldefinition"><i class="fa fa-check"></i><b>7.4.1</b> Modelldefinition</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#modellschätzung"><i class="fa fa-check"></i><b>7.4.2</b> Modellschätzung</a></li>
+<li class="chapter" data-level="7.4.3" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#modellvergleich"><i class="fa fa-check"></i><b>7.4.3</b> Modellvergleich</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#ergänzungen-1"><i class="fa fa-check"></i><b>7.5</b> Ergänzungen</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#matrizen-2"><i class="fa fa-check"></i><b>7.5.1</b> Matrizen</a></li>
+<li class="chapter" data-level="7.5.2" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#weitere-korrelationen"><i class="fa fa-check"></i><b>7.5.2</b> Weitere Korrelationen</a></li>
+<li class="chapter" data-level="7.5.3" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#standartisierte-und-unstandartisierte-regressionkoeffizienten"><i class="fa fa-check"></i><b>7.5.3</b> Standartisierte und unstandartisierte Regressionkoeffizienten</a></li>
+<li class="chapter" data-level="7.5.4" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#vorhergesagte-werte"><i class="fa fa-check"></i><b>7.5.4</b> Vorhergesagte Werte</a></li>
+<li class="chapter" data-level="7.5.5" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#residuen"><i class="fa fa-check"></i><b>7.5.5</b> Residuen</a></li>
+<li class="chapter" data-level="7.5.6" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#modelldefinition-1"><i class="fa fa-check"></i><b>7.5.6</b> Modelldefinition</a></li>
+<li class="chapter" data-level="7.5.7" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#hinweise-zu-weiteren-regressionsmodellen-in-r"><i class="fa fa-check"></i><b>7.5.7</b> Hinweise zu weiteren Regressionsmodellen in R</a></li>
+<li class="chapter" data-level="7.5.8" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#general-linear-model-glm"><i class="fa fa-check"></i><b>7.5.8</b> General Linear Model (GLM)</a></li>
+<li class="chapter" data-level="7.5.9" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#mediation-und-sem"><i class="fa fa-check"></i><b>7.5.9</b> Mediation und SEM</a></li>
+<li class="chapter" data-level="7.5.10" data-path="tests-zusammenhangsmaße-und-regression.html"><a href="tests-zusammenhangsmaße-und-regression.html#linear-mixed-model-lmm"><i class="fa fa-check"></i><b>7.5.10</b> Linear Mixed Model (LMM)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="grafiken.html"><a href="grafiken.html"><i class="fa fa-check"></i><b>8</b> Grafiken</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="grafiken.html"><a href="grafiken.html#allgemeines"><i class="fa fa-check"></i><b>8.1</b> Allgemeines</a></li>
+<li class="chapter" data-level="8.2" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-univariate-verteilungen"><i class="fa fa-check"></i><b>8.2</b> Grafiken für univariate Verteilungen</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="grafiken.html"><a href="grafiken.html#kreisdiagramme"><i class="fa fa-check"></i><b>8.2.1</b> Kreisdiagramme</a></li>
+<li class="chapter" data-level="8.2.2" data-path="grafiken.html"><a href="grafiken.html#balkendiagramme"><i class="fa fa-check"></i><b>8.2.2</b> Balkendiagramme</a></li>
+<li class="chapter" data-level="8.2.3" data-path="grafiken.html"><a href="grafiken.html#histogramme"><i class="fa fa-check"></i><b>8.2.3</b> Histogramme</a></li>
+<li class="chapter" data-level="8.2.4" data-path="grafiken.html"><a href="grafiken.html#boxplot"><i class="fa fa-check"></i><b>8.2.4</b> Boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-bivariate-verteilungen"><i class="fa fa-check"></i><b>8.3</b> Grafiken für bivariate Verteilungen</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="grafiken.html"><a href="grafiken.html#verteilung-einer-metrischen-auf-eine-kategoriale-variabel"><i class="fa fa-check"></i><b>8.3.1</b> Verteilung einer metrischen auf eine kategoriale Variabel</a></li>
+<li class="chapter" data-level="8.3.2" data-path="grafiken.html"><a href="grafiken.html#verteilung-zweier-metrischer-variablen"><i class="fa fa-check"></i><b>8.3.2</b> Verteilung zweier metrischer Variablen</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="grafiken.html"><a href="grafiken.html#ggplot"><i class="fa fa-check"></i><b>8.4</b> ggplot</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="grafiken.html"><a href="grafiken.html#aufbau"><i class="fa fa-check"></i><b>8.4.1</b> Aufbau</a></li>
+<li class="chapter" data-level="8.4.2" data-path="grafiken.html"><a href="grafiken.html#daten"><i class="fa fa-check"></i><b>8.4.2</b> Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="grafiken.html"><a href="grafiken.html#aesthetics"><i class="fa fa-check"></i><b>8.5</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="grafiken.html"><a href="grafiken.html#geome"><i class="fa fa-check"></i><b>8.5.1</b> Geome</a></li>
+<li class="chapter" data-level="8.5.2" data-path="grafiken.html"><a href="grafiken.html#geome---mapping"><i class="fa fa-check"></i><b>8.5.2</b> Geome - mapping</a></li>
+<li class="chapter" data-level="8.5.3" data-path="grafiken.html"><a href="grafiken.html#weitere-argumente"><i class="fa fa-check"></i><b>8.5.3</b> weitere Argumente</a></li>
+<li class="chapter" data-level="8.5.4" data-path="grafiken.html"><a href="grafiken.html#geome---grundfunktionen"><i class="fa fa-check"></i><b>8.5.4</b> Geome - Grundfunktionen</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="grafiken.html"><a href="grafiken.html#ergänzungen-2"><i class="fa fa-check"></i><b>8.6</b> Ergänzungen</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="grafiken.html"><a href="grafiken.html#ggplot-1"><i class="fa fa-check"></i><b>8.6.1</b> ggplot</a></li>
+<li class="chapter" data-level="8.6.2" data-path="grafiken.html"><a href="grafiken.html#tabellen"><i class="fa fa-check"></i><b>8.6.2</b> Tabellen</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="beispielanalyse.html"><a href="beispielanalyse.html"><i class="fa fa-check"></i><b>9</b> Beispielanalyse</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="beispielanalyse.html"><a href="beispielanalyse.html#forschungsfrage"><i class="fa fa-check"></i><b>9.1</b> Forschungsfrage</a></li>
+<li class="chapter" data-level="9.2" data-path="beispielanalyse.html"><a href="beispielanalyse.html#datensatz"><i class="fa fa-check"></i><b>9.2</b> Datensatz</a></li>
+<li class="chapter" data-level="9.3" data-path="beispielanalyse.html"><a href="beispielanalyse.html#variablen"><i class="fa fa-check"></i><b>9.3</b> Variablen</a></li>
+<li class="chapter" data-level="9.4" data-path="beispielanalyse.html"><a href="beispielanalyse.html#analyse"><i class="fa fa-check"></i><b>9.4</b> Analyse</a></li>
+<li class="chapter" data-level="9.5" data-path="beispielanalyse.html"><a href="beispielanalyse.html#einzelne-schritte"><i class="fa fa-check"></i><b>9.5</b> Einzelne Schritte</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="weiterführende-inhalte.html"><a href="weiterführende-inhalte.html"><i class="fa fa-check"></i><b>10</b> Weiterführende Inhalte</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="weiterführende-inhalte.html"><a href="weiterführende-inhalte.html#r-markdown"><i class="fa fa-check"></i><b>10.1</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="weiterführende-inhalte.html"><a href="weiterführende-inhalte.html#getting-started"><i class="fa fa-check"></i><b>10.1.1</b> Getting Started</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html"><i class="fa fa-check"></i><b>11</b> Statistik Grundlagen</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#skalenniveaus"><i class="fa fa-check"></i><b>11.1</b> Skalenniveaus</a></li>
+<li class="chapter" data-level="11.2" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#häufigkeiten-und-verteilungen"><i class="fa fa-check"></i><b>11.2</b> Häufigkeiten und Verteilungen</a></li>
+<li class="chapter" data-level="11.3" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#deskriptive-statistik-1"><i class="fa fa-check"></i><b>11.3</b> Deskriptive Statistik</a></li>
+<li class="chapter" data-level="11.4" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#induktive-statistik"><i class="fa fa-check"></i><b>11.4</b> Induktive Statistik </a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#grundlagen-der-induktiven-statistik"><i class="fa fa-check"></i><b>11.4.1</b> Grundlagen der induktiven Statistik</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#hypothesentests"><i class="fa fa-check"></i><b>11.5</b> Hypothesentests</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#t-tests"><i class="fa fa-check"></i><b>11.5.1</b> t-Tests</a></li>
+<li class="chapter" data-level="11.5.2" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#chi-quadrat-test"><i class="fa fa-check"></i><b>11.5.2</b> Chi-Quadrat Test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#lineare-regression"><i class="fa fa-check"></i><b>11.6</b> lineare Regression</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#einfache-lineare-regression"><i class="fa fa-check"></i><b>11.6.1</b> einfache lineare Regression</a></li>
+<li class="chapter" data-level="11.6.2" data-path="statistik-grundlagen.html"><a href="statistik-grundlagen.html#multiple-lineare-regression"><i class="fa fa-check"></i><b>11.6.2</b> multiple lineare Regression</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Handout R-Intensivkurs</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tests-zusammenhangsmaße-und-regression" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Tests, Zusammenhangsmaße und Regression<a href="tests-zusammenhangsmaße-und-regression.html#tests-zusammenhangsmaße-und-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="statistisches-testen" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Statistisches Testen<a href="tests-zusammenhangsmaße-und-regression.html#statistisches-testen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Ziel ist mit Stichprobendaten allgemein gültige Aussagen über die Grungesamtheit treffen zu können. Dazu werden Hypothesentests durchgeführt häufig in Form von Signifikanztests.</li>
+</ul>
+<p>Allgemeines Vorgehen bei Signifikanztests:</p>
+<ul>
+<li>Null- und Alternativhypothese formulieren (<span class="math inline">\(H_0\ und\ H_a\)</span>)</li>
+<li>Wahl eines passenden Tests (z.B. <code>t-Test</code>, …)</li>
+<li>Bestimmung des Signifikanzniveaus <span class="math inline">\(\alpha\)</span></li>
+<li>Berechnung des Wertes der Beobachtung (z.B. <code>t-Wert</code>, …)</li>
+<li>Treffen der Testentscheidung</li>
+</ul>
+<div id="chi2-test" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> <span class="math inline">\(\chi^2\)</span>-Test<a href="tests-zusammenhangsmaße-und-regression.html#chi2-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Gleichverteilungstest - sind Kategorien gleich häufig?
+<ul>
+<li><span class="math inline">\(H_0\)</span>: Kategorien sind gleichhäufig</li>
+<li><span class="math inline">\(H_a\)</span>: Kategorien sind <strong>nicht</strong> gleichhäufig</li>
+</ul></li>
+<li>Unanghängigkeitstest - sind zwei nominale Merkmale unabhängig voneinander?
+<ul>
+<li><span class="math inline">\(H_0\)</span>: Merkmale sind <strong>un</strong>abhängig</li>
+<li><span class="math inline">\(H_a\)</span>: Merkmale sind abhängig</li>
+</ul></li>
+</ul>
+<p>Die Funktion <code>chisq.test()</code> berechnet je nach Eingabe einen entsprechenden Test. Eingabeparameter sind dabei im Format von <code>table()</code>:</p>
+<ul>
+<li>Gleichverteilungstest:
+<ul>
+<li><code>table(x)</code></li>
+</ul></li>
+<li>Unanghängigkeitstest:
+<ul>
+<li><code>table(x, y)</code></li>
+</ul></li>
+</ul>
+<p><strong>Beispiel</strong></p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb119-1" tabindex="-1"></a>df_yoga <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/YogaPilates.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Gleichverteilungstest:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb120-1" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(df_yoga<span class="sc">$</span>gruppe)</span>
+<span id="cb120-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb120-2" tabindex="-1"></a><span class="fu">chisq.test</span>(tab)</span>
+<span id="cb120-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb120-3" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb120-4" tabindex="-1"></a>    Chi<span class="sc">-</span>squared test <span class="cf">for</span> given probabilities</span>
+<span id="cb120-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb120-5" tabindex="-1"></a></span>
+<span id="cb120-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb120-6" tabindex="-1"></a>data<span class="sc">:</span>  tab</span>
+<span id="cb120-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb120-7" tabindex="-1"></a>X<span class="sc">-</span>squared <span class="ot">=</span> <span class="fl">4.55</span>, df <span class="ot">=</span> <span class="dv">2</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.1028</span></span></code></pre></div>
+<p>Unanghängigkeitstest:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb121-1" tabindex="-1"></a>tab2 <span class="ot">&lt;-</span> <span class="fu">table</span>(df_yoga<span class="sc">$</span>gruppe, df_yoga<span class="sc">$</span>geschl)</span>
+<span id="cb121-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb121-2" tabindex="-1"></a><span class="fu">chisq.test</span>(tab2)</span>
+<span id="cb121-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb121-3" tabindex="-1"></a></span>
+<span id="cb121-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb121-4" tabindex="-1"></a>    Pearson<span class="st">&#39;s Chi-squared test</span></span>
+<span id="cb121-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb121-5" tabindex="-1"></a></span>
+<span id="cb121-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb121-6" tabindex="-1"></a><span class="st">data:  tab2</span></span>
+<span id="cb121-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb121-7" tabindex="-1"></a><span class="st">X-squared = 0.99223, df = 2, p-value = 0.6089</span></span></code></pre></div>
+</div>
+<div id="t-test" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> t-Test<a href="tests-zusammenhangsmaße-und-regression.html#t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Varianten des t-Tests:
+<ul>
+<li>Einstichproben t-Test: Vergleich eines Mittelwerts mit einer Konstante
+<ul>
+<li><span class="math inline">\(H_0\)</span>: Mittelwert weicht <strong>nicht</strong> von Konstante ab</li>
+<li><span class="math inline">\(H_a\)</span>: Mittelwert weicht von Konstante ab</li>
+</ul></li>
+<li>Zweistichproben t-Test: Vergleich von zwei Mittelwerten aus ab- oder unabhängigen Stichproben
+<ul>
+<li><span class="math inline">\(H_0\)</span>: Mittelwerte weichen <strong>nicht</strong> voneinander ab</li>
+<li><span class="math inline">\(H_a\)</span>: Mittelwert weichen voneinander ab</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Alle Varianten des t-Tests werden mit <code>t.test()</code> berechnet.</p>
+<ul>
+<li>Zwei Möglichkeiten der Dateneingabe
+<ul>
+<li><code>t.test(Werte1, Werte2)</code></li>
+<li><code>t.test(Werte ~ Faktor)</code></li>
+</ul></li>
+<li>Optionale Argumente:
+<ul>
+<li><code>alternative</code>: Richtung der Testung (<code>"two.sided", "greater", "less"</code>)</li>
+<li><code>mu</code>: Konstante, gegen die getestet werden soll</li>
+<li><code>paired</code>: unabhängige (<code>FALSE</code>) oder abhängige (<code>TRUE</code>) Stichproben?</li>
+<li><code>var.equal</code>: Annahme von Varianzgleichheit gegeben (ja = <code>TRUE</code>)?</li>
+<li><code>conf.level</code>: Konfidenzniveau</li>
+</ul></li>
+</ul>
+<p><strong>Beispiel</strong></p>
+<p>t-Test - Einstichprobentest</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-1" tabindex="-1"></a><span class="fu">t.test</span>(df_ex<span class="sc">$</span>Revise, <span class="at">mu =</span> <span class="dv">5</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb122-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-2" tabindex="-1"></a></span>
+<span id="cb122-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-3" tabindex="-1"></a>    One Sample t<span class="sc">-</span>test</span>
+<span id="cb122-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-4" tabindex="-1"></a></span>
+<span id="cb122-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-5" tabindex="-1"></a>data<span class="sc">:</span>  df_ex<span class="sc">$</span>Revise</span>
+<span id="cb122-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">8.4094</span>, df <span class="ot">=</span> <span class="dv">101</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">1.395e-13</span></span>
+<span id="cb122-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true mean is greater than <span class="dv">5</span></span>
+<span id="cb122-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb122-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-9" tabindex="-1"></a> <span class="fl">16.41727</span>      <span class="cn">Inf</span></span>
+<span id="cb122-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb122-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-11" tabindex="-1"></a>mean of x </span>
+<span id="cb122-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb122-12" tabindex="-1"></a> <span class="fl">19.22549</span> </span></code></pre></div>
+<p>t-Test - Zweistichprobentest - abhängige Stichproben</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-1" tabindex="-1"></a><span class="fu">t.test</span>(df_ex<span class="sc">$</span>Note, df_ex<span class="sc">$</span>Note_2, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb123-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-2" tabindex="-1"></a></span>
+<span id="cb123-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-3" tabindex="-1"></a>    Paired t<span class="sc">-</span>test</span>
+<span id="cb123-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-4" tabindex="-1"></a></span>
+<span id="cb123-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-5" tabindex="-1"></a>data<span class="sc">:</span>  df_ex<span class="sc">$</span>Note and df_ex<span class="sc">$</span>Note_2</span>
+<span id="cb123-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">3.3339</span>, df <span class="ot">=</span> <span class="dv">101</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.001198</span></span>
+<span id="cb123-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true mean difference is not equal to <span class="dv">0</span></span>
+<span id="cb123-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb123-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-9" tabindex="-1"></a> <span class="fl">0.2382293</span> <span class="fl">0.9382413</span></span>
+<span id="cb123-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb123-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-11" tabindex="-1"></a>mean difference </span>
+<span id="cb123-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb123-12" tabindex="-1"></a>      <span class="fl">0.5882353</span> </span></code></pre></div>
+<p>t-Test - Zweistichprobentest - unhängige Stichproben</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-1" tabindex="-1"></a><span class="fu">t.test</span>(df_ex<span class="sc">$</span>Revise <span class="sc">~</span> df_ex<span class="sc">$</span>bestanden)</span>
+<span id="cb124-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-2" tabindex="-1"></a></span>
+<span id="cb124-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-3" tabindex="-1"></a>    Welch Two Sample t<span class="sc">-</span>test</span>
+<span id="cb124-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-4" tabindex="-1"></a></span>
+<span id="cb124-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-5" tabindex="-1"></a>data<span class="sc">:</span>  df_ex<span class="sc">$</span>Revise by df_ex<span class="sc">$</span>bestanden</span>
+<span id="cb124-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">4.4799</span>, df <span class="ot">=</span> <span class="fl">96.44</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">2.053e-05</span></span>
+<span id="cb124-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means between group bestanden and group durchgefallen is not equal to <span class="dv">0</span></span>
+<span id="cb124-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb124-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-9" tabindex="-1"></a>  <span class="fl">6.707692</span> <span class="fl">17.380155</span></span>
+<span id="cb124-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb124-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-11" tabindex="-1"></a>    mean <span class="cf">in</span> group bestanden mean <span class="cf">in</span> group durchgefallen </span>
+<span id="cb124-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb124-12" tabindex="-1"></a>                   <span class="fl">23.35821</span>                    <span class="fl">11.31429</span> </span></code></pre></div>
+</div>
+<div id="anova" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> ANOVA<a href="tests-zusammenhangsmaße-und-regression.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vergleich von Mittelwerten von mehr als zwei Gruppen:</p>
+<ul>
+<li>Abhängige (within ANVOA) oder unabhängige (between ANOVA) Stichproben?</li>
+<li>Post-hoc-Tests für genauere Gruppenvergleiche</li>
+<li>Mehrfaktorielle ANOVA für mehrere unabhängige Variablen und deren Interaktion</li>
+</ul>
+<p><strong>Paket ez</strong></p>
+<p>Varianzanalysen lassen sich in R auf viele (auch umständliche Arten) berechnen. Das Paket <code>ez</code> bietet mit der Funktion <code>ezANOVA()</code> eine benutzerfreundliche Möglichkeit zum Durchführen von ANOVAs
+Wichtige Argumente:</p>
+<ul>
+<li><code>data</code>: Dataframe</li>
+<li><code>dv</code>: Abhängige Variable</li>
+<li><code>wid</code>: Variable, die die Fälle im Dataframe eindeutig unterscheidet (ID-Variable)</li>
+<li><code>between</code>: Zwischensubjektfaktoren, anzugeben als Liste mit .(Faktor 1, Faktor 2, …)</li>
+<li><code>within</code>: Innersubjektfaktoren, anzugeben als Liste mit .(Faktor 1, Faktor 2, …)</li>
+<li><code>type</code>: Art der Quadratsummenzerlegung (Typ 2 ist Default, Typ 3 ist der Standard von SPSS)</li>
+</ul>
+<p><strong>Beispiel</strong></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb125-1" tabindex="-1"></a>df_yoga_clean <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/YogaPilates.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">na.omit</span>()</span>
+<span id="cb125-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb125-2" tabindex="-1"></a><span class="fu">library</span>(ez)</span></code></pre></div>
+<p><strong>Einfaktorielle ANOVA - Between-Faktor</strong></p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb126-1" tabindex="-1"></a><span class="fu">ezANOVA</span>(<span class="at">data =</span> df_yoga_clean, <span class="at">dv =</span> zufri, <span class="at">wid =</span> vp, <span class="at">between =</span> gruppe, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb126-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb126-2" tabindex="-1"></a>Coefficient covariances computed by <span class="fu">hccm</span>()</span>
+<span id="cb126-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb126-3" tabindex="-1"></a><span class="sc">$</span>ANOVA</span>
+<span id="cb126-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb126-4" tabindex="-1"></a>  Effect DFn DFd        F         p p<span class="sc">&lt;</span>.<span class="dv">05</span>        ges</span>
+<span id="cb126-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb126-5" tabindex="-1"></a><span class="dv">1</span> gruppe   <span class="dv">2</span> <span class="dv">113</span> <span class="fl">3.610455</span> <span class="fl">0.0302038</span>     <span class="sc">*</span> <span class="fl">0.06006367</span></span>
+<span id="cb126-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb126-6" tabindex="-1"></a></span>
+<span id="cb126-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb126-7" tabindex="-1"></a><span class="sc">$</span><span class="st">`</span><span class="at">Levene&#39;s Test for Homogeneity of Variance</span><span class="st">`</span></span>
+<span id="cb126-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb126-8" tabindex="-1"></a>  DFn DFd       SSn      SSd        F         p p<span class="sc">&lt;</span>.<span class="dv">05</span></span>
+<span id="cb126-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb126-9" tabindex="-1"></a><span class="dv">1</span>   <span class="dv">2</span> <span class="dv">113</span> <span class="fl">0.7027865</span> <span class="fl">71.73687</span> <span class="fl">0.553515</span> <span class="fl">0.5764761</span>      </span></code></pre></div>
+<p><strong>Post-hoc-Tests</strong></p>
+<p>Post-hoc-Tests für paarweise Gruppenvergleiche können mit <code>pairwise.t.test(x, g, p.adjust.method = "…", paired = …, …)</code> ausgegeben werden.</p>
+<ul>
+<li><code>x</code>: Vektor der abhängigen Variable</li>
+<li><code>g</code>: Vektor der unabhängigen Variable (Gruppe)</li>
+<li><code>p.adjust.method</code>: Korrekturmethode für multiples Testen<code>?p.adjust</code></li>
+<li><code>paired</code>: Innersubjekt(within)- (TRUE) oder Zwischensubjekt(between)faktoren (FALSE)?</li>
+</ul>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-1" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(df_yoga_clean<span class="sc">$</span>zufri, df_yoga_clean<span class="sc">$</span>gruppe, </span>
+<span id="cb127-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-2" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb127-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-3" tabindex="-1"></a></span>
+<span id="cb127-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-4" tabindex="-1"></a>    Pairwise comparisons using t tests with pooled SD </span>
+<span id="cb127-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-5" tabindex="-1"></a></span>
+<span id="cb127-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-6" tabindex="-1"></a>data<span class="sc">:</span>  df_yoga_clean<span class="sc">$</span>zufri and df_yoga_clean<span class="sc">$</span>gruppe </span>
+<span id="cb127-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-7" tabindex="-1"></a></span>
+<span id="cb127-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-8" tabindex="-1"></a>        kontroll pilates</span>
+<span id="cb127-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-9" tabindex="-1"></a>pilates <span class="fl">1.000</span>    <span class="sc">-</span>      </span>
+<span id="cb127-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-10" tabindex="-1"></a>yoga    <span class="fl">0.062</span>    <span class="fl">0.043</span>  </span>
+<span id="cb127-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-11" tabindex="-1"></a></span>
+<span id="cb127-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb127-12" tabindex="-1"></a>P value adjustment method<span class="sc">:</span> bonferroni </span></code></pre></div>
+<p><strong>Einfaktorielle ANOVA: Within-Faktoren</strong></p>
+<ul>
+<li>z.B. „Unterscheiden sich die Zufriedenheitswerte der Teilnehmenden vor und nach dem Training?“<br />
+</li>
+<li>„Problem“: in diesem Datensatz haben wir keine within-Faktoren -&gt; angst sei die Zufriedenheitsmessung vor der jeweiligen Intervention (Gruppe) -&gt; Dadurch kann der Faktor Zeit mit aufgenommen werden</li>
+</ul>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb128-1" tabindex="-1"></a>df_yoga <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/YogaPilates.txt&quot;</span>, <span class="at">header =</span> T)</span>
+<span id="cb128-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb128-2" tabindex="-1"></a><span class="fu">head</span>(df_yoga, <span class="at">n=</span><span class="dv">5</span>)</span>
+<span id="cb128-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb128-3" tabindex="-1"></a>    vp geschl alter  gruppe zufri angst</span>
+<span id="cb128-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb128-4" tabindex="-1"></a><span class="dv">1</span> AA21      w    <span class="dv">37</span>    yoga     <span class="dv">5</span>     <span class="dv">1</span></span>
+<span id="cb128-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb128-5" tabindex="-1"></a><span class="dv">2</span> AW14      m    <span class="dv">31</span> pilates     <span class="dv">4</span>     <span class="dv">4</span></span>
+<span id="cb128-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb128-6" tabindex="-1"></a><span class="dv">3</span> BA55      w    <span class="dv">38</span>    yoga     <span class="dv">4</span>     <span class="dv">2</span></span>
+<span id="cb128-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb128-7" tabindex="-1"></a><span class="dv">4</span> BA76      m    <span class="dv">35</span>    yoga     <span class="dv">5</span>     <span class="dv">2</span></span>
+<span id="cb128-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb128-8" tabindex="-1"></a><span class="dv">5</span> BP45      w    <span class="dv">23</span> pilates     <span class="dv">4</span>     <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-1" tabindex="-1"></a><span class="co"># Zufriedenheit t_1</span></span>
+<span id="cb129-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-2" tabindex="-1"></a>df_yoga<span class="sc">$</span>zufri_t1 <span class="ot">&lt;-</span> df_yoga<span class="sc">$</span>angst</span>
+<span id="cb129-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-3" tabindex="-1"></a><span class="co"># Zufriedenheit t_2</span></span>
+<span id="cb129-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-4" tabindex="-1"></a>df_yoga<span class="sc">$</span>zufri_t2 <span class="ot">&lt;-</span> df_yoga<span class="sc">$</span>zufri</span>
+<span id="cb129-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-5" tabindex="-1"></a></span>
+<span id="cb129-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-6" tabindex="-1"></a><span class="fu">head</span>(df_yoga, <span class="at">n=</span><span class="dv">5</span>)</span>
+<span id="cb129-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-7" tabindex="-1"></a>    vp geschl alter  gruppe zufri angst zufri_t1 zufri_t2</span>
+<span id="cb129-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-8" tabindex="-1"></a><span class="dv">1</span> AA21      w    <span class="dv">37</span>    yoga     <span class="dv">5</span>     <span class="dv">1</span>        <span class="dv">1</span>        <span class="dv">5</span></span>
+<span id="cb129-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-9" tabindex="-1"></a><span class="dv">2</span> AW14      m    <span class="dv">31</span> pilates     <span class="dv">4</span>     <span class="dv">4</span>        <span class="dv">4</span>        <span class="dv">4</span></span>
+<span id="cb129-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-10" tabindex="-1"></a><span class="dv">3</span> BA55      w    <span class="dv">38</span>    yoga     <span class="dv">4</span>     <span class="dv">2</span>        <span class="dv">2</span>        <span class="dv">4</span></span>
+<span id="cb129-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-11" tabindex="-1"></a><span class="dv">4</span> BA76      m    <span class="dv">35</span>    yoga     <span class="dv">5</span>     <span class="dv">2</span>        <span class="dv">2</span>        <span class="dv">5</span></span>
+<span id="cb129-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb129-12" tabindex="-1"></a><span class="dv">5</span> BP45      w    <span class="dv">23</span> pilates     <span class="dv">4</span>     <span class="dv">1</span>        <span class="dv">1</span>        <span class="dv">4</span></span></code></pre></div>
+</div>
+</div>
+<div id="statistisches-testen-1" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Statistisches Testen<a href="tests-zusammenhangsmaße-und-regression.html#statistisches-testen-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Einfaktorielle ANOVA: Within-Faktoren</strong></p>
+<p><strong>Achtung!</strong>: Für ANOVA müssen auch within-Faktoren ins Long-Format gebracht werden</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-1" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb130-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-2" tabindex="-1"></a>df_yogaL <span class="ot">&lt;-</span> <span class="fu">melt</span>(df_yoga, </span>
+<span id="cb130-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-3" tabindex="-1"></a>                 <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;vp&quot;</span>, <span class="st">&quot;geschl&quot;</span>, <span class="st">&quot;alter&quot;</span>, <span class="st">&quot;gruppe&quot;</span>, <span class="st">&quot;angst&quot;</span>,<span class="st">&quot;zufri&quot;</span>),</span>
+<span id="cb130-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-4" tabindex="-1"></a>                 <span class="at">variable.name =</span> <span class="st">&quot;Zeitpunkt&quot;</span>, </span>
+<span id="cb130-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-5" tabindex="-1"></a>                 <span class="at">value.name =</span> <span class="st">&quot;Zufriedenheit&quot;</span>)</span>
+<span id="cb130-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-6" tabindex="-1"></a><span class="fu">head</span>(df_yogaL, <span class="at">n=</span><span class="dv">5</span>)</span>
+<span id="cb130-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-7" tabindex="-1"></a>    vp geschl alter  gruppe angst zufri Zeitpunkt</span>
+<span id="cb130-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-8" tabindex="-1"></a><span class="dv">1</span> AA21      w    <span class="dv">37</span>    yoga     <span class="dv">1</span>     <span class="dv">5</span>  zufri_t1</span>
+<span id="cb130-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-9" tabindex="-1"></a><span class="dv">2</span> AW14      m    <span class="dv">31</span> pilates     <span class="dv">4</span>     <span class="dv">4</span>  zufri_t1</span>
+<span id="cb130-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-10" tabindex="-1"></a><span class="dv">3</span> BA55      w    <span class="dv">38</span>    yoga     <span class="dv">2</span>     <span class="dv">4</span>  zufri_t1</span>
+<span id="cb130-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-11" tabindex="-1"></a><span class="dv">4</span> BA76      m    <span class="dv">35</span>    yoga     <span class="dv">2</span>     <span class="dv">5</span>  zufri_t1</span>
+<span id="cb130-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-12" tabindex="-1"></a><span class="dv">5</span> BP45      w    <span class="dv">23</span> pilates     <span class="dv">1</span>     <span class="dv">4</span>  zufri_t1</span>
+<span id="cb130-13"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-13" tabindex="-1"></a>  Zufriedenheit</span>
+<span id="cb130-14"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-14" tabindex="-1"></a><span class="dv">1</span>             <span class="dv">1</span></span>
+<span id="cb130-15"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-15" tabindex="-1"></a><span class="dv">2</span>             <span class="dv">4</span></span>
+<span id="cb130-16"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-16" tabindex="-1"></a><span class="dv">3</span>             <span class="dv">2</span></span>
+<span id="cb130-17"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-17" tabindex="-1"></a><span class="dv">4</span>             <span class="dv">2</span></span>
+<span id="cb130-18"><a href="tests-zusammenhangsmaße-und-regression.html#cb130-18" tabindex="-1"></a><span class="dv">5</span>             <span class="dv">1</span></span></code></pre></div>
+<p><strong>Einfaktorielle ANOVA: Within-Faktoren</strong></p>
+<ul>
+<li>Deskriptive Analysen</li>
+</ul>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb131-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-2" tabindex="-1"></a><span class="fu">describeBy</span>(df_yogaL<span class="sc">$</span>Zufriedenheit, <span class="at">group =</span> df_yogaL<span class="sc">$</span>Zeitpunkt)</span>
+<span id="cb131-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-3" tabindex="-1"></a></span>
+<span id="cb131-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-4" tabindex="-1"></a> Descriptive statistics by group </span>
+<span id="cb131-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-5" tabindex="-1"></a>group<span class="sc">:</span> zufri_t1</span>
+<span id="cb131-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-6" tabindex="-1"></a>   vars   n mean   sd median trimmed  mad min max range</span>
+<span id="cb131-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-7" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">120</span> <span class="fl">2.49</span> <span class="fl">1.33</span>      <span class="dv">2</span>    <span class="fl">2.36</span> <span class="fl">1.48</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span></span>
+<span id="cb131-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-8" tabindex="-1"></a>   skew kurtosis   se</span>
+<span id="cb131-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-9" tabindex="-1"></a>X1 <span class="fl">0.49</span>    <span class="sc">-</span><span class="fl">0.95</span> <span class="fl">0.12</span></span>
+<span id="cb131-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-10" tabindex="-1"></a><span class="sc">---------------------------------------------</span> </span>
+<span id="cb131-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-11" tabindex="-1"></a>group<span class="sc">:</span> zufri_t2</span>
+<span id="cb131-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-12" tabindex="-1"></a>   vars   n mean   sd median trimmed  mad min max range</span>
+<span id="cb131-13"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-13" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">116</span> <span class="fl">3.54</span> <span class="fl">1.03</span>      <span class="dv">4</span>    <span class="fl">3.59</span> <span class="fl">1.48</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span></span>
+<span id="cb131-14"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-14" tabindex="-1"></a>    skew kurtosis  se</span>
+<span id="cb131-15"><a href="tests-zusammenhangsmaße-und-regression.html#cb131-15" tabindex="-1"></a>X1 <span class="sc">-</span><span class="fl">0.42</span>    <span class="sc">-</span><span class="fl">0.56</span> <span class="fl">0.1</span></span></code></pre></div>
+<ul>
+<li>Vergleiche Output der between-ANOVA für die Interpretation der Werte<br />
+</li>
+<li>Bei mehr als zwei Stufen des Innersubjektfaktors wird der Mauchly-Test (Test auf Sphärizität) mit ausgegeben</li>
+</ul>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb132-1" tabindex="-1"></a><span class="fu">library</span>(ez)</span>
+<span id="cb132-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb132-2" tabindex="-1"></a><span class="fu">ezANOVA</span>(<span class="fu">na.omit</span>(df_yogaL), <span class="at">dv =</span> Zufriedenheit, <span class="at">wid =</span> vp, </span>
+<span id="cb132-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb132-3" tabindex="-1"></a>        <span class="at">within =</span> .(Zeitpunkt))</span></code></pre></div>
+</div>
+<div id="zusammenhangsmaße" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Zusammenhangsmaße<a href="tests-zusammenhangsmaße-und-regression.html#zusammenhangsmaße" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Kovarianz</strong>:</p>
+<ul>
+<li>nichtstandardisiertes Zusammenhangsmaß</li>
+<li>monotoner Zusammenhang</li>
+</ul>
+<p><strong>Korrelation</strong>skoeffizient (nach Bravais-Pearson):</p>
+<ul>
+<li>standardisiertes Zusammenhangsmaß</li>
+<li>linearer Zusammenhang</li>
+<li>Variablen mindestes intervallskaliert</li>
+</ul>
+<p><strong>Beispieldatasatz</strong></p>
+<p>Wie hängen die Itemantworten zusammen?</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb133-1" tabindex="-1"></a>df_exam <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/Daten.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb133-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb133-2" tabindex="-1"></a><span class="fu">head</span>(df_exam, <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">8</span>))</span>
+<span id="cb133-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb133-3" tabindex="-1"></a>  Person item1 item2 item3 item4 item5 item6 item7</span>
+<span id="cb133-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb133-4" tabindex="-1"></a><span class="dv">1</span>      <span class="dv">1</span>     <span class="dv">3</span>     <span class="dv">2</span>     <span class="dv">3</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">1</span>     <span class="dv">4</span></span>
+<span id="cb133-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb133-5" tabindex="-1"></a><span class="dv">2</span>      <span class="dv">2</span>     <span class="dv">4</span>     <span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span>     <span class="dv">4</span></span>
+<span id="cb133-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb133-6" tabindex="-1"></a><span class="dv">3</span>      <span class="dv">3</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">3</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span>     <span class="dv">3</span></span>
+<span id="cb133-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb133-7" tabindex="-1"></a><span class="dv">4</span>      <span class="dv">4</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span></span>
+<span id="cb133-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb133-8" tabindex="-1"></a><span class="dv">5</span>      <span class="dv">5</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">1</span>     <span class="dv">1</span>     <span class="dv">3</span></span></code></pre></div>
+<p><strong>Kovarianz und Korrelation - zwei Variablen</strong></p>
+<ul>
+<li>Für die Berechnung der Korrelation wird <code>cor()</code> verwendet, für die Berechnung der Kovarianz <code>cov()</code><br />
+</li>
+<li>Argumente bei <code>cor(x, y, method = "…", use = "…")</code>
+<ul>
+<li><code>x</code> und <code>y</code>: Datenvektoren<br />
+</li>
+<li><code>method</code>: Welche Korrelation soll berechnet werden?
+<ul>
+<li>Produkt-Moment-Korrelation (<code>"pearson"</code>), Rangkorrelation <span class="math inline">\(\rho\)</span> (<code>"spearman"</code>) oder Rangkorrelation <span class="math inline">\(\tau\)</span> (<code>"kendall"</code>)</li>
+</ul></li>
+<li><code>use</code>: Umgang mit fehlenden Werten (siehe nächste Folie)</li>
+</ul></li>
+<li><code>use = "…"</code> regelt den Umgang der Korrelationsfunktionen mit fehlenden Werten
+<ul>
+<li><code>"everything"</code>: Kein Umgang mit fehlenden Werten <span class="math inline">\(\rightarrow\)</span> bei einzelnen fehlenden Werten wird keine (einzige) Korrelation berechnet (Ergebnis: <code>NA</code>)</li>
+<li><code>"pairwise"</code>: Korrelationen werden jeweils mit den vollständigen Fällen pro Variablenpaar berechnet (paarweiser Ausschluss)</li>
+<li><code>"complete"</code>: Korrelationen werden nur aus in allen Variablen vollständigen Fällen berechnet (fallweiser Ausschluss)</li>
+</ul></li>
+</ul>
+<table>
+<colgroup>
+<col width="27%" />
+<col width="33%" />
+<col width="38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>everything</th>
+<th>pairwise</th>
+<th>complete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="Abbildungen/everything.png" height="150" /></td>
+<td><img src="Abbildungen/pairwise.png" height="150" /></td>
+<td><img src="Abbildungen/complete.png" height="150" /></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Funktion cor.test()</strong></p>
+<ul>
+<li><code>cor.test(x, y, method = "…", use = "…", alternative = "…", conf.level =     …, …)</code> für <strong>Inferenzstatistik</strong> bei <strong>Korrelationen</strong>
+<ul>
+<li><code>x, y, method, use</code>: Siehe <code>cor()</code></li>
+<li><code>alternative</code>: Ist die Testrichtung…
+<ul>
+<li>Ungerichtet (default): <code>"two.sided"</code></li>
+<li>einseitig: Positive Korrelationshypothese <code>"greater"</code></li>
+<li>einseitig: Negative Korrelationshypothese <code>"less"</code></li>
+</ul></li>
+<li><code>conf.level</code>: Konfidenzniveau (1 - <span class="math inline">\(\alpha\)</span>)
+<ul>
+<li><code>default</code>: 0.95</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Beispiel</strong></p>
+<p>Korrelation item1, item2</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-1" tabindex="-1"></a><span class="fu">cor.test</span>(df_exam<span class="sc">$</span>item1, df_exam<span class="sc">$</span>item2, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb134-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-2" tabindex="-1"></a>         <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">conf.level =</span> .<span class="dv">99</span>)</span>
+<span id="cb134-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-3" tabindex="-1"></a></span>
+<span id="cb134-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-4" tabindex="-1"></a>    Pearson<span class="st">&#39;s product-moment correlation</span></span>
+<span id="cb134-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-5" tabindex="-1"></a></span>
+<span id="cb134-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-6" tabindex="-1"></a><span class="st">data:  df_exam$item1 and df_exam$item2</span></span>
+<span id="cb134-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-7" tabindex="-1"></a><span class="st">t = -3.4112, df = 8, p-value = 0.004603</span></span>
+<span id="cb134-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-8" tabindex="-1"></a><span class="st">alternative hypothesis: true correlation is less than 0</span></span>
+<span id="cb134-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-9" tabindex="-1"></a><span class="st">99 percent confidence interval:</span></span>
+<span id="cb134-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-10" tabindex="-1"></a><span class="st"> -1.0000000 -0.1396423</span></span>
+<span id="cb134-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-11" tabindex="-1"></a><span class="st">sample estimates:</span></span>
+<span id="cb134-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-12" tabindex="-1"></a><span class="st">       cor </span></span>
+<span id="cb134-13"><a href="tests-zusammenhangsmaße-und-regression.html#cb134-13" tabindex="-1"></a><span class="st">-0.7698004 </span></span></code></pre></div>
+<p>Produkt-Moment-Korrelation, Hypothese: negative Korrelation, alpha = 1%</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-1" tabindex="-1"></a><span class="fu">cor.test</span>(df_exam<span class="sc">$</span>item1, df_exam<span class="sc">$</span>item2, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb135-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-2" tabindex="-1"></a>         <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, <span class="at">conf.level =</span> .<span class="dv">99</span>)</span>
+<span id="cb135-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-3" tabindex="-1"></a></span>
+<span id="cb135-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-4" tabindex="-1"></a>    Pearson<span class="st">&#39;s product-moment correlation</span></span>
+<span id="cb135-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-5" tabindex="-1"></a></span>
+<span id="cb135-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-6" tabindex="-1"></a><span class="st">data:  df_exam$item1 and df_exam$item2</span></span>
+<span id="cb135-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-7" tabindex="-1"></a><span class="st">t = -3.4112, df = 8, p-value = 0.004603</span></span>
+<span id="cb135-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-8" tabindex="-1"></a><span class="st">alternative hypothesis: true correlation is less than 0</span></span>
+<span id="cb135-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-9" tabindex="-1"></a><span class="st">99 percent confidence interval:</span></span>
+<span id="cb135-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-10" tabindex="-1"></a><span class="st"> -1.0000000 -0.1396423</span></span>
+<span id="cb135-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-11" tabindex="-1"></a><span class="st">sample estimates:</span></span>
+<span id="cb135-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-12" tabindex="-1"></a><span class="st">       cor </span></span>
+<span id="cb135-13"><a href="tests-zusammenhangsmaße-und-regression.html#cb135-13" tabindex="-1"></a><span class="st">-0.7698004 </span></span></code></pre></div>
+<div id="matrizen-1" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Matrizen<a href="tests-zusammenhangsmaße-und-regression.html#matrizen-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Werden dataframes (oder Teile dessen) in <code>cov()</code> oder <code>cor()</code> eingefügt, werden Kovarianz- und Korrelationsmatrizen ausgegeben:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-1" tabindex="-1"></a><span class="fu">cov</span>(df_exam[, <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb136-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-2" tabindex="-1"></a>           item1      item2      item3</span>
+<span id="cb136-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-3" tabindex="-1"></a>item1  <span class="fl">0.6666667</span> <span class="sc">-</span><span class="fl">0.4444444</span>  <span class="fl">0.3333333</span></span>
+<span id="cb136-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-4" tabindex="-1"></a>item2 <span class="sc">-</span><span class="fl">0.4444444</span>  <span class="fl">0.5000000</span> <span class="sc">-</span><span class="fl">0.2222222</span></span>
+<span id="cb136-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-5" tabindex="-1"></a>item3  <span class="fl">0.3333333</span> <span class="sc">-</span><span class="fl">0.2222222</span>  <span class="fl">0.4444444</span></span>
+<span id="cb136-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-6" tabindex="-1"></a></span>
+<span id="cb136-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-7" tabindex="-1"></a><span class="fu">cor</span>(df_exam[, <span class="fu">c</span>(<span class="st">&quot;item1&quot;</span>, <span class="st">&quot;item2&quot;</span>, <span class="st">&quot;item3&quot;</span>)], <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb136-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-8" tabindex="-1"></a>           item1      item2      item3</span>
+<span id="cb136-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-9" tabindex="-1"></a>item1  <span class="fl">1.0000000</span> <span class="sc">-</span><span class="fl">0.7698004</span>  <span class="fl">0.6123724</span></span>
+<span id="cb136-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-10" tabindex="-1"></a>item2 <span class="sc">-</span><span class="fl">0.7698004</span>  <span class="fl">1.0000000</span> <span class="sc">-</span><span class="fl">0.4714045</span></span>
+<span id="cb136-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb136-11" tabindex="-1"></a>item3  <span class="fl">0.6123724</span> <span class="sc">-</span><span class="fl">0.4714045</span>  <span class="fl">1.0000000</span></span></code></pre></div>
+<p><strong>Funktion corr.test()</strong></p>
+<ul>
+<li><code>corr.test()</code> (Paket <code>psych</code>) liefert inferenzstatistische Berechnungen auch für Korrelationsmatrizen.</li>
+<li><code>corr.test(df, method = "…", adjust = "…", alpha = "…")</code>
+<ul>
+<li><code>df, method</code>: Siehe <code>cor()</code></li>
+<li><code>adjust</code>: Methode zur <span class="math inline">\(\alpha\)</span>-Fehler-Adjustierung
+<ul>
+<li><code>"none", "bonferroni", …</code></li>
+<li>Für weitere siehe <code>?p.adjust</code> und <code>?corr.test</code></li>
+</ul></li>
+<li><code>alpha</code>: Signifikanzniveau <span class="math inline">\(\alpha\)</span></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb137-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-2" tabindex="-1"></a><span class="fu">corr.test</span>(df_exam[ ,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>, <span class="at">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb137-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-3" tabindex="-1"></a>Call<span class="sc">:</span><span class="fu">corr.test</span>(<span class="at">x =</span> df_exam[, <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>, <span class="at">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb137-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-4" tabindex="-1"></a>Correlation matrix </span>
+<span id="cb137-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-5" tabindex="-1"></a>      item1 item2 item3</span>
+<span id="cb137-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-6" tabindex="-1"></a>item1  <span class="fl">1.00</span> <span class="sc">-</span><span class="fl">0.77</span>  <span class="fl">0.61</span></span>
+<span id="cb137-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-7" tabindex="-1"></a>item2 <span class="sc">-</span><span class="fl">0.77</span>  <span class="fl">1.00</span> <span class="sc">-</span><span class="fl">0.47</span></span>
+<span id="cb137-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-8" tabindex="-1"></a>item3  <span class="fl">0.61</span> <span class="sc">-</span><span class="fl">0.47</span>  <span class="fl">1.00</span></span>
+<span id="cb137-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-9" tabindex="-1"></a>Sample Size </span>
+<span id="cb137-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-10" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span></span>
+<span id="cb137-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-11" tabindex="-1"></a>Probability <span class="fu">values</span> (Entries above the diagonal are adjusted <span class="cf">for</span> multiple tests.) </span>
+<span id="cb137-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-12" tabindex="-1"></a>      item1 item2 item3</span>
+<span id="cb137-13"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-13" tabindex="-1"></a>item1  <span class="fl">0.00</span>  <span class="fl">0.03</span>  <span class="fl">0.18</span></span>
+<span id="cb137-14"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-14" tabindex="-1"></a>item2  <span class="fl">0.01</span>  <span class="fl">0.00</span>  <span class="fl">0.51</span></span>
+<span id="cb137-15"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-15" tabindex="-1"></a>item3  <span class="fl">0.06</span>  <span class="fl">0.17</span>  <span class="fl">0.00</span></span>
+<span id="cb137-16"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-16" tabindex="-1"></a></span>
+<span id="cb137-17"><a href="tests-zusammenhangsmaße-und-regression.html#cb137-17" tabindex="-1"></a> To see confidence intervals of the correlations, print with the short<span class="ot">=</span><span class="cn">FALSE</span> option</span></code></pre></div>
+<p><strong>Extraktion von Werten</strong></p>
+<ul>
+<li>Mit $ können Werte aus der Berechnung extrahiert werden</li>
+<li>Dafür Korrelationsmatrix als Objekt speichern
+<ul>
+<li>$se für Extraktion der Standardfehler</li>
+<li>$ci für Extraktion der Konfidenzintervalle</li>
+<li>$p für Extraktion der p-Werte</li>
+<li>$t für Extraktion der t-Werte</li>
+</ul></li>
+</ul>
+<p><strong>Beispiel</strong></p>
+<p>Definition eines Objekts mit Inferenzstatistik für df_exam</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb138-1" tabindex="-1"></a>KorMat <span class="ot">&lt;-</span> <span class="fu">corr.test</span>(df_exam[ ,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>, </span>
+<span id="cb138-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb138-2" tabindex="-1"></a>                    <span class="at">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<p>Ausgabe Konfidenzintervalle</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb139-1" tabindex="-1"></a>KorMat<span class="sc">$</span>ci</span>
+<span id="cb139-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb139-2" tabindex="-1"></a>                 lower          r      upper          p</span>
+<span id="cb139-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb139-3" tabindex="-1"></a>item1<span class="sc">-</span>item2 <span class="sc">-</span><span class="fl">0.9425738</span> <span class="sc">-</span><span class="fl">0.7698004</span> <span class="sc">-</span><span class="fl">0.2720171</span> <span class="fl">0.00920665</span></span>
+<span id="cb139-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb139-4" tabindex="-1"></a>item1<span class="sc">-</span>item3 <span class="sc">-</span><span class="fl">0.0280809</span>  <span class="fl">0.6123724</span>  <span class="fl">0.8963838</span> <span class="fl">0.05983788</span></span>
+<span id="cb139-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb139-5" tabindex="-1"></a>item2<span class="sc">-</span>item3 <span class="sc">-</span><span class="fl">0.8490310</span> <span class="sc">-</span><span class="fl">0.4714045</span>  <span class="fl">0.2250053</span> <span class="fl">0.16902020</span></span></code></pre></div>
+</div>
+</div>
+<div id="lineare-regressionsmodelle" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Lineare Regressionsmodelle<a href="tests-zusammenhangsmaße-und-regression.html#lineare-regressionsmodelle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Ziel ist ein Kriterium (abhängige Variable) durch einen Prädiktor (unabhängige Variable) oder einer Kombination aus Prädikatoren für neue Prädikatorenwerte vorherzusagen bzw. den Zusammenhang dieser zu untersuchen.</li>
+</ul>
+<p>Allgemeines Vorgehen:</p>
+<ul>
+<li>Abhängige und unabhängige Variablen aus Hypothesen ableiten</li>
+<li>Skalenniveaus der Variablen bestimmen</li>
+<li>Erwarteten Zusammenhang bestimmen</li>
+<li>Passendes Regressionsverfahren wählen</li>
+<li>Vorraussetzungen prüfen</li>
+<li>Regressionsmodell berechnen</li>
+<li>Interpretation der Regressionsanalyse</li>
+</ul>
+<p><strong>Lineare Regressionsmodelle</strong></p>
+<p>Für lineare Regressionen sind folgende Voraussetzungen zu überprüfen:</p>
+<ul>
+<li>Es existiert ein linearer Zusammenhang</li>
+<li>Erwartungswert der Residuen ist Null</li>
+<li>Varianzhomogenität der Residuen (Homoskedastizität)</li>
+<li>Die Residuen sind nicht miteinander Korreliert (Autoregression)</li>
+<li>Die Residuen sind nicht mit den unabhängigen Variablen korreliert und die unabhängige Variable ist deterministisch(z.B. Omitted-Variable-Bias)</li>
+<li>Normalverteilung der Residuen</li>
+</ul>
+<div id="modelldefinition" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Modelldefinition<a href="tests-zusammenhangsmaße-und-regression.html#modelldefinition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Um eine Regression in R zu rechnen, muss man anhand der vorliegenden Variablen ein Regressionsmodell spezifizieren</li>
+<li>Regressionsmodelle werden in sogenannten Formel-Objekten definiert
+<ul>
+<li>Struktur: Abhängige Variable(n) ~ Unabhängige Variable + Unabhängige Variable + …</li>
+<li>Mehrere Variablen werden mit + verbunden</li>
+</ul></li>
+<li>Variablenbezeichnungen entsprechend anpassen
+<ul>
+<li>item1 soll durch item2 und item3 vorhergesagt werden</li>
+</ul></li>
+</ul>
+<p><strong>Beispiel Modelldefinition</strong></p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb140-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3</span></code></pre></div>
+</div>
+<div id="modellschätzung" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Modellschätzung<a href="tests-zusammenhangsmaße-und-regression.html#modellschätzung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Anhand des definierten Regressionsmodells und der vorhandenen Daten kann R nun die Modellparameter (inkl. Modellpassung) schätzen</li>
+<li>Lineare Regressionsmodelle werden mit <code>lm(formula = …, data = …)</code> geschätzt:
+<ul>
+<li><code>formula</code>: Definiert das Modell</li>
+<li><code>data</code>: dataframe, der die Variablen enthält</li>
+</ul></li>
+<li><code>lm()</code> sollte für die weiteren Berechnungen als Objekt gesichert werden</li>
+</ul>
+<p><strong>Beispiel Modellschätzung</strong></p>
+<p>Modelldefinition</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb141-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3</span></code></pre></div>
+<p>Modellschätzung und Sicherung in fit1</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb142-1" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> model1, <span class="at">data =</span> df_exam)</span></code></pre></div>
+<p>Modell anzeigen</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb143-1" tabindex="-1"></a>fit1</span>
+<span id="cb143-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb143-2" tabindex="-1"></a></span>
+<span id="cb143-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb143-3" tabindex="-1"></a>Call<span class="sc">:</span></span>
+<span id="cb143-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb143-4" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> model1, <span class="at">data =</span> df_exam)</span>
+<span id="cb143-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb143-5" tabindex="-1"></a></span>
+<span id="cb143-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb143-6" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
+<span id="cb143-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb143-7" tabindex="-1"></a>(Intercept)        item2        item3  </span>
+<span id="cb143-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb143-8" tabindex="-1"></a>     <span class="fl">2.8929</span>      <span class="sc">-</span><span class="fl">0.7143</span>       <span class="fl">0.3929</span>  </span></code></pre></div>
+<ul>
+<li>Mit <code>summary()</code> lassen sich detaillierte Informationen zum Regressionsmodell ausgeben:</li>
+</ul>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-1" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span>
+<span id="cb144-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-2" tabindex="-1"></a></span>
+<span id="cb144-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-3" tabindex="-1"></a>Call<span class="sc">:</span></span>
+<span id="cb144-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-4" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> model1, <span class="at">data =</span> df_exam)</span>
+<span id="cb144-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-5" tabindex="-1"></a></span>
+<span id="cb144-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-6" tabindex="-1"></a>Residuals<span class="sc">:</span></span>
+<span id="cb144-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-7" tabindex="-1"></a>     Min       1Q   Median       3Q      Max </span>
+<span id="cb144-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-8" tabindex="-1"></a><span class="sc">-</span><span class="fl">0.75000</span> <span class="sc">-</span><span class="fl">0.33036</span> <span class="sc">-</span><span class="fl">0.08929</span>  <span class="fl">0.33036</span>  <span class="fl">0.64286</span> </span>
+<span id="cb144-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-9" tabindex="-1"></a></span>
+<span id="cb144-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-10" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
+<span id="cb144-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-11" tabindex="-1"></a>            Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)  </span>
+<span id="cb144-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-12" tabindex="-1"></a>(Intercept)   <span class="fl">2.8929</span>     <span class="fl">1.1752</span>   <span class="fl">2.462</span>   <span class="fl">0.0434</span> <span class="sc">*</span></span>
+<span id="cb144-13"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-13" tabindex="-1"></a>item2        <span class="sc">-</span><span class="fl">0.7143</span>     <span class="fl">0.2832</span>  <span class="sc">-</span><span class="fl">2.523</span>   <span class="fl">0.0397</span> <span class="sc">*</span></span>
+<span id="cb144-14"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-14" tabindex="-1"></a>item3         <span class="fl">0.3929</span>     <span class="fl">0.3003</span>   <span class="fl">1.308</span>   <span class="fl">0.2322</span>  </span>
+<span id="cb144-15"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-15" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb144-16"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-16" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  </span>
+<span id="cb144-17"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-17" tabindex="-1"></a><span class="dv">0</span> <span class="st">&#39;***&#39;</span> <span class="fl">0.001</span> <span class="st">&#39;**&#39;</span> <span class="fl">0.01</span> <span class="st">&#39;*&#39;</span> <span class="fl">0.05</span> <span class="st">&#39;.&#39;</span> <span class="fl">0.1</span> <span class="st">&#39; &#39;</span> <span class="dv">1</span></span>
+<span id="cb144-18"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-18" tabindex="-1"></a></span>
+<span id="cb144-19"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-19" tabindex="-1"></a>Residual standard error<span class="sc">:</span> <span class="fl">0.5297</span> on <span class="dv">7</span> degrees of freedom</span>
+<span id="cb144-20"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-20" tabindex="-1"></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.6726</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5791</span> </span>
+<span id="cb144-21"><a href="tests-zusammenhangsmaße-und-regression.html#cb144-21" tabindex="-1"></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">7.191</span> on <span class="dv">2</span> and <span class="dv">7</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="fl">0.02008</span></span></code></pre></div>
+</div>
+<div id="modellvergleich" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Modellvergleich<a href="tests-zusammenhangsmaße-und-regression.html#modellvergleich" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Zwei genestete Modelle können mit <code>anova(fit1, fit2)</code> miteinander verglichen werden
+<ul>
+<li><code>fit1</code>: Ausgangsmodell (restringiertes Modell)</li>
+<li><code>fit2</code>: Erweitertes Modell (mit zusätzlichen Prädiktoren)</li>
+</ul></li>
+</ul>
+<p><strong>Beispiel Modellvergleich</strong></p>
+<p>Modelldefinition und Schätzung</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb145-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3</span>
+<span id="cb145-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb145-2" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3 <span class="sc">+</span> item4</span>
+<span id="cb145-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb145-3" tabindex="-1"></a></span>
+<span id="cb145-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb145-4" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(model1, df_exam)</span>
+<span id="cb145-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb145-5" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(model2, df_exam)</span></code></pre></div>
+<p>Modellvergleich, fit1 + fit2</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-1" tabindex="-1"></a><span class="fu">anova</span>(fit1, fit2)</span>
+<span id="cb146-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-2" tabindex="-1"></a>Analysis of Variance Table</span>
+<span id="cb146-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-3" tabindex="-1"></a></span>
+<span id="cb146-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-4" tabindex="-1"></a>Model <span class="dv">1</span><span class="sc">:</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3</span>
+<span id="cb146-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-5" tabindex="-1"></a>Model <span class="dv">2</span><span class="sc">:</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3 <span class="sc">+</span> item4</span>
+<span id="cb146-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-6" tabindex="-1"></a>  Res.Df     RSS Df Sum of Sq      F  <span class="fu">Pr</span>(<span class="sc">&gt;</span>F)  </span>
+<span id="cb146-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-7" tabindex="-1"></a><span class="dv">1</span>      <span class="dv">7</span> <span class="fl">1.96429</span>                              </span>
+<span id="cb146-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-8" tabindex="-1"></a><span class="dv">2</span>      <span class="dv">6</span> <span class="fl">0.80569</span>  <span class="dv">1</span>    <span class="fl">1.1586</span> <span class="fl">8.6282</span> <span class="fl">0.02604</span> <span class="sc">*</span></span>
+<span id="cb146-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-9" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb146-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-10" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  </span>
+<span id="cb146-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb146-11" tabindex="-1"></a><span class="dv">0</span> <span class="st">&#39;***&#39;</span> <span class="fl">0.001</span> <span class="st">&#39;**&#39;</span> <span class="fl">0.01</span> <span class="st">&#39;*&#39;</span> <span class="fl">0.05</span> <span class="st">&#39;.&#39;</span> <span class="fl">0.1</span> <span class="st">&#39; &#39;</span> <span class="dv">1</span></span></code></pre></div>
+</div>
+</div>
+<div id="ergänzungen-1" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Ergänzungen<a href="tests-zusammenhangsmaße-und-regression.html#ergänzungen-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="matrizen-2" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Matrizen<a href="tests-zusammenhangsmaße-und-regression.html#matrizen-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Kovarianzmatrizen werden mit <code>cov2cor()</code> in Korrelationsmatrizen umgewandelt:</li>
+</ul>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb147-1" tabindex="-1"></a><span class="co"># Zuweisung</span></span>
+<span id="cb147-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb147-2" tabindex="-1"></a>Kova <span class="ot">&lt;-</span> <span class="fu">cov</span>(df_exam[ , <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb147-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb147-3" tabindex="-1"></a><span class="co"># Berechnung</span></span>
+<span id="cb147-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb147-4" tabindex="-1"></a><span class="fu">cov2cor</span>(Kova)</span>
+<span id="cb147-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb147-5" tabindex="-1"></a>           item1      item2      item3</span>
+<span id="cb147-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb147-6" tabindex="-1"></a>item1  <span class="fl">1.0000000</span> <span class="sc">-</span><span class="fl">0.7698004</span>  <span class="fl">0.6123724</span></span>
+<span id="cb147-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb147-7" tabindex="-1"></a>item2 <span class="sc">-</span><span class="fl">0.7698004</span>  <span class="fl">1.0000000</span> <span class="sc">-</span><span class="fl">0.4714045</span></span>
+<span id="cb147-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb147-8" tabindex="-1"></a>item3  <span class="fl">0.6123724</span> <span class="sc">-</span><span class="fl">0.4714045</span>  <span class="fl">1.0000000</span></span></code></pre></div>
+</div>
+<div id="weitere-korrelationen" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Weitere Korrelationen<a href="tests-zusammenhangsmaße-und-regression.html#weitere-korrelationen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Mit dem Paket <code>psych</code> können zudem
+<ul>
+<li>Partialkorrelationen (<code>partial.r()</code>),</li>
+<li>tetrachorische (<code>tetrachoric()</code>),</li>
+<li>polychorische (<code>polychoric()</code>),</li>
+<li>biserale (<code>biserial()</code>)</li>
+<li>und polyseriale (<code>polyserial()</code>) Korrelationen berechnet werden</li>
+</ul></li>
+<li>Mit dem Paket <code>ppcor</code> können Semipartialkorrelationen berechnet werden</li>
+</ul>
+</div>
+<div id="standartisierte-und-unstandartisierte-regressionkoeffizienten" class="section level3 hasAnchor" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Standartisierte und unstandartisierte Regressionkoeffizienten<a href="tests-zusammenhangsmaße-und-regression.html#standartisierte-und-unstandartisierte-regressionkoeffizienten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Mit <code>coefficients()</code> oder <code>\$coefficients</code> lassen sich die unstandardisierten Regressionskoeffizienten ausgeben</li>
+<li>Mit <code>lm.beta()</code> aus dem Paket QuantPsyc lassen sich standardisierte Regressionskoeffizienten ausgeben</li>
+</ul>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-1" tabindex="-1"></a><span class="co"># Unstandartisierte Regressionskoeffizienten</span></span>
+<span id="cb148-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-2" tabindex="-1"></a><span class="fu">coefficients</span>(fit1)</span>
+<span id="cb148-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-3" tabindex="-1"></a>(Intercept)       item2       item3 </span>
+<span id="cb148-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-4" tabindex="-1"></a>  <span class="fl">2.8928571</span>  <span class="sc">-</span><span class="fl">0.7142857</span>   <span class="fl">0.3928571</span> </span>
+<span id="cb148-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-5" tabindex="-1"></a></span>
+<span id="cb148-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-6" tabindex="-1"></a><span class="co"># Ausgabe</span></span>
+<span id="cb148-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-7" tabindex="-1"></a>fit1<span class="sc">$</span>coefficients</span>
+<span id="cb148-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-8" tabindex="-1"></a>(Intercept)       item2       item3 </span>
+<span id="cb148-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-9" tabindex="-1"></a>  <span class="fl">2.8928571</span>  <span class="sc">-</span><span class="fl">0.7142857</span>   <span class="fl">0.3928571</span> </span>
+<span id="cb148-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-10" tabindex="-1"></a></span>
+<span id="cb148-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-11" tabindex="-1"></a><span class="co"># Standartisierte Regressionskoeffizienten</span></span>
+<span id="cb148-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-12" tabindex="-1"></a>QuantPsyc<span class="sc">::</span><span class="fu">lm.beta</span>(fit1)</span>
+<span id="cb148-13"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-13" tabindex="-1"></a>     item2      item3 </span>
+<span id="cb148-14"><a href="tests-zusammenhangsmaße-und-regression.html#cb148-14" tabindex="-1"></a><span class="sc">-</span><span class="fl">0.6185896</span>  <span class="fl">0.3207665</span> </span></code></pre></div>
+</div>
+<div id="vorhergesagte-werte" class="section level3 hasAnchor" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Vorhergesagte Werte<a href="tests-zusammenhangsmaße-und-regression.html#vorhergesagte-werte" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><code>predict()</code>, <code>fitted.values()</code> oder <code>\$fitted.values</code> gibt die vorhergesagten Werte für jeden Datenpunkt als Vektor aus:</li>
+</ul>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-1" tabindex="-1"></a><span class="co"># Vorhersage Werte, fit1</span></span>
+<span id="cb149-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-2" tabindex="-1"></a><span class="fu">predict</span>(fit1)</span>
+<span id="cb149-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-3" tabindex="-1"></a>       <span class="dv">1</span>        <span class="dv">2</span>        <span class="dv">3</span>        <span class="dv">4</span>        <span class="dv">5</span>        <span class="dv">6</span> </span>
+<span id="cb149-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-4" tabindex="-1"></a><span class="fl">2.642857</span> <span class="fl">3.750000</span> <span class="fl">3.357143</span> <span class="fl">2.250000</span> <span class="fl">2.250000</span> <span class="fl">3.357143</span> </span>
+<span id="cb149-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-5" tabindex="-1"></a>       <span class="dv">7</span>        <span class="dv">8</span>        <span class="dv">9</span>       <span class="dv">10</span> </span>
+<span id="cb149-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-6" tabindex="-1"></a><span class="fl">1.928571</span> <span class="fl">3.750000</span> <span class="fl">3.357143</span> <span class="fl">3.357143</span> </span>
+<span id="cb149-7"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-7" tabindex="-1"></a></span>
+<span id="cb149-8"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-8" tabindex="-1"></a><span class="co"># Alternative 1</span></span>
+<span id="cb149-9"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-9" tabindex="-1"></a><span class="fu">fitted.values</span>(fit1)</span>
+<span id="cb149-10"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-10" tabindex="-1"></a>       <span class="dv">1</span>        <span class="dv">2</span>        <span class="dv">3</span>        <span class="dv">4</span>        <span class="dv">5</span>        <span class="dv">6</span> </span>
+<span id="cb149-11"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-11" tabindex="-1"></a><span class="fl">2.642857</span> <span class="fl">3.750000</span> <span class="fl">3.357143</span> <span class="fl">2.250000</span> <span class="fl">2.250000</span> <span class="fl">3.357143</span> </span>
+<span id="cb149-12"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-12" tabindex="-1"></a>       <span class="dv">7</span>        <span class="dv">8</span>        <span class="dv">9</span>       <span class="dv">10</span> </span>
+<span id="cb149-13"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-13" tabindex="-1"></a><span class="fl">1.928571</span> <span class="fl">3.750000</span> <span class="fl">3.357143</span> <span class="fl">3.357143</span> </span>
+<span id="cb149-14"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-14" tabindex="-1"></a></span>
+<span id="cb149-15"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-15" tabindex="-1"></a><span class="co"># Alternative 2</span></span>
+<span id="cb149-16"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-16" tabindex="-1"></a>fit1<span class="sc">$</span>fitted.values</span>
+<span id="cb149-17"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-17" tabindex="-1"></a>       <span class="dv">1</span>        <span class="dv">2</span>        <span class="dv">3</span>        <span class="dv">4</span>        <span class="dv">5</span>        <span class="dv">6</span> </span>
+<span id="cb149-18"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-18" tabindex="-1"></a><span class="fl">2.642857</span> <span class="fl">3.750000</span> <span class="fl">3.357143</span> <span class="fl">2.250000</span> <span class="fl">2.250000</span> <span class="fl">3.357143</span> </span>
+<span id="cb149-19"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-19" tabindex="-1"></a>       <span class="dv">7</span>        <span class="dv">8</span>        <span class="dv">9</span>       <span class="dv">10</span> </span>
+<span id="cb149-20"><a href="tests-zusammenhangsmaße-und-regression.html#cb149-20" tabindex="-1"></a><span class="fl">1.928571</span> <span class="fl">3.750000</span> <span class="fl">3.357143</span> <span class="fl">3.357143</span> </span></code></pre></div>
+</div>
+<div id="residuen" class="section level3 hasAnchor" number="7.5.5">
+<h3><span class="header-section-number">7.5.5</span> Residuen<a href="tests-zusammenhangsmaße-und-regression.html#residuen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><code>resid()</code>, <code>residuals()</code> oder <code>\$residuals</code> gibt die unstandardisierten Residuen pro Datenpunkt aus</li>
+<li><code>rstandard()</code> gibt die standardisierten Residuen aus</li>
+</ul>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="tests-zusammenhangsmaße-und-regression.html#cb150-1" tabindex="-1"></a><span class="co"># Residuen, fit1</span></span>
+<span id="cb150-2"><a href="tests-zusammenhangsmaße-und-regression.html#cb150-2" tabindex="-1"></a>fit1<span class="sc">$</span>residuals</span>
+<span id="cb150-3"><a href="tests-zusammenhangsmaße-und-regression.html#cb150-3" tabindex="-1"></a>          <span class="dv">1</span>           <span class="dv">2</span>           <span class="dv">3</span>           <span class="dv">4</span>           <span class="dv">5</span> </span>
+<span id="cb150-4"><a href="tests-zusammenhangsmaße-und-regression.html#cb150-4" tabindex="-1"></a> <span class="fl">0.35714286</span>  <span class="fl">0.25000000</span> <span class="sc">-</span><span class="fl">0.35714286</span> <span class="sc">-</span><span class="fl">0.25000000</span> <span class="sc">-</span><span class="fl">0.25000000</span> </span>
+<span id="cb150-5"><a href="tests-zusammenhangsmaße-und-regression.html#cb150-5" tabindex="-1"></a>          <span class="dv">6</span>           <span class="dv">7</span>           <span class="dv">8</span>           <span class="dv">9</span>          <span class="dv">10</span> </span>
+<span id="cb150-6"><a href="tests-zusammenhangsmaße-und-regression.html#cb150-6" tabindex="-1"></a> <span class="fl">0.64285714</span>  <span class="fl">0.07142857</span> <span class="sc">-</span><span class="fl">0.75000000</span> <span class="sc">-</span><span class="fl">0.35714286</span>  <span class="fl">0.64285714</span> </span></code></pre></div>
+</div>
+<div id="modelldefinition-1" class="section level3 hasAnchor" number="7.5.6">
+<h3><span class="header-section-number">7.5.6</span> Modelldefinition<a href="tests-zusammenhangsmaße-und-regression.html#modelldefinition-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Spezielle Modelle:
+<ul>
+<li>Modell ohne Prädiktoren (Nullmodell): AV ~ 1</li>
+<li>Modell ohne Intercept (Konstante): AV ~ 0 + UV1 + …</li>
+<li>Interaktionsterme (Moderation):
+<ul>
+<li>AV ~ UV1 + UV2 + UV1*UV2</li>
+<li>Statt <span class="math inline">\(*\)</span> kann auch <span class="math inline">\(:\)</span> verwendet werden</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="hinweise-zu-weiteren-regressionsmodellen-in-r" class="section level3 hasAnchor" number="7.5.7">
+<h3><span class="header-section-number">7.5.7</span> Hinweise zu weiteren Regressionsmodellen in R<a href="tests-zusammenhangsmaße-und-regression.html#hinweise-zu-weiteren-regressionsmodellen-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Literatur:
+<ul>
+<li>Fox, J., &amp; Weisberg, S. (2011). An R companion to applied regression. London: SAGE.</li>
+<li>James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (2013). An introduction to statistical learning: With applications in R. Springer texts in statistics. New York: Springer.</li>
+</ul></li>
+<li>In R sind viele weitere Verfahren zur Modellselektion, -schätzung und -bewertung umgesetzt wie etwa:
+<ul>
+<li>Bootstrapping</li>
+<li>Kreuzvalidierung</li>
+<li>Shrinkage (Lasse/Ridge) Regression</li>
+<li>Robust Regression</li>
+<li>Power Analyse</li>
+</ul></li>
+</ul>
+</div>
+<div id="general-linear-model-glm" class="section level3 hasAnchor" number="7.5.8">
+<h3><span class="header-section-number">7.5.8</span> General Linear Model (GLM)<a href="tests-zusammenhangsmaße-und-regression.html#general-linear-model-glm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>glm(forumla, family, data)</code></p>
+<ul>
+<li>Generalisierte lineare Modelle als Verallgemeinerung des linearen Modells <span class="math inline">\(\rightarrow\)</span> Breite Einsatzmöglichkeiten
+<ul>
+<li><code>formula</code>: Wie bei <code>lm()</code></li>
+<li><code>data</code>: Wie bei <code>lm()</code></li>
+<li><code>family:</code> Definiert die Zufallsverteilung von Y und die Linkfunktion</li>
+</ul></li>
+<li>Beispiele:
+<ul>
+<li>GLM mit Normalverteilung und ohne besondere Linkfunktion (<code>familiy = gaussian(link = "identity")</code>)
+<span class="math inline">\(\rightarrow\)</span> Entspricht <code>lm()</code></li>
+<li>GLM mit Binomialverteilung und logistischer Linkfunktion (<code>family = binomial(link = "logit")</code>)
+<span class="math inline">\(\rightarrow\)</span> Binär-logistische Regression</li>
+</ul></li>
+</ul>
+</div>
+<div id="mediation-und-sem" class="section level3 hasAnchor" number="7.5.9">
+<h3><span class="header-section-number">7.5.9</span> Mediation und SEM<a href="tests-zusammenhangsmaße-und-regression.html#mediation-und-sem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Paket <code>lavaan</code>
+<ul>
+<li>Ständig weiterentwickeltes Paket zur Schätzung von Pfad- und Strukturgleichungsmodellen in R</li>
+<li>Ermöglicht auch Bootstrapping-Konfidenzintervalle für indirekte Effekte</li>
+<li>Ausführliche Dokumentation mit Beispielcodes:
+<ul>
+<li><a href="http://lavaan.ugent.be/tutorial/est.html" class="uri">http://lavaan.ugent.be/tutorial/est.html</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="linear-mixed-model-lmm" class="section level3 hasAnchor" number="7.5.10">
+<h3><span class="header-section-number">7.5.10</span> Linear Mixed Model (LMM)<a href="tests-zusammenhangsmaße-und-regression.html#linear-mixed-model-lmm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Paket <code>lme4</code>
+<ul>
+<li>Liefert eine breite und gut erprobte Palette an Werkzeugen für linear mixed models (Hierarchische lineare Modelle; Mehrebenenmodelle)</li>
+<li>Siehe: Bates, D., Mächler, M., Bolker, B., &amp; Walker, S. (2015). Fitting Linear Mixed-Effects Models Using lme4. Journal of Statistical Software, 67(1).</li>
+</ul></li>
+<li>Paket <code>lmerTest</code>
+<ul>
+<li>Reicht Signifikanztests nach, die in lme4 standardmäßig nicht implementiert sind</li>
+<li><a href="https://cran.r-project.org/web/packages/lmerTest/index.html" class="uri">https://cran.r-project.org/web/packages/lmerTest/index.html</a></li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="deskriptive-statistik.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="grafiken.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

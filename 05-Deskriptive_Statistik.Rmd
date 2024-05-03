@@ -2,57 +2,55 @@
 
 ## Absolute und Relative Häufigkeiten
 
+**Absolute und Relative Häufigkeit**
+
+ - Die absolute Häufigkeit ist die Anzahl (= ganze Zahl) wie oft ein Merkmal in einer Stichprobe vorkommt.
+ - Die relative Häufigkeit hingegen ist der Anteil den eine Merkmalsauspräung in einer Stichprobe ausmacht.
+
 ### Absolute Häufigkeiten
 
-- Absolute Häufigkeiten können durch **table()** in einer Tabelle ausgegeben werden  
+Absolute Häufigkeiten können durch `table()` in einer Tabelle ausgegeben werden:  
 
 \bigskip\small
 
 ```{r, comment=""}
-# Datensatz einlesen
 df_yoga <- read.table("data/YogaPilates.txt", header = TRUE)
+```
 
-# Beispiel für Tabelle
+```{r, comment=""}
 tab <- table(df_yoga$gruppe)
 tab
 ```
 
-- Die Gesamtzahl der Beobachtungen kann mit **sum()** ausgegeben werden:
+Die Gesamtzahl der Beobachtungen kann mit `sum()` ausgegeben werden:
 
 \bigskip
 
 ```{r, comment=""}
-# Anzahl der Beobachtungen in einer Kreuztabelle mit sum()
 sum(tab)
 ```
 
 ### Relative Häufigkeiten
 
-- Berechnung der relativen Häufigkeiten &#8594; Welchen Anteil macht eine Kategorie an der Gesamthäufigkeit aus?  
-- Genauso gut können wir die Funktion **prop.table()** verwenden
+2 Möglichkeiten: \
+1. Berechnung der relativen Häufigkeit durch Divsion der absoluten Häufigkeiten mit der Gesamtzahl der Beobachtungen.  
+2. Verwenden der Funktion `prop.table()`.
 
-```{r, echo=-7, comment=""}
-# Kreuztabelle tab_rel mit relativen Häufigkeiten (Anteil/Gesamthäuf.)
+```{r, echo=-5, comment=""}
 tab_rel <- tab/sum(tab)
 
-# Alternative Berechnung mit prop.table()
 tab_rel <- prop.table(tab)
 
-print(noquote(format(round(tab_rel, 2), nsmall = 2)))
+print(noquote(format(tab_rel)))
 ```
 
-### Kreuztabelle/Kontingenztafel für mehrere Variablen
+### Kreuztabelle für mehrere Variablen
 
-- Wie ist die (absolute und relative) Häufigkeit der Frauen und Männer (geschl) in den einzelnen Gruppen (gruppe)?  
-- Bei Angabe von mehreren Vektoren werden Kreuztabellen erzeugt
+- Wie ist die (absolute und relative) Häufigkeit der Frauen und Männer (`geschl`) in den einzelnen Gruppen (`gruppe`)?  
+- Bei Angabe von mehreren Vektoren werden Kreuztabellen erzeugt, dessen Werte mit `round()` gerundet werden können:
 
-\bigskip\small
-
-```{r, echo= -7, comment=""}
-# Kreuztabelle für Geschlecht und Gruppe
+```{r, comment=""}
 tab2 <- table(df_yoga$geschl, df_yoga$gruppe)
-
-# prop.table() für relative Häufigkeiten (auf 2 Stellen gerundet)
 round(prop.table(tab2), 2)
 ```
 
@@ -60,15 +58,15 @@ round(prop.table(tab2), 2)
 
 R-Befehl  | Bedeutung
 ----------|----------
-sum()     |Summe
-mean()    |Mittelwert
-var()     |Varianz
-sd()      |Standardabweichung
-min()     |Minimum
-max()    |Maximum
-quantile()|Quartile
-range()   |Range
-median()  |Median
+`sum()`     |Summe
+`mean()`   |Mittelwert
+`var()`     |Varianz
+`sd()`      |Standardabweichung
+`min()`     |Minimum
+`max()`     |Maximum
+`quantile()`|Quartile
+`range()`   |Spannweite
+`median()`  |Median
 
 **Beispiele**
 
@@ -80,7 +78,7 @@ var(df_yoga$zufri)
 
 **Fehlende Werte**
 
-Enthalten unsere Daten fehlende Werte (**NA**), dann ergeben die deskriptiven Berechnungen auch **NA**. Durch das Argument **na.rm = TRUE** werden **NA**-Werte ignoriert.
+Enthalten Daten fehlende Werte (`NA`), dann ergeben die deskriptiven Berechnungen auch `NA`. Durch das Argument `na.rm = TRUE` werden `NA`-Werte ignoriert:
 
 ```{r, comment=""}
 mean(df_yoga$zufri)
@@ -89,13 +87,13 @@ mean(df_yoga$zufri, na.rm = TRUE)
 
 **Funktion summary()**
 
-- Mit summary() werden verschiedene deskriptive Statistiken ausgegeben:
+- Mit `summary()` werden verschiedene deskriptive Statistiken ausgegeben:
 
 ```{r, comment=""}
 summary(df_yoga$alter)
 ```
 
-- summary() gibt zudem die Anzahl fehlender Werte an:
+- `summary()` gibt zudem die Anzahl fehlender Werte an:
 
 ```{r, comment=""}
 summary(df_yoga$zufri)
@@ -103,59 +101,60 @@ summary(df_yoga$zufri)
 
 **Paket psych**
 
-Mit der Funktion describe() aus dem Paket **psych** lassen sich eine Vielzahl von Verteilungsparametern gleichzeitig ausgeben:
+Mit der Funktion `describe()` aus dem Paket **psych** lassen sich eine Vielzahl von Verteilungsparametern gleichzeitig ausgeben:
+
 
 ```{r, comment=""}
 library(psych)
 describe(df_yoga$alter, skew = FALSE)
 ```
 
-
 Optionale Argumente:  
-- skew = FALSE, um Schiefe und Kurtosis nicht auszugeben  
-- ranges = FALSE, um u.a. Median, Minimum und Maximum nicht auszugeben  
-- IQR = TRUE, um Interquartilbereich auszugeben
+- `skew = FALSE`, um Schiefe und Kurtosis nicht auszugeben  
+- `ranges = FALSE`, um u.a. Range, Minimum und Maximum nicht auszugeben  
+- `IQR = TRUE`, um Interquartilbereich auszugeben
 
 ## Gruppengetrennte Analyse
 
-Wie können die Variablen *alter*, *zufri* und *angst* deskriptiv in den einzelnen Gruppen berechnet werden?
+Wie können wir für die Variablen `alter`, `zufri` und `angst` deskriptive Statistien berechnen, je nachdem in welcher `gruppe` die Person ists?
 
 ```{r, comment=""}
-# Ersten 5 Zeilen Beispieldatasatz
 head(df_yoga, 5)
 ```
 
-
 ### Logisches Indizieren
 
-Jeweils Teile der Daten durch logisches Indizieren auswählen
-„Berechne Mittelwert der Spalte *$alter*, aber wähle hierfür nur Werte der Personen aus Gruppe Yoga“
+Jeweils Teile der Daten durch logisches Indizieren auswählen:     
+„Berechne den Mittelwert der Spalte `alter`, aber wähle hierfür nur Werte der Personen aus...
+
+- ...`gruppe == yoga`.“
+
 
 ```{r, comment=""}
-# Durchschnittsalter, Gruppe = yoga
 mean(df_yoga$alter[df_yoga$gruppe == "yoga"])
+```
 
-# Durchschnittsalter, Gruppe = pilates
+- ...`gruppe == pilates`."
+
+```{r, comment=""}
 mean(df_yoga$alter[df_yoga$gruppe == "pilates"])
-
-# Durchschnittsalt,er, Gruppe = kontroll
-mean(df_yoga$alter[df_yoga$gruppe == "kontroll"])
 ```
 
 ### Funktion aggregate()
 
-- Mit **aggregate()** können Funktionen für verschiedene Faktorenstufen (und deren Kombination) getrennt berechnet werden:\
+Mit `aggregate()` können Funktionen für verschiedene Faktorenstufen (und deren Kombination) getrennt berechnet werden\
 
-- **aggregate(AV \~\ UV, FUN = …, data = …)**\
-    - **AV**: Variable, deren Werte analysiert   werden sollen  
-    - **UV**: Faktor(en), mehrere Faktoren werden mit + verbunden  
-    - **FUN**: Welche Funktion (deskriptive Statistik) soll berechnet werden?  
-    - **data**: datasatz  
+- `aggregate(AV ~ UV, FUN = …, data = …)`\
+    - `AV`: Variable, deren Werte analysiert werden sollen  
+    - `UV`: Faktor(en), mehrere Faktoren werden mit + verbunden  
+    - `FUN`: Welche Funktion (`length, sum, mean, ...`) soll berechnet werden?  
+    - `data`: Datensatz  
   
 **Beispiel**
 
+Durchschnittliche Zufriedenheit, Gruppen = geschl, gruppe
+
 ```{r, comment=""}
-# Durchschnitt Zufriedenheit, Gruppen = geschl, gruppe
 aggregate(zufri ~ geschl + gruppe, FUN = mean, data = df_yoga)
 ```
 
@@ -163,15 +162,15 @@ aggregate(zufri ~ geschl + gruppe, FUN = mean, data = df_yoga)
 
 - aus dem Paket *psych*  
 - Anwendung der describe-Funktion getrennt nach Faktor(en)  
-- **describeBy(x = …, group = list(…), …)**  
-    - **x**: Variable, deren Werte analysiert werden sollen (wie AV bei **aggregate()**)
-    - **group = list()**: Faktor(en), mehrere Faktoren werden mit "," verbunden (wie UV bei **aggregate()**)
+- `describeBy(x = …, group = list(…), …)`  
+    - `x`: Variable, deren Werte analysiert werden sollen (wie AV bei `aggregate()`)
+    - `group = list()`: Faktor(en)
 
 **Beispiel describeBy()**
 
+Deskriptive Statistiken zu Zufriedenheit nach Gruppe (= `geschl`)
 
 ```{r, comment=""}
-# Deskriptive Statistiken nach Gruppe(=geschl)
 describeBy(x = df_yoga$zufri, group = list(df_yoga$geschl), skew = FALSE)
 ```
 
@@ -179,34 +178,39 @@ describeBy(x = df_yoga$zufri, group = list(df_yoga$geschl), skew = FALSE)
 
 ### Bedingte Wahrscheinlichkeiten
 
-Mit **prop.table(…, margin = …)** werden bedingte Wahrscheinlichkeiten für ein Merkmal ausgegeben. (margin 1 = zeilenweise, margin 2 = spaltenweise)
+Mit `prop.table(…, margin = …)` werden bedingte Wahrscheinlichkeiten für ein Merkmal ausgegeben. (margin 1 = zeilenweise, margin 2 = spaltenweise)
+
+Bedingte Wahrscheinlichkeit, zeilenweise, gerundet auf 2 Stellen
 
 ```{r, comment=""}
-# Bedingte Wahrscheinlichkeit, zeilenweise, gerundet auf 2 Stellen
 round(prop.table(tab2, margin = 1), 2)
+```
 
-# Bedingte Wahrscheinlichkeit, spaltenweise, gerundet auf 2 Stellen
+Bedingte Wahrscheinlichkeit, spaltenweise, gerundet auf 2 Stellen
+
+```{r, comment=""}
 round(prop.table(tab2, margin = 2), 2)
 ```
 
+
 ### Skalieren
 
-- Mit dem Befehl **scale(…, center = …, scale = …)** können Variablen zentriert und z-standardisiert werden.
-  - **center**: Soll von jedem Wert in der Variable der Variablenmittelwert abgezogen     werden? (TRUE =  ja)\
-  - **scale**: Soll jeder Wert in der Variable durch die Variablenstandardabweichung dividiert werden? (TRUE = ja)\
-  - Zentrierung, wenn nur **center = TRUE**, z-Standardisierung, wenn beide Argumente mit TRUE definiert wurden.
+- Mit dem Befehl `scale(…, center = …, scale = …)` können Variablen zentriert und z-standardisiert werden.
+  - `center`: Soll von jedem Wert in der Variable der Variablenmittelwert abgezogen werden? (TRUE =  ja)\
+  - `scale`: Soll jeder Wert in der Variable durch die Variablenstandardabweichung dividiert werden? (TRUE = ja)\
+  - Zentrierung, wenn nur `center = TRUE`, z-Standardisierung, wenn beide Argumente mit TRUE definiert wurden.
 
 ### Extremwerte
 
-- Mit dem Argument **trim = …** im Befehl **mean()** kann der Anteil ausgeschlossener Extremwerte definiert werden
+- Mit dem Argument `trim = …` im Befehl `mean()` kann der Anteil ausgeschlossener Extremwerte definiert werden
 
-- Das Paket moments gibt mit dem Befehl **all.moments()** alle statistischen Momente aus, mit **skewness()** die Schiefe und mit **kurtosis()** den Exzess
+- Das Paket `moments` gibt mit dem Befehl `all.moments()` alle statistischen Momente aus, mit `skewness()` die Schiefe und mit `kurtosis()` den Exzess
 
 ### Gruppengetrennte Analyse - Funktion tapply()
 
-**tapply(X = …, INDEX = list(…), FUN = …)**
+`tapply(X = …, INDEX = list(…), FUN = …)`
 
-  - **X**: Variable, deren Werte analysiert werden sollen (wie AV bei **aggregate()**)
-  - **INDEX = list()**: Faktor(en), mehrere Faktoren werden mit "," verbunden (wie UV bei **aggregate()**)
-    - Bei einem Faktor muss **list()** nicht angegeben werden
-  - **FUN**: Welche Funktion (deskriptive Statistik) soll berechnet werden? (wie bei **aggregate()**)
+  - `X`: Variable, deren Werte analysiert werden sollen (wie AV bei `aggregate()`)
+  - `INDEX = list()`: Faktor(en), mehrere Faktoren werden mit "," verbunden (wie UV bei `aggregate()`)
+    - Bei einem Faktor muss `list()` nicht angegeben werden
+  - `FUN`: Welche Funktion (deskriptive Statistik) soll berechnet werden? (wie bei `aggregate()`)

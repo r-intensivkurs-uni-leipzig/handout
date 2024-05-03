@@ -1,7 +1,7 @@
 --- 
 title: "Handout R-Intensivkurs"
 author: "Christoph Mayer"
-date: "2024-03-19"
+date: "2024-05-03"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -26,7 +26,7 @@ Das Handout wird stetig überarbeitet bzw. erweitert. Über Anmerkungen und Verb
 
 **Kontakt:**
 
-Christoph Mayer: christoph.mayer@uni-leipzig.de
+Christoph Mayer: christoph.mayer[ät]uni-leipzig.de
 
 
 **Danksagung:** 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Korrelation und Regression | Handout R-Intensivkurs</title>
   <meta name="description" content="This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig." />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Korrelation und Regression | Handout R-Intensivkurs" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Christoph Mayer" />
 
 
-<meta name="date" content="2024-03-19" />
+<meta name="date" content="2024-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -278,23 +278,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="grafiken.html"><a href="grafiken.html"><i class="fa fa-check"></i><b>8</b> Grafiken</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-univariate-verteilungen"><i class="fa fa-check"></i><b>8.1</b> Grafiken für univariate Verteilungen</a>
+<li class="chapter" data-level="8.1" data-path="grafiken.html"><a href="grafiken.html#allgemeines"><i class="fa fa-check"></i><b>8.1</b> Allgemeines</a></li>
+<li class="chapter" data-level="8.2" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-univariate-verteilungen"><i class="fa fa-check"></i><b>8.2</b> Grafiken für univariate Verteilungen</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="grafiken.html"><a href="grafiken.html#allgemeines"><i class="fa fa-check"></i><b>8.1.1</b> Allgemeines</a></li>
-<li class="chapter" data-level="8.1.2" data-path="grafiken.html"><a href="grafiken.html#darstellung-von-häufigkeiten"><i class="fa fa-check"></i><b>8.1.2</b> Darstellung von Häufigkeiten</a></li>
-<li class="chapter" data-level="8.1.3" data-path="grafiken.html"><a href="grafiken.html#darstellung-von-häufigkeiten-1"><i class="fa fa-check"></i><b>8.1.3</b> Darstellung von Häufigkeiten</a></li>
-<li class="chapter" data-level="8.1.4" data-path="grafiken.html"><a href="grafiken.html#darstellung-von-verteilung"><i class="fa fa-check"></i><b>8.1.4</b> Darstellung von Verteilung</a></li>
+<li class="chapter" data-level="8.2.1" data-path="grafiken.html"><a href="grafiken.html#kreisdiagramme"><i class="fa fa-check"></i><b>8.2.1</b> Kreisdiagramme</a></li>
+<li class="chapter" data-level="8.2.2" data-path="grafiken.html"><a href="grafiken.html#balkendiagramme"><i class="fa fa-check"></i><b>8.2.2</b> Balkendiagramme</a></li>
+<li class="chapter" data-level="8.2.3" data-path="grafiken.html"><a href="grafiken.html#histogramme"><i class="fa fa-check"></i><b>8.2.3</b> Histogramme</a></li>
+<li class="chapter" data-level="8.2.4" data-path="grafiken.html"><a href="grafiken.html#boxplot"><i class="fa fa-check"></i><b>8.2.4</b> Boxplot</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-bivariate-verteilungen"><i class="fa fa-check"></i><b>8.2</b> Grafiken für bivariate Verteilungen</a>
+<li class="chapter" data-level="8.3" data-path="grafiken.html"><a href="grafiken.html#grafiken-für-bivariate-verteilungen"><i class="fa fa-check"></i><b>8.3</b> Grafiken für bivariate Verteilungen</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="grafiken.html"><a href="grafiken.html#verteilung-einer-metrischen-auf-eine-kategoriale-variable"><i class="fa fa-check"></i><b>8.2.1</b> Verteilung einer metrischen auf eine kategoriale Variable</a></li>
-<li class="chapter" data-level="8.2.2" data-path="grafiken.html"><a href="grafiken.html#verteilung-zweier-metrischer-variablen"><i class="fa fa-check"></i><b>8.2.2</b> Verteilung zweier metrischer Variablen</a></li>
+<li class="chapter" data-level="8.3.1" data-path="grafiken.html"><a href="grafiken.html#verteilung-einer-metrischen-auf-eine-kategoriale-variabel"><i class="fa fa-check"></i><b>8.3.1</b> Verteilung einer metrischen auf eine kategoriale Variabel</a></li>
+<li class="chapter" data-level="8.3.2" data-path="grafiken.html"><a href="grafiken.html#verteilung-zweier-metrischer-variablen"><i class="fa fa-check"></i><b>8.3.2</b> Verteilung zweier metrischer Variablen</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="grafiken.html"><a href="grafiken.html#tabellen"><i class="fa fa-check"></i><b>8.3</b> Tabellen</a>
+<li class="chapter" data-level="8.4" data-path="grafiken.html"><a href="grafiken.html#ggplot"><i class="fa fa-check"></i><b>8.4</b> ggplot</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="grafiken.html"><a href="grafiken.html#mehrfelder-tabelle"><i class="fa fa-check"></i><b>8.3.1</b> Mehrfelder Tabelle</a></li>
-<li class="chapter" data-level="8.3.2" data-path="grafiken.html"><a href="grafiken.html#formatierung"><i class="fa fa-check"></i><b>8.3.2</b> Formatierung</a></li>
-<li class="chapter" data-level="8.3.3" data-path="grafiken.html"><a href="grafiken.html#tabellen-und-modelle"><i class="fa fa-check"></i><b>8.3.3</b> Tabellen und Modelle</a></li>
+<li class="chapter" data-level="8.4.1" data-path="grafiken.html"><a href="grafiken.html#aufbau"><i class="fa fa-check"></i><b>8.4.1</b> Aufbau</a></li>
+<li class="chapter" data-level="8.4.2" data-path="grafiken.html"><a href="grafiken.html#daten"><i class="fa fa-check"></i><b>8.4.2</b> Daten</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="grafiken.html"><a href="grafiken.html#aesthetics"><i class="fa fa-check"></i><b>8.5</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="grafiken.html"><a href="grafiken.html#geome"><i class="fa fa-check"></i><b>8.5.1</b> Geome</a></li>
+<li class="chapter" data-level="8.5.2" data-path="grafiken.html"><a href="grafiken.html#geome---mapping"><i class="fa fa-check"></i><b>8.5.2</b> Geome - mapping</a></li>
+<li class="chapter" data-level="8.5.3" data-path="grafiken.html"><a href="grafiken.html#weitere-argumente"><i class="fa fa-check"></i><b>8.5.3</b> weitere Argumente</a></li>
+<li class="chapter" data-level="8.5.4" data-path="grafiken.html"><a href="grafiken.html#geome---grundfunktionen"><i class="fa fa-check"></i><b>8.5.4</b> Geome - Grundfunktionen</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="grafiken.html"><a href="grafiken.html#ergänzungen-2"><i class="fa fa-check"></i><b>8.6</b> Ergänzungen</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="grafiken.html"><a href="grafiken.html#ggplot-1"><i class="fa fa-check"></i><b>8.6.1</b> ggplot</a></li>
+<li class="chapter" data-level="8.6.2" data-path="grafiken.html"><a href="grafiken.html#tabellen"><i class="fa fa-check"></i><b>8.6.2</b> Tabellen</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="beispielanalyse.html"><a href="beispielanalyse.html"><i class="fa fa-check"></i><b>9</b> Beispielanalyse</a>

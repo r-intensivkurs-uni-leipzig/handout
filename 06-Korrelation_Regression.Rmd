@@ -1,34 +1,244 @@
-# Korrelation und Regression 
+# Tests, Zusammenhangsmaße und Regression
 
-## Kovarianz und Korrelation
+## Statistisches Testen
+
+- Ziel ist mit Stichprobendaten allgemein gültige Aussagen über die Grungesamtheit treffen zu können. Dazu werden Hypothesentests durchgeführt häufig in Form von Signifikanztests.
+
+Allgemeines Vorgehen bei Signifikanztests:
+
+  - Null- und Alternativhypothese formulieren ($H_0\ und\ H_a$)
+  - Wahl eines passenden Tests (z.B. `t-Test`, ...)
+  - Bestimmung des Signifikanzniveaus $\alpha$
+  - Berechnung des Wertes der Beobachtung (z.B. `t-Wert`, ...)
+  - Treffen der Testentscheidung
+  
+
+### $\chi^2$-Test
+
+- Gleichverteilungstest - sind Kategorien gleich häufig?
+  - $H_0$: Kategorien sind gleichhäufig
+  - $H_a$: Kategorien sind **nicht** gleichhäufig
+  
+- Unanghängigkeitstest - sind zwei nominale Merkmale unabhängig voneinander?
+  - $H_0$: Merkmale sind **un**abhängig
+  - $H_a$: Merkmale sind abhängig
+  
+Die Funktion `chisq.test()` berechnet je nach Eingabe einen entsprechenden Test. Eingabeparameter sind dabei im Format von `table()`: 
+
+  - Gleichverteilungstest:
+    - `table(x)`
+  - Unanghängigkeitstest:
+      - `table(x, y)`
+
+**Beispiel**
+
+```{r, comment=""}
+df_yoga <- read.table("data/YogaPilates.txt", header = TRUE)
+```
+
+Gleichverteilungstest:
+
+```{r, comment=""}
+tab <- table(df_yoga$gruppe)
+chisq.test(tab)
+```
+
+Unanghängigkeitstest:
+
+```{r, comment=""}
+tab2 <- table(df_yoga$gruppe, df_yoga$geschl)
+chisq.test(tab2)
+```
+  
+### t-Test
+
+- Varianten des t-Tests:
+  - Einstichproben t-Test: Vergleich eines Mittelwerts mit einer Konstante
+      - $H_0$: Mittelwert weicht **nicht** von Konstante ab
+      - $H_a$: Mittelwert weicht von Konstante ab
+  - Zweistichproben t-Test: Vergleich von zwei Mittelwerten aus ab- oder unabhängigen Stichproben
+      - $H_0$: Mittelwerte weichen **nicht** voneinander ab
+      - $H_a$: Mittelwert weichen voneinander ab
+
+Alle Varianten des t-Tests werden mit `t.test()` berechnet.
+
+- Zwei Möglichkeiten der Dateneingabe
+  - `t.test(Werte1, Werte2)`
+  - `t.test(Werte ~ Faktor)`
+- Optionale Argumente:
+  - `alternative`: Richtung der Testung (`"two.sided", "greater", "less"`)
+  - `mu`: Konstante, gegen die getestet werden soll
+  - `paired`: unabhängige (`FALSE`) oder abhängige (`TRUE`) Stichproben?
+  - `var.equal`: Annahme von Varianzgleichheit gegeben (ja = `TRUE`)?
+  - `conf.level`: Konfidenzniveau
+  
+
+**Beispiel**
+
+```{r, comment="", echo = FALSE}
+df_ex <- read.table("data/FieldExamAnxiety.txt", header =TRUE)
+```
+
+t-Test - Einstichprobentest
+
+```{r, comment=""}
+t.test(df_ex$Revise, mu = 5, alternative = "greater")
+```
+
+t-Test - Zweistichprobentest - abhängige Stichproben
+
+
+```{r, comment=""}
+t.test(df_ex$Note, df_ex$Note_2, paired = TRUE)
+```
+
+t-Test - Zweistichprobentest - unhängige Stichproben
+
+```{r, comment=""}
+t.test(df_ex$Revise ~ df_ex$bestanden)
+```
+
+### ANOVA
+
+Vergleich von Mittelwerten von mehr als zwei Gruppen:
+
+  - Abhängige (within ANVOA) oder unabhängige (between ANOVA) Stichproben?
+  - Post-hoc-Tests für genauere Gruppenvergleiche
+  - Mehrfaktorielle ANOVA für mehrere unabhängige Variablen und deren Interaktion
+  
+
+**Paket ez**
+
+Varianzanalysen lassen sich in R auf viele (auch umständliche Arten) berechnen. Das Paket `ez` bietet mit der Funktion `ezANOVA()` eine benutzerfreundliche Möglichkeit zum Durchführen von ANOVAs
+Wichtige Argumente:
+
+  - `data`: Dataframe
+  - `dv`: Abhängige Variable
+  - `wid`: Variable, die die Fälle im Dataframe eindeutig unterscheidet (ID-Variable)
+  - `between`: Zwischensubjektfaktoren, anzugeben als Liste mit .(Faktor 1, Faktor 2, …)
+  - `within`: Innersubjektfaktoren, anzugeben als Liste mit .(Faktor 1, Faktor 2, …)
+  - `type`: Art der Quadratsummenzerlegung (Typ 2 ist Default, Typ 3 ist der Standard von SPSS)
+  
+**Beispiel**
+
+```{r, comment="", warning=FALSE}
+df_yoga_clean <- read.table("data/YogaPilates.txt", header = TRUE) |> na.omit()
+library(ez)
+```
+
+**Einfaktorielle ANOVA - Between-Faktor**
+
+```{r, comment="", warning=FALSE}
+ezANOVA(data = df_yoga_clean, dv = zufri, wid = vp, between = gruppe, type = 2)
+```
+
+**Post-hoc-Tests** 
+
+Post-hoc-Tests für paarweise Gruppenvergleiche können mit `pairwise.t.test(x, g, p.adjust.method = "…", paired = …, …)` ausgegeben werden.
+
+  - `x`: Vektor der abhängigen Variable
+  - `g`: Vektor der unabhängigen Variable (Gruppe)
+  - `p.adjust.method`: Korrekturmethode für multiples Testen` ?p.adjust`
+  - `paired`: Innersubjekt(within)- (TRUE) oder Zwischensubjekt(between)faktoren (FALSE)?
+
+
+```{r, comment=""}
+pairwise.t.test(df_yoga_clean$zufri, df_yoga_clean$gruppe, 
+                p.adjust.method = "bonferroni", paired = FALSE)
+```
+
+
+**Einfaktorielle ANOVA: Within-Faktoren**
+
+- z.B. „Unterscheiden sich die Zufriedenheitswerte der Teilnehmenden vor und nach dem Training?“  
+- „Problem“: in diesem  Datensatz haben wir keine within-Faktoren -> angst sei die Zufriedenheitsmessung vor der jeweiligen Intervention (Gruppe) -> Dadurch kann der Faktor Zeit mit aufgenommen werden
+
+```{r, comment=""}
+df_yoga <- read.table("data/YogaPilates.txt", header = T)
+head(df_yoga, n=5)
+```
+
+```{r, comment=""}
+# Zufriedenheit t_1
+df_yoga$zufri_t1 <- df_yoga$angst
+# Zufriedenheit t_2
+df_yoga$zufri_t2 <- df_yoga$zufri
+
+head(df_yoga, n=5)
+```
+
+## Statistisches Testen
+
+**Einfaktorielle ANOVA: Within-Faktoren**
+
+**Achtung!**: Für ANOVA müssen auch within-Faktoren ins Long-Format gebracht werden
+
+
+```{r, comment=""}
+library(reshape2)
+df_yogaL <- melt(df_yoga, 
+                 id.vars = c("vp", "geschl", "alter", "gruppe", "angst","zufri"),
+                 variable.name = "Zeitpunkt", 
+                 value.name = "Zufriedenheit")
+head(df_yogaL, n=5)
+```
+
+
+**Einfaktorielle ANOVA: Within-Faktoren**
+
+- Deskriptive Analysen
+
+
+```{r, comment=""}
+library(psych)
+describeBy(df_yogaL$Zufriedenheit, group = df_yogaL$Zeitpunkt)
+```
+
+- Vergleiche Output der between-ANOVA für die Interpretation der Werte  
+- Bei mehr als zwei Stufen des Innersubjektfaktors wird der Mauchly-Test (Test auf Sphärizität) mit ausgegeben
+
+```{r, comment="", eval=FALSE, warning=FALSE}
+library(ez)
+ezANOVA(na.omit(df_yogaL), dv = Zufriedenheit, wid = vp, 
+        within = .(Zeitpunkt))
+
+```
+
+## Zusammenhangsmaße
+
+**Kovarianz**:
+
+  - nichtstandardisiertes Zusammenhangsmaß
+  - monotoner Zusammenhang
+  
+**Korrelation**skoeffizient (nach Bravais-Pearson): 
+
+  - standardisiertes Zusammenhangsmaß
+  - linearer Zusammenhang
+  - Variablen mindestes intervallskaliert
 
 **Beispieldatasatz**
 
 Wie hängen die Itemantworten zusammen?
 
 ```{r, comment=""}
-# Beispieldatasatz einlesen
 df_exam <- read.table("data/Daten.txt", header = TRUE)
-
-# Ersten 5 Zeilen und 8 Spalten anzeigen
 head(df_exam, c(5,8))
 ```
 
-**Zwei Variablen**
+**Kovarianz und Korrelation - zwei Variablen**
 
-- Für die Berechnung der Korrelation wird **cor()** verwendet, für die Berechnung der Kovarianz **cov()**    
-- Argumente bei **cor(x, y, method = "…", use = "…")**
-  - **x** und **y**: datavektoren  
-  - **method**: Welche Korrelation soll berechnet werden?   
-    - Produkt-Moment-Korrelation (**"pearson"**), Rangkorrelation &rho; (**"spearman"**) oder Rangkorrelation &tau; (**"kendall"**)
-  - **use**: Umgang mit fehlenden Werten (siehe nächste Folie)
+- Für die Berechnung der Korrelation wird `cor()` verwendet, für die Berechnung der Kovarianz `cov()`    
+- Argumente bei `cor(x, y, method = "…", use = "…")`
+  - `x` und `y`: Datenvektoren  
+  - `method`: Welche Korrelation soll berechnet werden?   
+    - Produkt-Moment-Korrelation (`"pearson"`), Rangkorrelation $\rho$ (`"spearman"`) oder Rangkorrelation $\tau$ (`"kendall"`)
+  - `use`: Umgang mit fehlenden Werten (siehe nächste Folie)
 
-**Fehlende Werte**
-
-- **Use = "…"** regelt den Umgang der Korrelationsfunktionen mit fehlenden Werten
-  - **"everything"**: Kein Umgang mit fehlenden Werten &rarr; bei einzelnen fehlenden Werten wird keine (einzige) Korrelation berechnet                (Ergebnis: **NA**) 
-  - **"pairwise"**: Korrelationen werden jeweils mit den vollständigen Fällen pro Variablenpaar berechnet (paarweiser Ausschluss)
-  - **"complete"**: Korrelationen werden nur aus in allen Variablen vollständigen Fällen berechnet (fallweiser Ausschluss) 
+- `use = "…"` regelt den Umgang der Korrelationsfunktionen mit fehlenden Werten
+  - `"everything"`: Kein Umgang mit fehlenden Werten $\rightarrow$ bei einzelnen fehlenden Werten wird keine (einzige) Korrelation berechnet                (Ergebnis: `NA`) 
+  - `"pairwise"`: Korrelationen werden jeweils mit den vollständigen Fällen pro Variablenpaar berechnet (paarweiser Ausschluss)
+  - `"complete"`: Korrelationen werden nur aus in allen Variablen vollständigen Fällen berechnet (fallweiser Ausschluss) 
 
 everything|  pairwise  |  complete 
 ----------|------------|--------------
@@ -36,29 +246,32 @@ everything|  pairwise  |  complete
 
 **Funktion cor.test()**
 
-- **cor.test(x, y, method = "…", use = "…", alternative = "…", conf.level =     …, …)** für **Inferenzstatistik** bei **Korrelationen**.
-  - **x, y, method, use**: Siehe **cor()**
-  - **alternative**: Ist die Testrichtung… 
-    - Ungerichtet (default): **"two.sided"**
-    - einseitig: Positive Korrelationshypothese **"greater"**
-    - einseitig: Negative Korrelationshypothese **"less"**
-  - **conf.level**: Konfidenzniveau (1 - &alpha;)
-    - **default**: 0.95
+- `cor.test(x, y, method = "…", use = "…", alternative = "…", conf.level =     …, …)` für **Inferenzstatistik** bei **Korrelationen**
+  - `x, y, method, use`: Siehe `cor()`
+  - `alternative`: Ist die Testrichtung… 
+    - Ungerichtet (default): `"two.sided"`
+    - einseitig: Positive Korrelationshypothese `"greater"`
+    - einseitig: Negative Korrelationshypothese `"less"`
+  - `conf.level`: Konfidenzniveau (1 - $\alpha$)
+    - `default`: 0.95
 	
 **Beispiel**
 
+Korrelation item1, item2
 ```{r, comment=""}
-# Korrelation item1, item2
-cor(df_exam$item1, df_exam$item2, method = "pearson")
-
-# Produkt-Moment-Korrelation, Hypothese: negativ ,alpha = 1%
 cor.test(df_exam$item1, df_exam$item2, method = "pearson",
          alternative = "less", conf.level = .99)
 ```
 
-## Matrizen
+Produkt-Moment-Korrelation, Hypothese: negative Korrelation, alpha = 1%
+```{r, comment=""}
+cor.test(df_exam$item1, df_exam$item2, method = "pearson",
+         alternative = "less", conf.level = .99)
+```
 
-Werden Dataframes (oder Teile dessen) in **cov()** oder **cor()** eingefügt, werden Kovarianz- und Korrelationsmatrizen ausgegeben:
+### Matrizen
+
+Werden dataframes (oder Teile dessen) in `cov()` oder `cor()` eingefügt, werden Kovarianz- und Korrelationsmatrizen ausgegeben:
 
 ```{r, comment=""}
 cov(df_exam[, 2:4])
@@ -66,13 +279,15 @@ cov(df_exam[, 2:4])
 cor(df_exam[, c("item1", "item2", "item3")], method = "pearson")
 ```
 
-- **corr.test()** (Paket **psych**) liefert inferenzstatistische Berechnungen auch  für Korrelationsmatrizen
-- **corr.test(df, method = "…", adjust = "…", alpha = "…")**
-  - **df, method**: Siehe **cor()**, Kendall &tau; kann aber nicht verwendet werden
-  - **adjust**: Methode zur &alpha;-Fehler-Adjustierung
-    - **"none", "bonferroni", … **
-    - Für weitere siehe **?p.adjust** und **?corr.test**
-  - **alpha**: Signifikanzniveau &alpha;     
+**Funktion corr.test()**
+
+- `corr.test()` (Paket `psych`) liefert inferenzstatistische Berechnungen auch  für Korrelationsmatrizen.
+- `corr.test(df, method = "…", adjust = "…", alpha = "…")`
+  - `df, method`: Siehe `cor()`
+  - `adjust`: Methode zur $\alpha$-Fehler-Adjustierung
+    - `"none", "bonferroni", … `
+    - Für weitere siehe `?p.adjust` und `?corr.test`
+  - `alpha`: Signifikanzniveau $\alpha$    
     
 ```{r, comment=""}
 library(psych)
@@ -90,27 +305,43 @@ corr.test(df_exam[ ,2:4], method = "pearson", adjust = "bonferroni")
 
 **Beispiel**
 
+Definition eines Objekts mit Inferenzstatistik für df_exam
+
 ```{r, comment=""}
-# Definition eines Objekts mit Inferenzstatistik für df_exam
-KorMat <- corr.test(df_exam[ ,2:4], method = "pearson", adjust = "bonferroni")
-# Ausgabe Standardfehler
-KorMat$se
-# Ausgabe Konfidenzintervalle
-KorMat$ci
-# Ausgabe p-Werte
-KorMat$p
+KorMat <- corr.test(df_exam[ ,2:4], method = "pearson", 
+                    adjust = "bonferroni")
 ```
 
-## (Multiple) lineare Regression
+Ausgabe Konfidenzintervalle
+```{r, comment=""}
+KorMat$ci
+```
 
-**Wiederholung:**
+## Lineare Regressionsmodelle
 
-- Ziel: Ein Kriterium (abhängige Variable) durch die Kombination von Prädiktoren (unabhängige Variablen) vorhersagen
+- Ziel ist ein Kriterium (abhängige Variable) durch einen Prädiktor (unabhängige Variable) oder einer Kombination aus Prädikatoren für neue Prädikatorenwerte vorherzusagen bzw. den Zusammenhang dieser zu untersuchen.
 
-- Signifikanztests für
-    - einzelne Prädiktoren
-    - das Gesamtmodell
-    - Modellvergleiche
+Allgemeines Vorgehen:
+
+- Abhängige und unabhängige Variablen aus Hypothesen ableiten
+- Skalenniveaus der Variablen bestimmen
+- Erwarteten Zusammenhang bestimmen
+- Passendes Regressionsverfahren wählen
+- Vorraussetzungen prüfen
+- Regressionsmodell berechnen
+- Interpretation der Regressionsanalyse
+
+**Lineare Regressionsmodelle**
+
+Für lineare Regressionen sind folgende Voraussetzungen zu überprüfen:
+
+  - Es existiert ein linearer Zusammenhang
+  - Erwartungswert der Residuen ist Null
+  - Varianzhomogenität der Residuen (Homoskedastizität)
+  - Die Residuen sind nicht miteinander Korreliert (Autoregression)
+  - Die Residuen sind nicht mit den unabhängigen Variablen korreliert und die unabhängige Variable ist deterministisch(z.B. Omitted-Variable-Bias)
+  - Normalverteilung der Residuen
+
 
 ### Modelldefinition
 
@@ -122,64 +353,67 @@ KorMat$p
   - item1 soll durch item2 und item3 vorhergesagt werden
 
 
+**Beispiel Modelldefinition** 
 ```{r, eval=FALSE}
-# Beispiel Modelldefinition
 model1 <- item1 ~ item2 + item3
 ```
 	
 ### Modellschätzung
 
-- Anhand des definierten Regressionsmodells und der vorhandenen Daten kann R nun die Modellparameter (inkl. Modellpassung) schätzen
-- Lineare Regressionsmodelle werden mit **lm(formula = …, data = …)** geschätzt:
-  - **formula**: Definiert das Modell
-  - **data**: dataframe, der die Variablen enthält
-- **lm()** sollte für die weiteren Berechnungen als Objekt gesichert werden
+- Anhand des definierten Regressionsmodells und der vorhandenen Daten kann     R nun die Modellparameter (inkl. Modellpassung) schätzen
+- Lineare Regressionsmodelle werden mit `lm(formula = …, data = …)`     geschätzt:
+  - `formula`: Definiert das Modell
+  - `data`: dataframe, der die Variablen enthält
+- `lm()` sollte für die weiteren Berechnungen als Objekt gesichert werden
 
 **Beispiel Modellschätzung**
 
+Modelldefinition
 ```{r, comment=""}
-# Modelldefinition
 model1 <- item1 ~ item2 + item3
+```
 
-# Modellschätzung und Sicherung in fit1
+Modellschätzung und Sicherung in fit1
+```{r, comment=""}
 fit1 <- lm(formula = model1, data = df_exam)
+```
 
-# Alternativ
-fit1 <- lm(formula = item1 ~ item2 + item3, data = df_exam)
 
-# Modell anzeigen
+Modell anzeigen
+```{r, comment=""}
 fit1
 ```
 
-- Mit **summary()** lassen sich detaillierte Informationen zum Regressionsmodell ausgeben:
+
+- Mit `summary()` lassen sich detaillierte Informationen zum Regressionsmodell ausgeben:
 
 
 ```{r, comment=""}
-# Ausgabe Informationen Regressionsmodell, fit1
 summary(fit1)
 ```
 
 
 ### Modellvergleich
 
-- Zwei genestete Modelle können mit **anova(fit1, fit2)** miteinander verglichen werden
-  - **fit1**: Ausgangsmodell (restringiertes Modell)
-  - **fit2**: Erweitertes Modell (mit zusätzlichen Prädiktoren)
+- Zwei genestete Modelle können mit `anova(fit1, fit2)` miteinander verglichen werden
+  - `fit1`: Ausgangsmodell (restringiertes Modell)
+  - `fit2`: Erweitertes Modell (mit zusätzlichen Prädiktoren)
 
+
+
+**Beispiel Modellvergleich**
+
+Modelldefinition und Schätzung
 ```{r, comment=""}
-# Modelldefinition, model1 + model2
 model1 <- item1 ~ item2 + item3
 model2 <- item1 ~ item2 + item3 + item4
 
-# Modellschätzung, fit1 + fit2
 fit1 <- lm(model1, df_exam)
 fit2 <- lm(model2, df_exam)
 ```
 
-**Beispiel Modellvergleich**
-
+Modellvergleich, fit1 + fit2
 ```{r, comment=""}
-# Modellvergleich, fit1 + fit2
 anova(fit1, fit2)
 ```
 
@@ -187,31 +421,29 @@ anova(fit1, fit2)
 
 ### Matrizen
 
-- Kovarianzmatrizen werden mit **cov2cor()** in Korrelationsmatrizen umgewandelt:
+- Kovarianzmatrizen werden mit `cov2cor()` in Korrelationsmatrizen umgewandelt:
 
 ```{r, comment=""}
 # Zuweisung
 Kova <- cov(df_exam[ , 2:4])
 # Berechnung
 cov2cor(Kova)
-# Alternativ
-cor(df_exam[ , 2:4])
 ```
 
 ### Weitere Korrelationen
 
-- Mit dem Paket **psych** können zudem
-  - Partialkorrelationen (**partial.r()**),
-  - tetrachorische (**tetrachoric()**),
-  - polychorische (**polychoric()**),
-  - biserale (**biserial()**) 
-  - und polyseriale (**polyserial()**) Korrelationen berechnet werden
-- Mit dem Paket **ppcor** können Semipartialkorrelationen berechnet werden
+- Mit dem Paket `psych` können zudem
+  - Partialkorrelationen (`partial.r()`),
+  - tetrachorische (`tetrachoric()`),
+  - polychorische (`polychoric()`),
+  - biserale (`biserial()`) 
+  - und polyseriale (`polyserial()`) Korrelationen berechnet werden
+- Mit dem Paket `ppcor` können Semipartialkorrelationen berechnet werden
 
 ### Standartisierte und unstandartisierte Regressionkoeffizienten
 
-- Mit **coefficients()** oder **$coefficients** lassen sich die nicht-standardisierten Regressionskoeffizienten ausgeben
-- Mit **lm.beta()** aus dem Paket **QuantPsyc** lassen sich standardisierte Regressionskoeffizienten ausgeben
+- Mit `coefficients()` oder `\$coefficients` lassen sich die unstandardisierten Regressionskoeffizienten ausgeben
+- Mit `lm.beta()` aus dem Paket QuantPsyc lassen sich standardisierte Regressionskoeffizienten ausgeben
 
 
 ```{r, comment=""}
@@ -227,7 +459,7 @@ QuantPsyc::lm.beta(fit1)
 
 ### Vorhergesagte Werte
 
-- **predict()**, **fitted.values()** oder **\$fitted.values** gibt die vorhergesagten Werte für jeden Datenpunkt als Vektor aus:
+- `predict()`, `fitted.values()` oder `\$fitted.values` gibt die vorhergesagten Werte für jeden Datenpunkt als Vektor aus:
 
 
 ```{r, comment=""}
@@ -243,8 +475,9 @@ fit1$fitted.values
 
 ### Residuen
 
-- **resid()**, **residuals()** oder **\$residuals** gibt die unstandardisierten Residuen pro datapunkt aus
-- **rstandard()** gibt die standardisierten Residuen aus
+- `resid()`, `residuals()` oder `\$residuals` gibt die unstandardisierten Residuen pro Datenpunkt aus
+- `rstandard()` gibt die standardisierten Residuen aus
+
 
 ```{r, comment=""}
 # Residuen, fit1
@@ -258,7 +491,7 @@ fit1$residuals
   - Modell ohne Intercept (Konstante): AV ~ 0 + UV1 + …
   - Interaktionsterme (Moderation):
     - AV ~ UV1 + UV2 + UV1*UV2
-    - Statt "$*$" kann auch "$:$" verwendet werden
+    - Statt $*$ kann auch $:$ verwendet werden
 
 
 ### Hinweise zu weiteren Regressionsmodellen in R
@@ -275,21 +508,21 @@ fit1$residuals
 
 ### General Linear Model (GLM)
 
-**glm(forumla, family, data)**
+`glm(forumla, family, data)`
 
 - Generalisierte lineare Modelle als Verallgemeinerung des linearen Modells $\rightarrow$ Breite Einsatzmöglichkeiten
-  - **formula**: Wie bei **lm()**
-  - **data**: Wie bei **lm()**
-  - **family:** Definiert die Zufallsverteilung von Y und die Linkfunktion
+  - `formula`: Wie bei `lm()`
+  - `data`: Wie bei `lm()`
+  - `family:` Definiert die Zufallsverteilung von Y und die Linkfunktion
 - Beispiele:
-  - GLM mit Normalverteilung und ohne besondere Linkfunktion (**familiy = gaussian(link = "identity")**)
-    $\rightarrow$ Entspricht **lm()**
-  - GLM mit Binomialverteilung und logistischer Linkfunktion (**family = binomial(link = "logit")**)
+  - GLM mit Normalverteilung und ohne besondere Linkfunktion (`familiy = gaussian(link = "identity")`)
+    $\rightarrow$ Entspricht `lm()`
+  - GLM mit Binomialverteilung und logistischer Linkfunktion (`family = binomial(link = "logit")`)
        $\rightarrow$ Binär-logistische Regression
 
 ### Mediation und SEM
 
-- Paket **lavaan**
+- Paket `lavaan`
   - Ständig weiterentwickeltes Paket zur Schätzung von Pfad- und              Strukturgleichungsmodellen in R
   - Ermöglicht auch Bootstrapping-Konfidenzintervalle für indirekte           Effekte
   - Ausführliche Dokumentation mit Beispielcodes: 
@@ -297,9 +530,9 @@ fit1$residuals
 
 ### Linear Mixed Model (LMM)
 
-- Paket **lme4**
+- Paket `lme4`
   - Liefert eine breite und gut erprobte Palette an Werkzeugen für            linear mixed models (Hierarchische lineare Modelle; Mehrebenenmodelle)
   - Siehe: Bates, D., Mächler, M., Bolker, B., & Walker, S. (2015).           Fitting Linear Mixed-Effects Models Using lme4. Journal of Statistical     Software, 67(1).
-- Paket **lmerTest**
+- Paket `lmerTest`
   - Reicht Signifikanztests nach, die in lme4 standardmäßig nicht implementiert sind
   - https://cran.r-project.org/web/packages/lmerTest/index.html
