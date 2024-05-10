@@ -1,7 +1,7 @@
 --- 
 title: "Handout R-Intensivkurs"
 author: "Christoph Mayer"
-date: "2024-05-03"
+date: "2024-05-10"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
