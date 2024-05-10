@@ -736,7 +736,7 @@ diversen Online-Suchmaschinen ;-).</p>
 <span id="cb167-3"><a href="grafiken.html#cb167-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
 <span id="cb167-4"><a href="grafiken.html#cb167-4" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
 <span id="cb167-5"><a href="grafiken.html#cb167-5" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
-<span id="cb167-6"><a href="grafiken.html#cb167-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Region)) <span class="sc">+</span></span>
+<span id="cb167-6"><a href="grafiken.html#cb167-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> region)) <span class="sc">+</span></span>
 <span id="cb167-7"><a href="grafiken.html#cb167-7" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
 <span id="cb167-8"><a href="grafiken.html#cb167-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Wahlerfolg der AfD in Abhängigkeit der Wahlbeteiligung&quot;</span>,</span>
 <span id="cb167-9"><a href="grafiken.html#cb167-9" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Europawahl 2019, Alle Angaben in %&quot;</span>,</span>
@@ -785,7 +785,7 @@ werden. Dies erfolgt mit <code>vars()</code>.</p>
 <span id="cb173-4"><a href="grafiken.html#cb173-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb173-5"><a href="grafiken.html#cb173-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
 <span id="cb173-6"><a href="grafiken.html#cb173-6" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb173-7"><a href="grafiken.html#cb173-7" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Region))</span></code></pre></div>
+<span id="cb173-7"><a href="grafiken.html#cb173-7" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(region))</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-31-1.png" width="\textwidth" /></p>
 </div>
 <div id="speichern-von-graphiken-mit-ggsave" class="section level4 hasAnchor" number="8.5.1.4">
@@ -855,7 +855,7 @@ In dieser Sitzung gab es daher nur einen kleinen Einblick in die allgemeine Funk
 von GGPlot. Im Zweifel sollte einfach solange gegoogelt und rumprobiert werden,
 bis das gewünschte Ergebnis erzielt wurde.</p>
 <p>Inspiration für unterschiedliche
-Typen von Graphiken liefert die <a href="https://r-graph-gallery.com"></a>.</p>
+Typen von Graphiken liefert die <a href="https://r-graph-gallery.com" class="uri">https://r-graph-gallery.com</a></p>
 </div>
 </div>
 </div>

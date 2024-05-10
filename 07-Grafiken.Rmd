@@ -4,6 +4,8 @@ knitr::opts_chunk$set(echo = TRUE, cache = FALSE, warning = FALSE, message = FAL
 library(tidyverse)
 library(haven)
 library(hrbrthemes)
+library(ggplot2)
+library(ggthemes)
 ```
 
 # Grafiken
@@ -341,14 +343,6 @@ bereits hinterlegt.
 
 ```{r, echo = FALSE}
 df_regio <- readRDS(file = "data/regio.rds") 
-
-df_regio$region <- ifelse(df_regio$Regio_Code < 11000, 
-                          "Alte Bundesländer", "Neue Bundesländer")
-df_regio$region <- as.factor(df_regio$region)
-
-df_regio$durchschnittsalter_cat = cut_interval(
-                                  df_regio$Durchschnittsalter,
-                                  n = 3)
 ```
 
 
@@ -470,7 +464,7 @@ library(ggthemes)
 ggplot(data = df_regio,
        mapping = aes(x = Europawahl_Beteiligung_percent,
                      y = Europawahl_AFD_percent)) +
-  geom_point(mapping = aes(color = Region)) +
+  geom_point(mapping = aes(color = region)) +
   geom_rug() +
   labs(title = "Wahlerfolg der AfD in Abhängigkeit der Wahlbeteiligung",
        subtitle = "Europawahl 2019, Alle Angaben in %",
@@ -553,7 +547,7 @@ ggplot(data = df_regio,
   geom_point() +
   geom_smooth(method = "lm",
               se = FALSE) +
-  facet_grid(cols = vars(Region))
+  facet_grid(cols = vars(region))
 ```
 
 #### Speichern von Graphiken mit GGSave
@@ -651,7 +645,7 @@ von GGPlot. Im Zweifel sollte einfach solange gegoogelt und rumprobiert werden,
 bis das gewünschte Ergebnis erzielt wurde.
 
 Inspiration für unterschiedliche 
-Typen von Graphiken liefert die [\textcolor{blue}{R Graph Gallery}](https://r-graph-gallery.com).
+Typen von Graphiken liefert die https://r-graph-gallery.com 
 
 
 ### Tabellen 

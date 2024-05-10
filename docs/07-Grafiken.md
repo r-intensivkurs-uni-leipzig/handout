@@ -453,7 +453,7 @@ library(ggthemes)
 ggplot(data = df_regio,
        mapping = aes(x = Europawahl_Beteiligung_percent,
                      y = Europawahl_AFD_percent)) +
-  geom_point(mapping = aes(color = Region)) +
+  geom_point(mapping = aes(color = region)) +
   geom_rug() +
   labs(title = "Wahlerfolg der AfD in Abhängigkeit der Wahlbeteiligung",
        subtitle = "Europawahl 2019, Alle Angaben in %",
@@ -549,7 +549,7 @@ ggplot(data = df_regio,
   geom_point() +
   geom_smooth(method = "lm",
               se = FALSE) +
-  facet_grid(cols = vars(Region))
+  facet_grid(cols = vars(region))
 ```
 
 <img src="07-Grafiken_files/figure-html/unnamed-chunk-31-1.png" width="\textwidth" />
@@ -660,7 +660,7 @@ von GGPlot. Im Zweifel sollte einfach solange gegoogelt und rumprobiert werden,
 bis das gewünschte Ergebnis erzielt wurde.
 
 Inspiration für unterschiedliche 
-Typen von Graphiken liefert die [\textcolor{blue}{R Graph Gallery}](https://r-graph-gallery.com).
+Typen von Graphiken liefert die https://r-graph-gallery.com 
 
 
 ### Tabellen 
