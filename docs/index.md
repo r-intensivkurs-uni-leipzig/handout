@@ -1,14 +1,11 @@
 --- 
 title: "Handout R-Intensivkurs"
 author: "Christoph Mayer"
-date: "2024-05-10"
+date: "2024-05-16"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
-# url: your book url like https://steady-cajeta-20d724.netlify.app/grafiken.html
-description: |
-  This is the accompanying handout of the R introduction course of the Unirechenzentrum Leipzig.
 biblio-style: apalike
 csl: chicago-fullnote-bibliography.csl
 ---
@@ -31,8 +28,6 @@ Das Handout basiert in Teilen auf bereitgestellten Materialien von Ingo Seifert 
 Ehemalige Tutor:innen:
 
 Franz Andersch
-
-Vielen Dank!
 
 \centering
 <img src="Abbildungen/2022_URZ_Förderung-IT-Kurse.jpg" alt="" width="350"/>
