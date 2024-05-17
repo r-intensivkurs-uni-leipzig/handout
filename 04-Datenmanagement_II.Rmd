@@ -189,20 +189,45 @@ head(datasetLong, 14)
 
 **Wozu?**
 
-Viele Modelle in R benötigen das Long Format 
+Viele Modelle in R benötigen das Long Format.
 
 ###  Umwandlung Long- und Wide-Format
 
 **Wide $\rightarrow$ Long**
 
-Ebenfalls aus dem Paket `reshape2` ermöglicht der Befehl `dcast(data, formula, value.var = "...")` das Transformieren vom Long ins Wide-Format
-  - `data`: Datensatz, dessen Format geändert werden soll
-  - `formula`: Welche Variablen sollen nach welcher Bedingung getrennt werden? \
-  Format: `A ~ B`
-    - `A`: ID-Variablen (vgl. `id.vars`)
-    - `B`: Variable(n), die die Messungen (Zeitpunkte, Items, …) enthält $\rightarrow$ Bildet neue Spalten (vgl. `variable.name`)
-    - Mit `+` werden mehrere Variablen in `formula` kombiniert
-  - `value.var`: Welche Variable im Long-Format enthält die Werte, die aufgesplittet werden sollen? (vgl. `value.name`)
+Mit dem Paket `reshape2` können die Formate ineinander überführt werden.
+
+Für die Umformung wird der Befehl `melt(data, id.vars = "...", variable.name = "...", value.name = "...")` verwendet \
+
+- `data`: Datensatz, dessen Format geändert werden soll \
+- `id.vars`: Variable(n), die als einzelne Variable beibehalten werden soll(en) und nicht
+  gesplittet werden soll(en). Bennenung muss gleich wie im Ursprungsdatensatz sein! \
+- `variable.name`: Bezeichnung der Spalte, in der Variablennamen aufgeführt werden sollen
+  Achtung: nicht Variablennamen selbst auflisten! \
+- `value.name`: Bezeichnung der Spalte, in der die Werte der zugehörigen Variablen aufgeführt
+  werden sollen
+
+```{r,message=FALSE,warning=FALSE,comment=""}
+library(reshape2)
+dataset <- read.table("data/Daten.txt", header = TRUE)
+datasetLong <- melt(dataset, id.vars = "Person",
+                  variable.name = "item", value.name = "score")
+head(datasetLong)
+```
+
+
+
+**Long $\rightarrow$ Wide**
+
+Ebenfalls aus dem Paket `reshape2` ermöglicht der Befehl `dcast(data, formula, value.var = "...")` das Transformieren vom Long ins Wide-Format \
+
+- `data`: Datensatz, dessen Format geändert werden soll \
+- `formula`: Welche Variablen sollen nach welcher Bedingung getrennt werden? \
+  Format: `A ~ B` \
+  - `A`: ID-Variablen (vgl. `id.vars`) \
+  - `B`: Variable(n), die die Messungen (Zeitpunkte, Items, …) enthält $\rightarrow$ Bildet neue Spalten (vgl. `variable.name`) \
+  - Mit `+` werden mehrere Variablen in `formula` kombiniert \
+- `value.var`: Welche Variable im Long-Format enthält die Werte, die aufgesplittet werden sollen? (vgl. `value.name`) \
 
 ```{r,comment=""}
 head(datasetLong,3)
@@ -213,7 +238,7 @@ library(reshape2)
 ```
 
 ```{r, warning=FALSE,comment=""}
-datasetWide <- dcast(datasetLong, Person ~ Item, value.var = "Score")
-head(datasetWide,5)
+datasetWide <- dcast(datasetLong, Person ~ item, value.var = "score")
+head(datasetWide)
 ```
 

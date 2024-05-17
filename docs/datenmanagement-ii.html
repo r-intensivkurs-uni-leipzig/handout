@@ -23,7 +23,7 @@
 <meta name="author" content="Christoph Mayer" />
 
 
-<meta name="date" content="2024-05-16" />
+<meta name="date" content="2024-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -549,37 +549,78 @@ aussortiert.<br />
 <span id="cb99-16"><a href="datenmanagement-ii.html#cb99-16" tabindex="-1"></a><span class="dv">13</span>      <span class="dv">3</span> item2     <span class="dv">1</span></span>
 <span id="cb99-17"><a href="datenmanagement-ii.html#cb99-17" tabindex="-1"></a><span class="dv">14</span>      <span class="dv">4</span> item2     <span class="dv">2</span></span></code></pre></div>
 <p><strong>Wozu?</strong></p>
-<p>Viele Modelle in R benötigen das Long Format</p>
+<p>Viele Modelle in R benötigen das Long Format.</p>
 <div id="umwandlung-long--und-wide-format" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Umwandlung Long- und Wide-Format<a href="datenmanagement-ii.html#umwandlung-long--und-wide-format" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Wide <span class="math inline">\(\rightarrow\)</span> Long</strong></p>
-<p>Ebenfalls aus dem Paket <code>reshape2</code> ermöglicht der Befehl <code>dcast(data, formula, value.var = "...")</code> das Transformieren vom Long ins Wide-Format
-- <code>data</code>: Datensatz, dessen Format geändert werden soll
-- <code>formula</code>: Welche Variablen sollen nach welcher Bedingung getrennt werden?<br />
-Format: <code>A ~ B</code>
-- <code>A</code>: ID-Variablen (vgl. <code>id.vars</code>)
-- <code>B</code>: Variable(n), die die Messungen (Zeitpunkte, Items, …) enthält <span class="math inline">\(\rightarrow\)</span> Bildet neue Spalten (vgl. <code>variable.name</code>)
-- Mit <code>+</code> werden mehrere Variablen in <code>formula</code> kombiniert
-- <code>value.var</code>: Welche Variable im Long-Format enthält die Werte, die aufgesplittet werden sollen? (vgl. <code>value.name</code>)</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="datenmanagement-ii.html#cb100-1" tabindex="-1"></a><span class="fu">head</span>(datasetLong,<span class="dv">3</span>)</span>
-<span id="cb100-2"><a href="datenmanagement-ii.html#cb100-2" tabindex="-1"></a>  Person  Item Score</span>
-<span id="cb100-3"><a href="datenmanagement-ii.html#cb100-3" tabindex="-1"></a><span class="dv">1</span>      <span class="dv">1</span> item1     <span class="dv">3</span></span>
-<span id="cb100-4"><a href="datenmanagement-ii.html#cb100-4" tabindex="-1"></a><span class="dv">2</span>      <span class="dv">2</span> item1     <span class="dv">4</span></span>
-<span id="cb100-5"><a href="datenmanagement-ii.html#cb100-5" tabindex="-1"></a><span class="dv">3</span>      <span class="dv">3</span> item1     <span class="dv">3</span></span></code></pre></div>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="datenmanagement-ii.html#cb101-1" tabindex="-1"></a>datasetWide <span class="ot">&lt;-</span> <span class="fu">dcast</span>(datasetLong, Person <span class="sc">~</span> Item, <span class="at">value.var =</span> <span class="st">&quot;Score&quot;</span>)</span>
-<span id="cb101-2"><a href="datenmanagement-ii.html#cb101-2" tabindex="-1"></a><span class="fu">head</span>(datasetWide,<span class="dv">5</span>)</span>
-<span id="cb101-3"><a href="datenmanagement-ii.html#cb101-3" tabindex="-1"></a>  Person item1 item10 item11 item2 item3 item4 item5 item6</span>
-<span id="cb101-4"><a href="datenmanagement-ii.html#cb101-4" tabindex="-1"></a><span class="dv">1</span>      <span class="dv">1</span>     <span class="dv">3</span>      <span class="dv">3</span>      <span class="dv">4</span>     <span class="dv">2</span>     <span class="dv">3</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">1</span></span>
-<span id="cb101-5"><a href="datenmanagement-ii.html#cb101-5" tabindex="-1"></a><span class="dv">2</span>      <span class="dv">2</span>     <span class="dv">4</span>      <span class="dv">4</span>      <span class="dv">2</span>     <span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span></span>
-<span id="cb101-6"><a href="datenmanagement-ii.html#cb101-6" tabindex="-1"></a><span class="dv">3</span>      <span class="dv">3</span>     <span class="dv">3</span>      <span class="dv">3</span>      <span class="dv">4</span>     <span class="dv">1</span>     <span class="dv">3</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span></span>
-<span id="cb101-7"><a href="datenmanagement-ii.html#cb101-7" tabindex="-1"></a><span class="dv">4</span>      <span class="dv">4</span>     <span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">4</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span></span>
-<span id="cb101-8"><a href="datenmanagement-ii.html#cb101-8" tabindex="-1"></a><span class="dv">5</span>      <span class="dv">5</span>     <span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">1</span>     <span class="dv">1</span></span>
-<span id="cb101-9"><a href="datenmanagement-ii.html#cb101-9" tabindex="-1"></a>  item7 item8 item9</span>
-<span id="cb101-10"><a href="datenmanagement-ii.html#cb101-10" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">1</span>     <span class="dv">1</span></span>
-<span id="cb101-11"><a href="datenmanagement-ii.html#cb101-11" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">4</span>     <span class="dv">1</span>     <span class="dv">1</span></span>
-<span id="cb101-12"><a href="datenmanagement-ii.html#cb101-12" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span></span>
-<span id="cb101-13"><a href="datenmanagement-ii.html#cb101-13" tabindex="-1"></a><span class="dv">4</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span></span>
-<span id="cb101-14"><a href="datenmanagement-ii.html#cb101-14" tabindex="-1"></a><span class="dv">5</span>     <span class="dv">3</span>     <span class="dv">2</span>     <span class="dv">2</span></span></code></pre></div>
+<p>Mit dem Paket <code>reshape2</code> können die Formate ineinander überführt werden.</p>
+<p>Für die Umformung wird der Befehl <code>melt(data, id.vars = "...", variable.name = "...", value.name = "...")</code> verwendet<br />
+</p>
+<ul>
+<li><code>data</code>: Datensatz, dessen Format geändert werden soll<br />
+</li>
+<li><code>id.vars</code>: Variable(n), die als einzelne Variable beibehalten werden soll(en) und nicht
+gesplittet werden soll(en). Bennenung muss gleich wie im Ursprungsdatensatz sein!<br />
+</li>
+<li><code>variable.name</code>: Bezeichnung der Spalte, in der Variablennamen aufgeführt werden sollen
+Achtung: nicht Variablennamen selbst auflisten!<br />
+</li>
+<li><code>value.name</code>: Bezeichnung der Spalte, in der die Werte der zugehörigen Variablen aufgeführt
+werden sollen</li>
+</ul>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="datenmanagement-ii.html#cb100-1" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb100-2"><a href="datenmanagement-ii.html#cb100-2" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/Daten.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb100-3"><a href="datenmanagement-ii.html#cb100-3" tabindex="-1"></a>datasetLong <span class="ot">&lt;-</span> <span class="fu">melt</span>(dataset, <span class="at">id.vars =</span> <span class="st">&quot;Person&quot;</span>,</span>
+<span id="cb100-4"><a href="datenmanagement-ii.html#cb100-4" tabindex="-1"></a>                  <span class="at">variable.name =</span> <span class="st">&quot;item&quot;</span>, <span class="at">value.name =</span> <span class="st">&quot;score&quot;</span>)</span>
+<span id="cb100-5"><a href="datenmanagement-ii.html#cb100-5" tabindex="-1"></a><span class="fu">head</span>(datasetLong)</span>
+<span id="cb100-6"><a href="datenmanagement-ii.html#cb100-6" tabindex="-1"></a>  Person  item score</span>
+<span id="cb100-7"><a href="datenmanagement-ii.html#cb100-7" tabindex="-1"></a><span class="dv">1</span>      <span class="dv">1</span> item1     <span class="dv">3</span></span>
+<span id="cb100-8"><a href="datenmanagement-ii.html#cb100-8" tabindex="-1"></a><span class="dv">2</span>      <span class="dv">2</span> item1     <span class="dv">4</span></span>
+<span id="cb100-9"><a href="datenmanagement-ii.html#cb100-9" tabindex="-1"></a><span class="dv">3</span>      <span class="dv">3</span> item1     <span class="dv">3</span></span>
+<span id="cb100-10"><a href="datenmanagement-ii.html#cb100-10" tabindex="-1"></a><span class="dv">4</span>      <span class="dv">4</span> item1     <span class="dv">2</span></span>
+<span id="cb100-11"><a href="datenmanagement-ii.html#cb100-11" tabindex="-1"></a><span class="dv">5</span>      <span class="dv">5</span> item1     <span class="dv">2</span></span>
+<span id="cb100-12"><a href="datenmanagement-ii.html#cb100-12" tabindex="-1"></a><span class="dv">6</span>      <span class="dv">6</span> item1     <span class="dv">4</span></span></code></pre></div>
+<p><strong>Long <span class="math inline">\(\rightarrow\)</span> Wide</strong></p>
+<p>Ebenfalls aus dem Paket <code>reshape2</code> ermöglicht der Befehl <code>dcast(data, formula, value.var = "...")</code> das Transformieren vom Long ins Wide-Format<br />
+</p>
+<ul>
+<li><code>data</code>: Datensatz, dessen Format geändert werden soll<br />
+</li>
+<li><code>formula</code>: Welche Variablen sollen nach welcher Bedingung getrennt werden?<br />
+Format: <code>A ~ B</code><br />
+
+<ul>
+<li><code>A</code>: ID-Variablen (vgl. <code>id.vars</code>)<br />
+</li>
+<li><code>B</code>: Variable(n), die die Messungen (Zeitpunkte, Items, …) enthält <span class="math inline">\(\rightarrow\)</span> Bildet neue Spalten (vgl. <code>variable.name</code>)<br />
+</li>
+<li>Mit <code>+</code> werden mehrere Variablen in <code>formula</code> kombiniert<br />
+</li>
+</ul></li>
+<li><code>value.var</code>: Welche Variable im Long-Format enthält die Werte, die aufgesplittet werden sollen? (vgl. <code>value.name</code>)<br />
+</li>
+</ul>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="datenmanagement-ii.html#cb101-1" tabindex="-1"></a><span class="fu">head</span>(datasetLong,<span class="dv">3</span>)</span>
+<span id="cb101-2"><a href="datenmanagement-ii.html#cb101-2" tabindex="-1"></a>  Person  item score</span>
+<span id="cb101-3"><a href="datenmanagement-ii.html#cb101-3" tabindex="-1"></a><span class="dv">1</span>      <span class="dv">1</span> item1     <span class="dv">3</span></span>
+<span id="cb101-4"><a href="datenmanagement-ii.html#cb101-4" tabindex="-1"></a><span class="dv">2</span>      <span class="dv">2</span> item1     <span class="dv">4</span></span>
+<span id="cb101-5"><a href="datenmanagement-ii.html#cb101-5" tabindex="-1"></a><span class="dv">3</span>      <span class="dv">3</span> item1     <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="datenmanagement-ii.html#cb102-1" tabindex="-1"></a>datasetWide <span class="ot">&lt;-</span> <span class="fu">dcast</span>(datasetLong, Person <span class="sc">~</span> item, <span class="at">value.var =</span> <span class="st">&quot;score&quot;</span>)</span>
+<span id="cb102-2"><a href="datenmanagement-ii.html#cb102-2" tabindex="-1"></a><span class="fu">head</span>(datasetWide)</span>
+<span id="cb102-3"><a href="datenmanagement-ii.html#cb102-3" tabindex="-1"></a>  Person item1 item2 item3 item4 item5 item6 item7 item8</span>
+<span id="cb102-4"><a href="datenmanagement-ii.html#cb102-4" tabindex="-1"></a><span class="dv">1</span>      <span class="dv">1</span>     <span class="dv">3</span>     <span class="dv">2</span>     <span class="dv">3</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">1</span></span>
+<span id="cb102-5"><a href="datenmanagement-ii.html#cb102-5" tabindex="-1"></a><span class="dv">2</span>      <span class="dv">2</span>     <span class="dv">4</span>     <span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">1</span></span>
+<span id="cb102-6"><a href="datenmanagement-ii.html#cb102-6" tabindex="-1"></a><span class="dv">3</span>      <span class="dv">3</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">3</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span>     <span class="dv">3</span>     <span class="dv">1</span></span>
+<span id="cb102-7"><a href="datenmanagement-ii.html#cb102-7" tabindex="-1"></a><span class="dv">4</span>      <span class="dv">4</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span></span>
+<span id="cb102-8"><a href="datenmanagement-ii.html#cb102-8" tabindex="-1"></a><span class="dv">5</span>      <span class="dv">5</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">2</span>     <span class="dv">1</span>     <span class="dv">1</span>     <span class="dv">3</span>     <span class="dv">2</span></span>
+<span id="cb102-9"><a href="datenmanagement-ii.html#cb102-9" tabindex="-1"></a><span class="dv">6</span>      <span class="dv">6</span>     <span class="dv">4</span>     <span class="dv">1</span>     <span class="dv">3</span>     <span class="dv">3</span>     <span class="dv">1</span>     <span class="dv">1</span>     <span class="dv">4</span>     <span class="dv">1</span></span>
+<span id="cb102-10"><a href="datenmanagement-ii.html#cb102-10" tabindex="-1"></a>  item9 item10 item11</span>
+<span id="cb102-11"><a href="datenmanagement-ii.html#cb102-11" tabindex="-1"></a><span class="dv">1</span>     <span class="dv">1</span>      <span class="dv">3</span>      <span class="dv">4</span></span>
+<span id="cb102-12"><a href="datenmanagement-ii.html#cb102-12" tabindex="-1"></a><span class="dv">2</span>     <span class="dv">1</span>      <span class="dv">4</span>      <span class="dv">2</span></span>
+<span id="cb102-13"><a href="datenmanagement-ii.html#cb102-13" tabindex="-1"></a><span class="dv">3</span>     <span class="dv">1</span>      <span class="dv">3</span>      <span class="dv">4</span></span>
+<span id="cb102-14"><a href="datenmanagement-ii.html#cb102-14" tabindex="-1"></a><span class="dv">4</span>     <span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">4</span></span>
+<span id="cb102-15"><a href="datenmanagement-ii.html#cb102-15" tabindex="-1"></a><span class="dv">5</span>     <span class="dv">2</span>      <span class="dv">2</span>      <span class="dv">2</span></span>
+<span id="cb102-16"><a href="datenmanagement-ii.html#cb102-16" tabindex="-1"></a><span class="dv">6</span>     <span class="dv">1</span>      <span class="dv">4</span>      <span class="dv">5</span></span></code></pre></div>
 
 </div>
 </div>

@@ -23,7 +23,7 @@
 <meta name="author" content="Christoph Mayer" />
 
 
-<meta name="date" content="2024-05-16" />
+<meta name="date" content="2024-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -366,28 +366,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="absolute-häufigkeiten" class="section level3 hasAnchor" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Absolute Häufigkeiten<a href="deskriptive-statistik.html#absolute-häufigkeiten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Absolute Häufigkeiten können durch <code>table()</code> in einer Tabelle ausgegeben werden:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="deskriptive-statistik.html#cb102-1" tabindex="-1"></a>df_yoga <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/YogaPilates.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="deskriptive-statistik.html#cb103-1" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(df_yoga<span class="sc">$</span>gruppe)</span>
-<span id="cb103-2"><a href="deskriptive-statistik.html#cb103-2" tabindex="-1"></a>tab</span>
-<span id="cb103-3"><a href="deskriptive-statistik.html#cb103-3" tabindex="-1"></a></span>
-<span id="cb103-4"><a href="deskriptive-statistik.html#cb103-4" tabindex="-1"></a>kontroll  pilates     yoga </span>
-<span id="cb103-5"><a href="deskriptive-statistik.html#cb103-5" tabindex="-1"></a>      <span class="dv">45</span>       <span class="dv">46</span>       <span class="dv">29</span> </span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="deskriptive-statistik.html#cb103-1" tabindex="-1"></a>df_yoga <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/YogaPilates.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="deskriptive-statistik.html#cb104-1" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(df_yoga<span class="sc">$</span>gruppe)</span>
+<span id="cb104-2"><a href="deskriptive-statistik.html#cb104-2" tabindex="-1"></a>tab</span>
+<span id="cb104-3"><a href="deskriptive-statistik.html#cb104-3" tabindex="-1"></a></span>
+<span id="cb104-4"><a href="deskriptive-statistik.html#cb104-4" tabindex="-1"></a>kontroll  pilates     yoga </span>
+<span id="cb104-5"><a href="deskriptive-statistik.html#cb104-5" tabindex="-1"></a>      <span class="dv">45</span>       <span class="dv">46</span>       <span class="dv">29</span> </span></code></pre></div>
 <p>Die Gesamtzahl der Beobachtungen kann mit <code>sum()</code> ausgegeben werden:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="deskriptive-statistik.html#cb104-1" tabindex="-1"></a><span class="fu">sum</span>(tab)</span>
-<span id="cb104-2"><a href="deskriptive-statistik.html#cb104-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">120</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="deskriptive-statistik.html#cb105-1" tabindex="-1"></a><span class="fu">sum</span>(tab)</span>
+<span id="cb105-2"><a href="deskriptive-statistik.html#cb105-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">120</span></span></code></pre></div>
 </div>
 <div id="relative-häufigkeiten" class="section level3 hasAnchor" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Relative Häufigkeiten<a href="deskriptive-statistik.html#relative-häufigkeiten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>2 Möglichkeiten:<br />
 1. Berechnung der relativen Häufigkeit durch Divsion der absoluten Häufigkeiten mit der Gesamtzahl der Beobachtungen.<br />
 2. Verwenden der Funktion <code>prop.table()</code>.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="deskriptive-statistik.html#cb105-1" tabindex="-1"></a>tab_rel <span class="ot">&lt;-</span> tab<span class="sc">/</span><span class="fu">sum</span>(tab)</span>
-<span id="cb105-2"><a href="deskriptive-statistik.html#cb105-2" tabindex="-1"></a></span>
-<span id="cb105-3"><a href="deskriptive-statistik.html#cb105-3" tabindex="-1"></a>tab_rel <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tab)</span>
-<span id="cb105-4"><a href="deskriptive-statistik.html#cb105-4" tabindex="-1"></a></span>
-<span id="cb105-5"><a href="deskriptive-statistik.html#cb105-5" tabindex="-1"></a></span>
-<span id="cb105-6"><a href="deskriptive-statistik.html#cb105-6" tabindex="-1"></a> kontroll   pilates      yoga </span>
-<span id="cb105-7"><a href="deskriptive-statistik.html#cb105-7" tabindex="-1"></a><span class="fl">0.3750000</span> <span class="fl">0.3833333</span> <span class="fl">0.2416667</span> </span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="deskriptive-statistik.html#cb106-1" tabindex="-1"></a>tab_rel <span class="ot">&lt;-</span> tab<span class="sc">/</span><span class="fu">sum</span>(tab)</span>
+<span id="cb106-2"><a href="deskriptive-statistik.html#cb106-2" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="deskriptive-statistik.html#cb106-3" tabindex="-1"></a>tab_rel <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tab)</span>
+<span id="cb106-4"><a href="deskriptive-statistik.html#cb106-4" tabindex="-1"></a></span>
+<span id="cb106-5"><a href="deskriptive-statistik.html#cb106-5" tabindex="-1"></a></span>
+<span id="cb106-6"><a href="deskriptive-statistik.html#cb106-6" tabindex="-1"></a> kontroll   pilates      yoga </span>
+<span id="cb106-7"><a href="deskriptive-statistik.html#cb106-7" tabindex="-1"></a><span class="fl">0.3750000</span> <span class="fl">0.3833333</span> <span class="fl">0.2416667</span> </span></code></pre></div>
 </div>
 <div id="kreuztabelle-für-mehrere-variablen" class="section level3 hasAnchor" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Kreuztabelle für mehrere Variablen<a href="deskriptive-statistik.html#kreuztabelle-für-mehrere-variablen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -396,12 +396,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>Bei Angabe von mehreren Vektoren werden Kreuztabellen erzeugt, dessen Werte mit <code>round()</code> gerundet werden können:</li>
 </ul>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="deskriptive-statistik.html#cb106-1" tabindex="-1"></a>tab2 <span class="ot">&lt;-</span> <span class="fu">table</span>(df_yoga<span class="sc">$</span>geschl, df_yoga<span class="sc">$</span>gruppe)</span>
-<span id="cb106-2"><a href="deskriptive-statistik.html#cb106-2" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab2), <span class="dv">2</span>)</span>
-<span id="cb106-3"><a href="deskriptive-statistik.html#cb106-3" tabindex="-1"></a>   </span>
-<span id="cb106-4"><a href="deskriptive-statistik.html#cb106-4" tabindex="-1"></a>    kontroll pilates yoga</span>
-<span id="cb106-5"><a href="deskriptive-statistik.html#cb106-5" tabindex="-1"></a>  m     <span class="fl">0.12</span>    <span class="fl">0.10</span> <span class="fl">0.05</span></span>
-<span id="cb106-6"><a href="deskriptive-statistik.html#cb106-6" tabindex="-1"></a>  w     <span class="fl">0.26</span>    <span class="fl">0.28</span> <span class="fl">0.19</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="deskriptive-statistik.html#cb107-1" tabindex="-1"></a>tab2 <span class="ot">&lt;-</span> <span class="fu">table</span>(df_yoga<span class="sc">$</span>geschl, df_yoga<span class="sc">$</span>gruppe)</span>
+<span id="cb107-2"><a href="deskriptive-statistik.html#cb107-2" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab2), <span class="dv">2</span>)</span>
+<span id="cb107-3"><a href="deskriptive-statistik.html#cb107-3" tabindex="-1"></a>   </span>
+<span id="cb107-4"><a href="deskriptive-statistik.html#cb107-4" tabindex="-1"></a>    kontroll pilates yoga</span>
+<span id="cb107-5"><a href="deskriptive-statistik.html#cb107-5" tabindex="-1"></a>  m     <span class="fl">0.12</span>    <span class="fl">0.10</span> <span class="fl">0.05</span></span>
+<span id="cb107-6"><a href="deskriptive-statistik.html#cb107-6" tabindex="-1"></a>  w     <span class="fl">0.26</span>    <span class="fl">0.28</span> <span class="fl">0.19</span></span></code></pre></div>
 </div>
 </div>
 <div id="grundbefehle" class="section level2 hasAnchor" number="6.2">
@@ -453,37 +453,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p><strong>Beispiele</strong></p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="deskriptive-statistik.html#cb107-1" tabindex="-1"></a><span class="fu">range</span>(df_yoga<span class="sc">$</span>alter)</span>
-<span id="cb107-2"><a href="deskriptive-statistik.html#cb107-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">21</span> <span class="dv">40</span></span>
-<span id="cb107-3"><a href="deskriptive-statistik.html#cb107-3" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter)</span>
-<span id="cb107-4"><a href="deskriptive-statistik.html#cb107-4" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">30.73333</span></span>
-<span id="cb107-5"><a href="deskriptive-statistik.html#cb107-5" tabindex="-1"></a><span class="fu">var</span>(df_yoga<span class="sc">$</span>zufri)</span>
-<span id="cb107-6"><a href="deskriptive-statistik.html#cb107-6" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="deskriptive-statistik.html#cb108-1" tabindex="-1"></a><span class="fu">range</span>(df_yoga<span class="sc">$</span>alter)</span>
+<span id="cb108-2"><a href="deskriptive-statistik.html#cb108-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">21</span> <span class="dv">40</span></span>
+<span id="cb108-3"><a href="deskriptive-statistik.html#cb108-3" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter)</span>
+<span id="cb108-4"><a href="deskriptive-statistik.html#cb108-4" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">30.73333</span></span>
+<span id="cb108-5"><a href="deskriptive-statistik.html#cb108-5" tabindex="-1"></a><span class="fu">var</span>(df_yoga<span class="sc">$</span>zufri)</span>
+<span id="cb108-6"><a href="deskriptive-statistik.html#cb108-6" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span></code></pre></div>
 <p><strong>Fehlende Werte</strong></p>
 <p>Enthalten Daten fehlende Werte (<code>NA</code>), dann ergeben die deskriptiven Berechnungen auch <code>NA</code>. Durch das Argument <code>na.rm = TRUE</code> werden <code>NA</code>-Werte ignoriert:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="deskriptive-statistik.html#cb108-1" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>zufri)</span>
-<span id="cb108-2"><a href="deskriptive-statistik.html#cb108-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span>
-<span id="cb108-3"><a href="deskriptive-statistik.html#cb108-3" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>zufri, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb108-4"><a href="deskriptive-statistik.html#cb108-4" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">3.543103</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="deskriptive-statistik.html#cb109-1" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>zufri)</span>
+<span id="cb109-2"><a href="deskriptive-statistik.html#cb109-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span>
+<span id="cb109-3"><a href="deskriptive-statistik.html#cb109-3" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>zufri, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb109-4"><a href="deskriptive-statistik.html#cb109-4" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">3.543103</span></span></code></pre></div>
 <p><strong>Funktion summary()</strong></p>
 <ul>
 <li>Mit <code>summary()</code> werden verschiedene deskriptive Statistiken ausgegeben:</li>
 </ul>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="deskriptive-statistik.html#cb109-1" tabindex="-1"></a><span class="fu">summary</span>(df_yoga<span class="sc">$</span>alter)</span>
-<span id="cb109-2"><a href="deskriptive-statistik.html#cb109-2" tabindex="-1"></a>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
-<span id="cb109-3"><a href="deskriptive-statistik.html#cb109-3" tabindex="-1"></a>  <span class="fl">21.00</span>   <span class="fl">26.00</span>   <span class="fl">30.50</span>   <span class="fl">30.73</span>   <span class="fl">35.25</span>   <span class="fl">40.00</span> </span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="deskriptive-statistik.html#cb110-1" tabindex="-1"></a><span class="fu">summary</span>(df_yoga<span class="sc">$</span>alter)</span>
+<span id="cb110-2"><a href="deskriptive-statistik.html#cb110-2" tabindex="-1"></a>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span id="cb110-3"><a href="deskriptive-statistik.html#cb110-3" tabindex="-1"></a>  <span class="fl">21.00</span>   <span class="fl">26.00</span>   <span class="fl">30.50</span>   <span class="fl">30.73</span>   <span class="fl">35.25</span>   <span class="fl">40.00</span> </span></code></pre></div>
 <ul>
 <li><code>summary()</code> gibt zudem die Anzahl fehlender Werte an:</li>
 </ul>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="deskriptive-statistik.html#cb110-1" tabindex="-1"></a><span class="fu">summary</span>(df_yoga<span class="sc">$</span>zufri)</span>
-<span id="cb110-2"><a href="deskriptive-statistik.html#cb110-2" tabindex="-1"></a>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA<span class="st">&#39;s </span></span>
-<span id="cb110-3"><a href="deskriptive-statistik.html#cb110-3" tabindex="-1"></a><span class="st">  1.000   3.000   4.000   3.543   4.000   5.000       4 </span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="deskriptive-statistik.html#cb111-1" tabindex="-1"></a><span class="fu">summary</span>(df_yoga<span class="sc">$</span>zufri)</span>
+<span id="cb111-2"><a href="deskriptive-statistik.html#cb111-2" tabindex="-1"></a>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA<span class="st">&#39;s </span></span>
+<span id="cb111-3"><a href="deskriptive-statistik.html#cb111-3" tabindex="-1"></a><span class="st">  1.000   3.000   4.000   3.543   4.000   5.000       4 </span></span></code></pre></div>
 <p><strong>Paket psych</strong></p>
 <p>Mit der Funktion <code>describe()</code> aus dem Paket <strong>psych</strong> lassen sich eine Vielzahl von Verteilungsparametern gleichzeitig ausgeben:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="deskriptive-statistik.html#cb111-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb111-2"><a href="deskriptive-statistik.html#cb111-2" tabindex="-1"></a><span class="fu">describe</span>(df_yoga<span class="sc">$</span>alter, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb111-3"><a href="deskriptive-statistik.html#cb111-3" tabindex="-1"></a>   vars   n  mean   sd median min max range   se</span>
-<span id="cb111-4"><a href="deskriptive-statistik.html#cb111-4" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">120</span> <span class="fl">30.73</span> <span class="fl">5.76</span>   <span class="fl">30.5</span>  <span class="dv">21</span>  <span class="dv">40</span>    <span class="dv">19</span> <span class="fl">0.53</span></span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="deskriptive-statistik.html#cb112-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb112-2"><a href="deskriptive-statistik.html#cb112-2" tabindex="-1"></a><span class="fu">describe</span>(df_yoga<span class="sc">$</span>alter, <span class="at">skew =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb112-3"><a href="deskriptive-statistik.html#cb112-3" tabindex="-1"></a>   vars   n  mean   sd median min max range   se</span>
+<span id="cb112-4"><a href="deskriptive-statistik.html#cb112-4" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">120</span> <span class="fl">30.73</span> <span class="fl">5.76</span>   <span class="fl">30.5</span>  <span class="dv">21</span>  <span class="dv">40</span>    <span class="dv">19</span> <span class="fl">0.53</span></span></code></pre></div>
 <p>Optionale Argumente:<br />
 - <code>skew = FALSE</code>, um Schiefe und Kurtosis nicht auszugeben<br />
 - <code>ranges = FALSE</code>, um u.a. Range, Minimum und Maximum nicht auszugeben<br />
@@ -492,13 +492,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="gruppengetrennte-analyse" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Gruppengetrennte Analyse<a href="deskriptive-statistik.html#gruppengetrennte-analyse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Wie können wir für die Variablen <code>alter</code>, <code>zufri</code> und <code>angst</code> deskriptive Statistien berechnen, je nachdem in welcher <code>gruppe</code> die Person ists?</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="deskriptive-statistik.html#cb112-1" tabindex="-1"></a><span class="fu">head</span>(df_yoga, <span class="dv">5</span>)</span>
-<span id="cb112-2"><a href="deskriptive-statistik.html#cb112-2" tabindex="-1"></a>    vp geschl alter  gruppe zufri angst</span>
-<span id="cb112-3"><a href="deskriptive-statistik.html#cb112-3" tabindex="-1"></a><span class="dv">1</span> AA21      w    <span class="dv">37</span>    yoga     <span class="dv">5</span>     <span class="dv">1</span></span>
-<span id="cb112-4"><a href="deskriptive-statistik.html#cb112-4" tabindex="-1"></a><span class="dv">2</span> AW14      m    <span class="dv">31</span> pilates     <span class="dv">4</span>     <span class="dv">4</span></span>
-<span id="cb112-5"><a href="deskriptive-statistik.html#cb112-5" tabindex="-1"></a><span class="dv">3</span> BA55      w    <span class="dv">38</span>    yoga     <span class="dv">4</span>     <span class="dv">2</span></span>
-<span id="cb112-6"><a href="deskriptive-statistik.html#cb112-6" tabindex="-1"></a><span class="dv">4</span> BA76      m    <span class="dv">35</span>    yoga     <span class="dv">5</span>     <span class="dv">2</span></span>
-<span id="cb112-7"><a href="deskriptive-statistik.html#cb112-7" tabindex="-1"></a><span class="dv">5</span> BP45      w    <span class="dv">23</span> pilates     <span class="dv">4</span>     <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="deskriptive-statistik.html#cb113-1" tabindex="-1"></a><span class="fu">head</span>(df_yoga, <span class="dv">5</span>)</span>
+<span id="cb113-2"><a href="deskriptive-statistik.html#cb113-2" tabindex="-1"></a>    vp geschl alter  gruppe zufri angst</span>
+<span id="cb113-3"><a href="deskriptive-statistik.html#cb113-3" tabindex="-1"></a><span class="dv">1</span> AA21      w    <span class="dv">37</span>    yoga     <span class="dv">5</span>     <span class="dv">1</span></span>
+<span id="cb113-4"><a href="deskriptive-statistik.html#cb113-4" tabindex="-1"></a><span class="dv">2</span> AW14      m    <span class="dv">31</span> pilates     <span class="dv">4</span>     <span class="dv">4</span></span>
+<span id="cb113-5"><a href="deskriptive-statistik.html#cb113-5" tabindex="-1"></a><span class="dv">3</span> BA55      w    <span class="dv">38</span>    yoga     <span class="dv">4</span>     <span class="dv">2</span></span>
+<span id="cb113-6"><a href="deskriptive-statistik.html#cb113-6" tabindex="-1"></a><span class="dv">4</span> BA76      m    <span class="dv">35</span>    yoga     <span class="dv">5</span>     <span class="dv">2</span></span>
+<span id="cb113-7"><a href="deskriptive-statistik.html#cb113-7" tabindex="-1"></a><span class="dv">5</span> BP45      w    <span class="dv">23</span> pilates     <span class="dv">4</span>     <span class="dv">1</span></span></code></pre></div>
 <div id="logisches-indizieren" class="section level3 hasAnchor" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Logisches Indizieren<a href="deskriptive-statistik.html#logisches-indizieren" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Jeweils Teile der Daten durch logisches Indizieren auswählen:<br />
@@ -506,13 +506,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>…<code>gruppe == yoga</code>.“</li>
 </ul>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="deskriptive-statistik.html#cb113-1" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter[df_yoga<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">&quot;yoga&quot;</span>])</span>
-<span id="cb113-2"><a href="deskriptive-statistik.html#cb113-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">31.13793</span></span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="deskriptive-statistik.html#cb114-1" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter[df_yoga<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">&quot;yoga&quot;</span>])</span>
+<span id="cb114-2"><a href="deskriptive-statistik.html#cb114-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">31.13793</span></span></code></pre></div>
 <ul>
 <li>…<code>gruppe == pilates</code>.”</li>
 </ul>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="deskriptive-statistik.html#cb114-1" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter[df_yoga<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">&quot;pilates&quot;</span>])</span>
-<span id="cb114-2"><a href="deskriptive-statistik.html#cb114-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">30.86957</span></span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="deskriptive-statistik.html#cb115-1" tabindex="-1"></a><span class="fu">mean</span>(df_yoga<span class="sc">$</span>alter[df_yoga<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">&quot;pilates&quot;</span>])</span>
+<span id="cb115-2"><a href="deskriptive-statistik.html#cb115-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">30.86957</span></span></code></pre></div>
 </div>
 <div id="funktion-aggregate" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Funktion aggregate()<a href="deskriptive-statistik.html#funktion-aggregate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -533,14 +533,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>Beispiel</strong></p>
 <p>Durchschnittliche Zufriedenheit, Gruppen = geschl, gruppe</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="deskriptive-statistik.html#cb115-1" tabindex="-1"></a><span class="fu">aggregate</span>(zufri <span class="sc">~</span> geschl <span class="sc">+</span> gruppe, <span class="at">FUN =</span> mean, <span class="at">data =</span> df_yoga)</span>
-<span id="cb115-2"><a href="deskriptive-statistik.html#cb115-2" tabindex="-1"></a>  geschl   gruppe    zufri</span>
-<span id="cb115-3"><a href="deskriptive-statistik.html#cb115-3" tabindex="-1"></a><span class="dv">1</span>      m kontroll <span class="fl">3.785714</span></span>
-<span id="cb115-4"><a href="deskriptive-statistik.html#cb115-4" tabindex="-1"></a><span class="dv">2</span>      w kontroll <span class="fl">3.258065</span></span>
-<span id="cb115-5"><a href="deskriptive-statistik.html#cb115-5" tabindex="-1"></a><span class="dv">3</span>      m  pilates <span class="fl">3.181818</span></span>
-<span id="cb115-6"><a href="deskriptive-statistik.html#cb115-6" tabindex="-1"></a><span class="dv">4</span>      w  pilates <span class="fl">3.454545</span></span>
-<span id="cb115-7"><a href="deskriptive-statistik.html#cb115-7" tabindex="-1"></a><span class="dv">5</span>      m     yoga <span class="fl">4.166667</span></span>
-<span id="cb115-8"><a href="deskriptive-statistik.html#cb115-8" tabindex="-1"></a><span class="dv">6</span>      w     yoga <span class="fl">3.952381</span></span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="deskriptive-statistik.html#cb116-1" tabindex="-1"></a><span class="fu">aggregate</span>(zufri <span class="sc">~</span> geschl <span class="sc">+</span> gruppe, <span class="at">FUN =</span> mean, <span class="at">data =</span> df_yoga)</span>
+<span id="cb116-2"><a href="deskriptive-statistik.html#cb116-2" tabindex="-1"></a>  geschl   gruppe    zufri</span>
+<span id="cb116-3"><a href="deskriptive-statistik.html#cb116-3" tabindex="-1"></a><span class="dv">1</span>      m kontroll <span class="fl">3.785714</span></span>
+<span id="cb116-4"><a href="deskriptive-statistik.html#cb116-4" tabindex="-1"></a><span class="dv">2</span>      w kontroll <span class="fl">3.258065</span></span>
+<span id="cb116-5"><a href="deskriptive-statistik.html#cb116-5" tabindex="-1"></a><span class="dv">3</span>      m  pilates <span class="fl">3.181818</span></span>
+<span id="cb116-6"><a href="deskriptive-statistik.html#cb116-6" tabindex="-1"></a><span class="dv">4</span>      w  pilates <span class="fl">3.454545</span></span>
+<span id="cb116-7"><a href="deskriptive-statistik.html#cb116-7" tabindex="-1"></a><span class="dv">5</span>      m     yoga <span class="fl">4.166667</span></span>
+<span id="cb116-8"><a href="deskriptive-statistik.html#cb116-8" tabindex="-1"></a><span class="dv">6</span>      w     yoga <span class="fl">3.952381</span></span></code></pre></div>
 </div>
 <div id="funktion-describeby" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Funktion describeBy()<a href="deskriptive-statistik.html#funktion-describeby" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -557,16 +557,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>Beispiel describeBy()</strong></p>
 <p>Deskriptive Statistiken zu Zufriedenheit nach Gruppe (= <code>geschl</code>)</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="deskriptive-statistik.html#cb116-1" tabindex="-1"></a><span class="fu">describeBy</span>(<span class="at">x =</span> df_yoga<span class="sc">$</span>zufri, <span class="at">group =</span> <span class="fu">list</span>(df_yoga<span class="sc">$</span>geschl), <span class="at">skew =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb116-2"><a href="deskriptive-statistik.html#cb116-2" tabindex="-1"></a></span>
-<span id="cb116-3"><a href="deskriptive-statistik.html#cb116-3" tabindex="-1"></a> Descriptive statistics by group </span>
-<span id="cb116-4"><a href="deskriptive-statistik.html#cb116-4" tabindex="-1"></a><span class="sc">:</span> m</span>
-<span id="cb116-5"><a href="deskriptive-statistik.html#cb116-5" tabindex="-1"></a>   vars  n mean   sd median min max range   se</span>
-<span id="cb116-6"><a href="deskriptive-statistik.html#cb116-6" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">31</span> <span class="fl">3.65</span> <span class="fl">0.95</span>      <span class="dv">4</span>   <span class="dv">2</span>   <span class="dv">5</span>     <span class="dv">3</span> <span class="fl">0.17</span></span>
-<span id="cb116-7"><a href="deskriptive-statistik.html#cb116-7" tabindex="-1"></a><span class="sc">---------------------------------------------</span> </span>
-<span id="cb116-8"><a href="deskriptive-statistik.html#cb116-8" tabindex="-1"></a><span class="er">:</span> w</span>
-<span id="cb116-9"><a href="deskriptive-statistik.html#cb116-9" tabindex="-1"></a>   vars  n mean   sd median min max range   se</span>
-<span id="cb116-10"><a href="deskriptive-statistik.html#cb116-10" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">85</span> <span class="fl">3.51</span> <span class="fl">1.06</span>      <span class="dv">4</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span> <span class="fl">0.12</span></span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="deskriptive-statistik.html#cb117-1" tabindex="-1"></a><span class="fu">describeBy</span>(<span class="at">x =</span> df_yoga<span class="sc">$</span>zufri, <span class="at">group =</span> <span class="fu">list</span>(df_yoga<span class="sc">$</span>geschl), <span class="at">skew =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb117-2"><a href="deskriptive-statistik.html#cb117-2" tabindex="-1"></a></span>
+<span id="cb117-3"><a href="deskriptive-statistik.html#cb117-3" tabindex="-1"></a> Descriptive statistics by group </span>
+<span id="cb117-4"><a href="deskriptive-statistik.html#cb117-4" tabindex="-1"></a><span class="sc">:</span> m</span>
+<span id="cb117-5"><a href="deskriptive-statistik.html#cb117-5" tabindex="-1"></a>   vars  n mean   sd median min max range   se</span>
+<span id="cb117-6"><a href="deskriptive-statistik.html#cb117-6" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">31</span> <span class="fl">3.65</span> <span class="fl">0.95</span>      <span class="dv">4</span>   <span class="dv">2</span>   <span class="dv">5</span>     <span class="dv">3</span> <span class="fl">0.17</span></span>
+<span id="cb117-7"><a href="deskriptive-statistik.html#cb117-7" tabindex="-1"></a><span class="sc">---------------------------------------------</span> </span>
+<span id="cb117-8"><a href="deskriptive-statistik.html#cb117-8" tabindex="-1"></a><span class="er">:</span> w</span>
+<span id="cb117-9"><a href="deskriptive-statistik.html#cb117-9" tabindex="-1"></a>   vars  n mean   sd median min max range   se</span>
+<span id="cb117-10"><a href="deskriptive-statistik.html#cb117-10" tabindex="-1"></a>X1    <span class="dv">1</span> <span class="dv">85</span> <span class="fl">3.51</span> <span class="fl">1.06</span>      <span class="dv">4</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span> <span class="fl">0.12</span></span></code></pre></div>
 </div>
 </div>
 <div id="ergänzungen" class="section level2 hasAnchor" number="6.4">
@@ -575,17 +575,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.4.1</span> Bedingte Wahrscheinlichkeiten<a href="deskriptive-statistik.html#bedingte-wahrscheinlichkeiten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Mit <code>prop.table(…, margin = …)</code> werden bedingte Wahrscheinlichkeiten für ein Merkmal ausgegeben. (margin 1 = zeilenweise, margin 2 = spaltenweise)</p>
 <p>Bedingte Wahrscheinlichkeit, zeilenweise, gerundet auf 2 Stellen</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="deskriptive-statistik.html#cb117-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab2, <span class="at">margin =</span> <span class="dv">1</span>), <span class="dv">2</span>)</span>
-<span id="cb117-2"><a href="deskriptive-statistik.html#cb117-2" tabindex="-1"></a>   </span>
-<span id="cb117-3"><a href="deskriptive-statistik.html#cb117-3" tabindex="-1"></a>    kontroll pilates yoga</span>
-<span id="cb117-4"><a href="deskriptive-statistik.html#cb117-4" tabindex="-1"></a>  m     <span class="fl">0.44</span>    <span class="fl">0.38</span> <span class="fl">0.19</span></span>
-<span id="cb117-5"><a href="deskriptive-statistik.html#cb117-5" tabindex="-1"></a>  w     <span class="fl">0.35</span>    <span class="fl">0.39</span> <span class="fl">0.26</span></span></code></pre></div>
-<p>Bedingte Wahrscheinlichkeit, spaltenweise, gerundet auf 2 Stellen</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="deskriptive-statistik.html#cb118-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab2, <span class="at">margin =</span> <span class="dv">2</span>), <span class="dv">2</span>)</span>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="deskriptive-statistik.html#cb118-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab2, <span class="at">margin =</span> <span class="dv">1</span>), <span class="dv">2</span>)</span>
 <span id="cb118-2"><a href="deskriptive-statistik.html#cb118-2" tabindex="-1"></a>   </span>
 <span id="cb118-3"><a href="deskriptive-statistik.html#cb118-3" tabindex="-1"></a>    kontroll pilates yoga</span>
-<span id="cb118-4"><a href="deskriptive-statistik.html#cb118-4" tabindex="-1"></a>  m     <span class="fl">0.31</span>    <span class="fl">0.26</span> <span class="fl">0.21</span></span>
-<span id="cb118-5"><a href="deskriptive-statistik.html#cb118-5" tabindex="-1"></a>  w     <span class="fl">0.69</span>    <span class="fl">0.74</span> <span class="fl">0.79</span></span></code></pre></div>
+<span id="cb118-4"><a href="deskriptive-statistik.html#cb118-4" tabindex="-1"></a>  m     <span class="fl">0.44</span>    <span class="fl">0.38</span> <span class="fl">0.19</span></span>
+<span id="cb118-5"><a href="deskriptive-statistik.html#cb118-5" tabindex="-1"></a>  w     <span class="fl">0.35</span>    <span class="fl">0.39</span> <span class="fl">0.26</span></span></code></pre></div>
+<p>Bedingte Wahrscheinlichkeit, spaltenweise, gerundet auf 2 Stellen</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="deskriptive-statistik.html#cb119-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab2, <span class="at">margin =</span> <span class="dv">2</span>), <span class="dv">2</span>)</span>
+<span id="cb119-2"><a href="deskriptive-statistik.html#cb119-2" tabindex="-1"></a>   </span>
+<span id="cb119-3"><a href="deskriptive-statistik.html#cb119-3" tabindex="-1"></a>    kontroll pilates yoga</span>
+<span id="cb119-4"><a href="deskriptive-statistik.html#cb119-4" tabindex="-1"></a>  m     <span class="fl">0.31</span>    <span class="fl">0.26</span> <span class="fl">0.21</span></span>
+<span id="cb119-5"><a href="deskriptive-statistik.html#cb119-5" tabindex="-1"></a>  w     <span class="fl">0.69</span>    <span class="fl">0.74</span> <span class="fl">0.79</span></span></code></pre></div>
 </div>
 <div id="skalieren" class="section level3 hasAnchor" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Skalieren<a href="deskriptive-statistik.html#skalieren" class="anchor-section" aria-label="Anchor link to header"></a></h3>

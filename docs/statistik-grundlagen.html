@@ -23,7 +23,7 @@
 <meta name="author" content="Christoph Mayer" />
 
 
-<meta name="date" content="2024-05-16" />
+<meta name="date" content="2024-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -679,28 +679,28 @@ Die statistischen Hypothesen für diesen Test lauten:<br>
 <span class="math inline">\(H_0:\)</span> Daten sind normalverteilt<br>
 <span class="math inline">\(H_a:\)</span> Daten sind nicht normalverteilt<br>
 Hier ist also das Ziel ein nicht signifikantes Testergebnis zu erhalten</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="statistik-grundlagen.html#cb187-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
-<span id="cb187-2"><a href="statistik-grundlagen.html#cb187-2" tabindex="-1"></a>stichprobe <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">208</span>, <span class="dv">30</span>) <span class="co">#erstellung einer zufälligen Verteilung von 200 Werten mit dem Mittelwert 208 und einer standardabweichung von 30</span></span>
-<span id="cb187-3"><a href="statistik-grundlagen.html#cb187-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(stichprobe)</span>
-<span id="cb187-4"><a href="statistik-grundlagen.html#cb187-4" tabindex="-1"></a></span>
-<span id="cb187-5"><a href="statistik-grundlagen.html#cb187-5" tabindex="-1"></a>    Shapiro<span class="sc">-</span>Wilk normality test</span>
-<span id="cb187-6"><a href="statistik-grundlagen.html#cb187-6" tabindex="-1"></a></span>
-<span id="cb187-7"><a href="statistik-grundlagen.html#cb187-7" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe</span>
-<span id="cb187-8"><a href="statistik-grundlagen.html#cb187-8" tabindex="-1"></a>W <span class="ot">=</span> <span class="fl">0.99478</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.7174</span></span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="statistik-grundlagen.html#cb188-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">6</span>)</span>
+<span id="cb188-2"><a href="statistik-grundlagen.html#cb188-2" tabindex="-1"></a>stichprobe <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">208</span>, <span class="dv">30</span>) <span class="co">#erstellung einer zufälligen Verteilung von 200 Werten mit dem Mittelwert 208 und einer standardabweichung von 30</span></span>
+<span id="cb188-3"><a href="statistik-grundlagen.html#cb188-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(stichprobe)</span>
+<span id="cb188-4"><a href="statistik-grundlagen.html#cb188-4" tabindex="-1"></a></span>
+<span id="cb188-5"><a href="statistik-grundlagen.html#cb188-5" tabindex="-1"></a>    Shapiro<span class="sc">-</span>Wilk normality test</span>
+<span id="cb188-6"><a href="statistik-grundlagen.html#cb188-6" tabindex="-1"></a></span>
+<span id="cb188-7"><a href="statistik-grundlagen.html#cb188-7" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe</span>
+<span id="cb188-8"><a href="statistik-grundlagen.html#cb188-8" tabindex="-1"></a>W <span class="ot">=</span> <span class="fl">0.99478</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.7174</span></span></code></pre></div>
 <p>Hier gilt es auf den berechneten p-Wert zu achten. Ist dieser über 0.05 können wir annehmen, dass die zugrunde liegenden zufriedenheitswerte normalverteilt sind. Heißt also der t-Test kann angewendet werden.</p>
 <p>Dafür gibt es in R den Befehl <span class="math inline">\(\texttt{t.test()}\)</span></p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="statistik-grundlagen.html#cb188-1" tabindex="-1"></a><span class="fu">t.test</span>(stichprobe, <span class="at">mu =</span> <span class="dv">150</span>) <span class="co">#mit dem mu-Argument wird der wahre Wert des Mittelwerts festgelegt</span></span>
-<span id="cb188-2"><a href="statistik-grundlagen.html#cb188-2" tabindex="-1"></a></span>
-<span id="cb188-3"><a href="statistik-grundlagen.html#cb188-3" tabindex="-1"></a>    One Sample t<span class="sc">-</span>test</span>
-<span id="cb188-4"><a href="statistik-grundlagen.html#cb188-4" tabindex="-1"></a></span>
-<span id="cb188-5"><a href="statistik-grundlagen.html#cb188-5" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe</span>
-<span id="cb188-6"><a href="statistik-grundlagen.html#cb188-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">27.333</span>, df <span class="ot">=</span> <span class="dv">199</span>, p<span class="sc">-</span>value <span class="sc">&lt;</span> <span class="fl">2.2e-16</span></span>
-<span id="cb188-7"><a href="statistik-grundlagen.html#cb188-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true mean is not equal to <span class="dv">150</span></span>
-<span id="cb188-8"><a href="statistik-grundlagen.html#cb188-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
-<span id="cb188-9"><a href="statistik-grundlagen.html#cb188-9" tabindex="-1"></a> <span class="fl">202.4357</span> <span class="fl">210.5902</span></span>
-<span id="cb188-10"><a href="statistik-grundlagen.html#cb188-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
-<span id="cb188-11"><a href="statistik-grundlagen.html#cb188-11" tabindex="-1"></a>mean of x </span>
-<span id="cb188-12"><a href="statistik-grundlagen.html#cb188-12" tabindex="-1"></a>  <span class="fl">206.513</span> </span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="statistik-grundlagen.html#cb189-1" tabindex="-1"></a><span class="fu">t.test</span>(stichprobe, <span class="at">mu =</span> <span class="dv">150</span>) <span class="co">#mit dem mu-Argument wird der wahre Wert des Mittelwerts festgelegt</span></span>
+<span id="cb189-2"><a href="statistik-grundlagen.html#cb189-2" tabindex="-1"></a></span>
+<span id="cb189-3"><a href="statistik-grundlagen.html#cb189-3" tabindex="-1"></a>    One Sample t<span class="sc">-</span>test</span>
+<span id="cb189-4"><a href="statistik-grundlagen.html#cb189-4" tabindex="-1"></a></span>
+<span id="cb189-5"><a href="statistik-grundlagen.html#cb189-5" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe</span>
+<span id="cb189-6"><a href="statistik-grundlagen.html#cb189-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">27.333</span>, df <span class="ot">=</span> <span class="dv">199</span>, p<span class="sc">-</span>value <span class="sc">&lt;</span> <span class="fl">2.2e-16</span></span>
+<span id="cb189-7"><a href="statistik-grundlagen.html#cb189-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true mean is not equal to <span class="dv">150</span></span>
+<span id="cb189-8"><a href="statistik-grundlagen.html#cb189-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb189-9"><a href="statistik-grundlagen.html#cb189-9" tabindex="-1"></a> <span class="fl">202.4357</span> <span class="fl">210.5902</span></span>
+<span id="cb189-10"><a href="statistik-grundlagen.html#cb189-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb189-11"><a href="statistik-grundlagen.html#cb189-11" tabindex="-1"></a>mean of x </span>
+<span id="cb189-12"><a href="statistik-grundlagen.html#cb189-12" tabindex="-1"></a>  <span class="fl">206.513</span> </span></code></pre></div>
 <p>auch hier ist wieder der p-Wert wichtig. Liegt dieser unter 0.05 können wir zu einem Signifikanzniveau von 5 % feststellen, dass der Mittelwert der Stichprobe tatsächlich vom wahren Mittelwert 150 abweicht. Da der p-Wert hier auch noch deutlich geringer ausfällt (<span class="math inline">\(2.2e-16 = 2.2 * 10^-16\)</span>), können wir dies sogar für ein noch niedrigeres Signifikanzniveau feststellen. Für die p Werte gilt im Allgemeinen<br></p>
 <table>
 <tr>
@@ -752,43 +752,43 @@ hoch signifikant
 <p><strong>Beispiel</strong> <br>
 Zusätzlich zu der Stichprobe an der Uni Leipzig, wurde noch eine weitere Erhebung mit 200 Personen an der Uni Halle durchgeführt. Der Durchschnitt lag hier bei 180 und die Standardabweichung bei 55. Es soll jetzt festgestellt werden, ob die´zwei Stichproben sich signifikant voneinander unterscheiden. Dazu wird ein Zweistichproben t-Test verwendet.
 Dazu müssen allerdings auch die Voraussetzungen erfüllt sein, dass beide Stichproben normalverteilt sind…</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="statistik-grundlagen.html#cb189-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(stichprobe2)</span>
-<span id="cb189-2"><a href="statistik-grundlagen.html#cb189-2" tabindex="-1"></a></span>
-<span id="cb189-3"><a href="statistik-grundlagen.html#cb189-3" tabindex="-1"></a>    Shapiro<span class="sc">-</span>Wilk normality test</span>
-<span id="cb189-4"><a href="statistik-grundlagen.html#cb189-4" tabindex="-1"></a></span>
-<span id="cb189-5"><a href="statistik-grundlagen.html#cb189-5" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe2</span>
-<span id="cb189-6"><a href="statistik-grundlagen.html#cb189-6" tabindex="-1"></a>W <span class="ot">=</span> <span class="fl">0.99666</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.9456</span></span></code></pre></div>
-<p>…sowie dass beide Stichproben die gleiche Varianz haben. Dies kann mithilfe des <span class="math inline">\(\texttt{var.test()}\)</span>-Befehls überprüft werden.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="statistik-grundlagen.html#cb190-1" tabindex="-1"></a><span class="fu">var.test</span>(stichprobe,stichprobe2)</span>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="statistik-grundlagen.html#cb190-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(stichprobe2)</span>
 <span id="cb190-2"><a href="statistik-grundlagen.html#cb190-2" tabindex="-1"></a></span>
-<span id="cb190-3"><a href="statistik-grundlagen.html#cb190-3" tabindex="-1"></a>    F test to compare two variances</span>
+<span id="cb190-3"><a href="statistik-grundlagen.html#cb190-3" tabindex="-1"></a>    Shapiro<span class="sc">-</span>Wilk normality test</span>
 <span id="cb190-4"><a href="statistik-grundlagen.html#cb190-4" tabindex="-1"></a></span>
-<span id="cb190-5"><a href="statistik-grundlagen.html#cb190-5" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe and stichprobe2</span>
-<span id="cb190-6"><a href="statistik-grundlagen.html#cb190-6" tabindex="-1"></a>F <span class="ot">=</span> <span class="fl">0.29927</span>, num df <span class="ot">=</span> <span class="dv">199</span>, denom df <span class="ot">=</span> <span class="dv">199</span>, p<span class="sc">-</span>value <span class="sc">&lt;</span></span>
-<span id="cb190-7"><a href="statistik-grundlagen.html#cb190-7" tabindex="-1"></a><span class="fl">2.2e-16</span></span>
-<span id="cb190-8"><a href="statistik-grundlagen.html#cb190-8" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true ratio of variances is not equal to <span class="dv">1</span></span>
-<span id="cb190-9"><a href="statistik-grundlagen.html#cb190-9" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
-<span id="cb190-10"><a href="statistik-grundlagen.html#cb190-10" tabindex="-1"></a> <span class="fl">0.2264854</span> <span class="fl">0.3954516</span></span>
-<span id="cb190-11"><a href="statistik-grundlagen.html#cb190-11" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
-<span id="cb190-12"><a href="statistik-grundlagen.html#cb190-12" tabindex="-1"></a>ratio of variances </span>
-<span id="cb190-13"><a href="statistik-grundlagen.html#cb190-13" tabindex="-1"></a>         <span class="fl">0.2992725</span> </span></code></pre></div>
+<span id="cb190-5"><a href="statistik-grundlagen.html#cb190-5" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe2</span>
+<span id="cb190-6"><a href="statistik-grundlagen.html#cb190-6" tabindex="-1"></a>W <span class="ot">=</span> <span class="fl">0.99666</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.9456</span></span></code></pre></div>
+<p>…sowie dass beide Stichproben die gleiche Varianz haben. Dies kann mithilfe des <span class="math inline">\(\texttt{var.test()}\)</span>-Befehls überprüft werden.</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="statistik-grundlagen.html#cb191-1" tabindex="-1"></a><span class="fu">var.test</span>(stichprobe,stichprobe2)</span>
+<span id="cb191-2"><a href="statistik-grundlagen.html#cb191-2" tabindex="-1"></a></span>
+<span id="cb191-3"><a href="statistik-grundlagen.html#cb191-3" tabindex="-1"></a>    F test to compare two variances</span>
+<span id="cb191-4"><a href="statistik-grundlagen.html#cb191-4" tabindex="-1"></a></span>
+<span id="cb191-5"><a href="statistik-grundlagen.html#cb191-5" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe and stichprobe2</span>
+<span id="cb191-6"><a href="statistik-grundlagen.html#cb191-6" tabindex="-1"></a>F <span class="ot">=</span> <span class="fl">0.29927</span>, num df <span class="ot">=</span> <span class="dv">199</span>, denom df <span class="ot">=</span> <span class="dv">199</span>, p<span class="sc">-</span>value <span class="sc">&lt;</span></span>
+<span id="cb191-7"><a href="statistik-grundlagen.html#cb191-7" tabindex="-1"></a><span class="fl">2.2e-16</span></span>
+<span id="cb191-8"><a href="statistik-grundlagen.html#cb191-8" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true ratio of variances is not equal to <span class="dv">1</span></span>
+<span id="cb191-9"><a href="statistik-grundlagen.html#cb191-9" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb191-10"><a href="statistik-grundlagen.html#cb191-10" tabindex="-1"></a> <span class="fl">0.2264854</span> <span class="fl">0.3954516</span></span>
+<span id="cb191-11"><a href="statistik-grundlagen.html#cb191-11" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb191-12"><a href="statistik-grundlagen.html#cb191-12" tabindex="-1"></a>ratio of variances </span>
+<span id="cb191-13"><a href="statistik-grundlagen.html#cb191-13" tabindex="-1"></a>         <span class="fl">0.2992725</span> </span></code></pre></div>
 <p>Bei diesem Test ist die Nullhypothese, dass die Varianzen gleich sind. Also <br>
 <span class="math inline">\(H_0: \sigma^2_1 = \sigma^2_2\)</span><br>
 <span class="math inline">\(H_a: \sigma^2_1 \neq \sigma^2_2\)</span><br>
 Auch hier ist ein nicht signifikantes Ergebnis erwünscht.<br>
 Da also die Bedingung nicht erfüllt ist, muss bei der Berechnung des t-Tests noch eine Einstellung geändert werden. Der Befehl bleibt aber gleich, nur, dass jetzt beide Stichproben in den Befehl eingefügt werden.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="statistik-grundlagen.html#cb191-1" tabindex="-1"></a><span class="fu">t.test</span>(stichprobe,stichprobe2, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)<span class="co">#var.equal auf FALSE zu setzen, sorgt dafür, dass eine abgewandelte Form des t-Tests angewandt wird, der die unterschiedlichen Varianzen einkalkuliert</span></span>
-<span id="cb191-2"><a href="statistik-grundlagen.html#cb191-2" tabindex="-1"></a></span>
-<span id="cb191-3"><a href="statistik-grundlagen.html#cb191-3" tabindex="-1"></a>    Welch Two Sample t<span class="sc">-</span>test</span>
-<span id="cb191-4"><a href="statistik-grundlagen.html#cb191-4" tabindex="-1"></a></span>
-<span id="cb191-5"><a href="statistik-grundlagen.html#cb191-5" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe and stichprobe2</span>
-<span id="cb191-6"><a href="statistik-grundlagen.html#cb191-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">7.3541</span>, df <span class="ot">=</span> <span class="fl">308.32</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">1.746e-12</span></span>
-<span id="cb191-7"><a href="statistik-grundlagen.html#cb191-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span></span>
-<span id="cb191-8"><a href="statistik-grundlagen.html#cb191-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
-<span id="cb191-9"><a href="statistik-grundlagen.html#cb191-9" tabindex="-1"></a> <span class="fl">23.20512</span> <span class="fl">40.15904</span></span>
-<span id="cb191-10"><a href="statistik-grundlagen.html#cb191-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
-<span id="cb191-11"><a href="statistik-grundlagen.html#cb191-11" tabindex="-1"></a>mean of x mean of y </span>
-<span id="cb191-12"><a href="statistik-grundlagen.html#cb191-12" tabindex="-1"></a> <span class="fl">206.5130</span>  <span class="fl">174.8309</span> </span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="statistik-grundlagen.html#cb192-1" tabindex="-1"></a><span class="fu">t.test</span>(stichprobe,stichprobe2, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)<span class="co">#var.equal auf FALSE zu setzen, sorgt dafür, dass eine abgewandelte Form des t-Tests angewandt wird, der die unterschiedlichen Varianzen einkalkuliert</span></span>
+<span id="cb192-2"><a href="statistik-grundlagen.html#cb192-2" tabindex="-1"></a></span>
+<span id="cb192-3"><a href="statistik-grundlagen.html#cb192-3" tabindex="-1"></a>    Welch Two Sample t<span class="sc">-</span>test</span>
+<span id="cb192-4"><a href="statistik-grundlagen.html#cb192-4" tabindex="-1"></a></span>
+<span id="cb192-5"><a href="statistik-grundlagen.html#cb192-5" tabindex="-1"></a>data<span class="sc">:</span>  stichprobe and stichprobe2</span>
+<span id="cb192-6"><a href="statistik-grundlagen.html#cb192-6" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">7.3541</span>, df <span class="ot">=</span> <span class="fl">308.32</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">1.746e-12</span></span>
+<span id="cb192-7"><a href="statistik-grundlagen.html#cb192-7" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means is not equal to <span class="dv">0</span></span>
+<span id="cb192-8"><a href="statistik-grundlagen.html#cb192-8" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb192-9"><a href="statistik-grundlagen.html#cb192-9" tabindex="-1"></a> <span class="fl">23.20512</span> <span class="fl">40.15904</span></span>
+<span id="cb192-10"><a href="statistik-grundlagen.html#cb192-10" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb192-11"><a href="statistik-grundlagen.html#cb192-11" tabindex="-1"></a>mean of x mean of y </span>
+<span id="cb192-12"><a href="statistik-grundlagen.html#cb192-12" tabindex="-1"></a> <span class="fl">206.5130</span>  <span class="fl">174.8309</span> </span></code></pre></div>
 <p>Aufgrund des sehr niedrigen p-Werts zeigt sich hier, dass die zwei Stichproben sich hochsignifikant voneinander unterscheiden.
 Zusätzlich gibt es auch noch die Möglichkeit einen t-Test mit gepaarten Stichproben durchzuführen. Das wäre z.B. der Fall, wenn die Umfrage an der Uni Leipzig nochmal mit dem gleichen Personenkreis zu einem späteren Zeitpunkt durchgeführt würde. Dazu muss in der <span class="math inline">\(\texttt{t.test()}\)</span>-Funktion das Argument <span class="math inline">\(\texttt{paired}\)</span> auf <span class="math inline">\(\texttt{TRUE}\)</span> gesetzt werden.</p>
 </div>
@@ -858,13 +858,13 @@ feste Freundesgruppe
 </td>
 </table>
 <p>mit diesen Datens kann dann die Hypothese mithilfe des <span class="math inline">\(\texttt{chisq.test()}\)</span> überprüft werden</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="statistik-grundlagen.html#cb192-1" tabindex="-1"></a><span class="fu">chisq.test</span>(stichprobe3<span class="sc">$</span>glck,stichprobe3<span class="sc">$</span>frnd)</span>
-<span id="cb192-2"><a href="statistik-grundlagen.html#cb192-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb192-3"><a href="statistik-grundlagen.html#cb192-3" tabindex="-1"></a><span class="co">#&gt;  Pearson&#39;s Chi-squared test with Yates&#39; continuity</span></span>
-<span id="cb192-4"><a href="statistik-grundlagen.html#cb192-4" tabindex="-1"></a><span class="co">#&gt;  correction</span></span>
-<span id="cb192-5"><a href="statistik-grundlagen.html#cb192-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb192-6"><a href="statistik-grundlagen.html#cb192-6" tabindex="-1"></a><span class="co">#&gt; data:  stichprobe3$glck and stichprobe3$frnd</span></span>
-<span id="cb192-7"><a href="statistik-grundlagen.html#cb192-7" tabindex="-1"></a><span class="co">#&gt; X-squared = 0.070178, df = 1, p-value = 0.7911</span></span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="statistik-grundlagen.html#cb193-1" tabindex="-1"></a><span class="fu">chisq.test</span>(stichprobe3<span class="sc">$</span>glck,stichprobe3<span class="sc">$</span>frnd)</span>
+<span id="cb193-2"><a href="statistik-grundlagen.html#cb193-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb193-3"><a href="statistik-grundlagen.html#cb193-3" tabindex="-1"></a><span class="co">#&gt;  Pearson&#39;s Chi-squared test with Yates&#39; continuity</span></span>
+<span id="cb193-4"><a href="statistik-grundlagen.html#cb193-4" tabindex="-1"></a><span class="co">#&gt;  correction</span></span>
+<span id="cb193-5"><a href="statistik-grundlagen.html#cb193-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb193-6"><a href="statistik-grundlagen.html#cb193-6" tabindex="-1"></a><span class="co">#&gt; data:  stichprobe3$glck and stichprobe3$frnd</span></span>
+<span id="cb193-7"><a href="statistik-grundlagen.html#cb193-7" tabindex="-1"></a><span class="co">#&gt; X-squared = 0.070178, df = 1, p-value = 0.7911</span></span></code></pre></div>
 <p>Die Nullhypothese ist bei diesem Test, dass die zwei Variablen unabhängig sind bzw. dass sie sich nicht gegenseitig beeinflussen. Die Alternavhypothese besagt das Gegenteil, also dass sie sich gegenseitig beeinflussen. Da der p-Wert hier deutlich über 0,05 liegt können wir die Nullhypothese nicht ablehnen und müssen davon ausgehen, dass in diesem Fall das Vorhandensein von Freunden keinen Einfluss auf die Glücklichkeit hat.</p>
 </div>
 </div>
@@ -891,28 +891,28 @@ Am besten lässt sich ein solcher Zusammenhang vorstellen wenn man das ganze vis
 Was der Algorithmus hinter der lineare Regression macht, ist eine lineare Funktion für eine Gerade zu finden, die einen möglichst geringen Abstand zu den einzelnen Punkten hat. Etwa so:
 <img src="09-Statistik_Grundlagen_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Eine lineare Regression wird in R mit dem Befehl <span class="math inline">\(\texttt{lm()}\)</span> erstellt wobei das erste Argument eine <span class="math inline">\(\texttt{formula}\)</span> mit der Struktur <span class="math inline">\(\texttt{AbhängigeVariable} \sim \texttt{UnabhängigeVariable}\)</span> das erste Argument ist. Hier wird jetzt für den Allbus2018 (allgemeine Bevölkerungsumfrage der Sozialwissenschaften) untersucht, ob das Alter (in Jahre) einen Einfluss auf die allgemeine Zufriedenheit (10 stufige Skala) hat.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="statistik-grundlagen.html#cb193-1" tabindex="-1"></a>Allbus <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/Allbus2018.rds&quot;</span>)</span>
-<span id="cb193-2"><a href="statistik-grundlagen.html#cb193-2" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">lm</span>(Zufriedenheit<span class="sc">~</span>Alter,<span class="at">data =</span> Allbus)</span>
-<span id="cb193-3"><a href="statistik-grundlagen.html#cb193-3" tabindex="-1"></a><span class="fu">summary</span>(output)</span>
-<span id="cb193-4"><a href="statistik-grundlagen.html#cb193-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb193-5"><a href="statistik-grundlagen.html#cb193-5" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb193-6"><a href="statistik-grundlagen.html#cb193-6" tabindex="-1"></a><span class="co">#&gt; lm(formula = Zufriedenheit ~ Alter, data = Allbus)</span></span>
-<span id="cb193-7"><a href="statistik-grundlagen.html#cb193-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb193-8"><a href="statistik-grundlagen.html#cb193-8" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
-<span id="cb193-9"><a href="statistik-grundlagen.html#cb193-9" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span id="cb193-10"><a href="statistik-grundlagen.html#cb193-10" tabindex="-1"></a><span class="co">#&gt; -7.8923 -0.8804  0.1164  1.1124  2.1403 </span></span>
-<span id="cb193-11"><a href="statistik-grundlagen.html#cb193-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb193-12"><a href="statistik-grundlagen.html#cb193-12" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb193-13"><a href="statistik-grundlagen.html#cb193-13" tabindex="-1"></a><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb193-14"><a href="statistik-grundlagen.html#cb193-14" tabindex="-1"></a><span class="co">#&gt; (Intercept)  7.9218361  0.1471104  53.850   &lt;2e-16 ***</span></span>
-<span id="cb193-15"><a href="statistik-grundlagen.html#cb193-15" tabindex="-1"></a><span class="co">#&gt; Alter       -0.0007972  0.0031956  -0.249    0.803    </span></span>
-<span id="cb193-16"><a href="statistik-grundlagen.html#cb193-16" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb193-17"><a href="statistik-grundlagen.html#cb193-17" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  </span></span>
-<span id="cb193-18"><a href="statistik-grundlagen.html#cb193-18" tabindex="-1"></a><span class="co">#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb193-19"><a href="statistik-grundlagen.html#cb193-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb193-20"><a href="statistik-grundlagen.html#cb193-20" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 1.532 on 1574 degrees of freedom</span></span>
-<span id="cb193-21"><a href="statistik-grundlagen.html#cb193-21" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  3.954e-05,  Adjusted R-squared:  -0.0005958 </span></span>
-<span id="cb193-22"><a href="statistik-grundlagen.html#cb193-22" tabindex="-1"></a><span class="co">#&gt; F-statistic: 0.06224 on 1 and 1574 DF,  p-value: 0.803</span></span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="statistik-grundlagen.html#cb194-1" tabindex="-1"></a>Allbus <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/Allbus2018.rds&quot;</span>)</span>
+<span id="cb194-2"><a href="statistik-grundlagen.html#cb194-2" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">lm</span>(Zufriedenheit<span class="sc">~</span>Alter,<span class="at">data =</span> Allbus)</span>
+<span id="cb194-3"><a href="statistik-grundlagen.html#cb194-3" tabindex="-1"></a><span class="fu">summary</span>(output)</span>
+<span id="cb194-4"><a href="statistik-grundlagen.html#cb194-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb194-5"><a href="statistik-grundlagen.html#cb194-5" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb194-6"><a href="statistik-grundlagen.html#cb194-6" tabindex="-1"></a><span class="co">#&gt; lm(formula = Zufriedenheit ~ Alter, data = Allbus)</span></span>
+<span id="cb194-7"><a href="statistik-grundlagen.html#cb194-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb194-8"><a href="statistik-grundlagen.html#cb194-8" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb194-9"><a href="statistik-grundlagen.html#cb194-9" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span id="cb194-10"><a href="statistik-grundlagen.html#cb194-10" tabindex="-1"></a><span class="co">#&gt; -7.8923 -0.8804  0.1164  1.1124  2.1403 </span></span>
+<span id="cb194-11"><a href="statistik-grundlagen.html#cb194-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb194-12"><a href="statistik-grundlagen.html#cb194-12" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb194-13"><a href="statistik-grundlagen.html#cb194-13" tabindex="-1"></a><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb194-14"><a href="statistik-grundlagen.html#cb194-14" tabindex="-1"></a><span class="co">#&gt; (Intercept)  7.9218361  0.1471104  53.850   &lt;2e-16 ***</span></span>
+<span id="cb194-15"><a href="statistik-grundlagen.html#cb194-15" tabindex="-1"></a><span class="co">#&gt; Alter       -0.0007972  0.0031956  -0.249    0.803    </span></span>
+<span id="cb194-16"><a href="statistik-grundlagen.html#cb194-16" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb194-17"><a href="statistik-grundlagen.html#cb194-17" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  </span></span>
+<span id="cb194-18"><a href="statistik-grundlagen.html#cb194-18" tabindex="-1"></a><span class="co">#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb194-19"><a href="statistik-grundlagen.html#cb194-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb194-20"><a href="statistik-grundlagen.html#cb194-20" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 1.532 on 1574 degrees of freedom</span></span>
+<span id="cb194-21"><a href="statistik-grundlagen.html#cb194-21" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  3.954e-05,  Adjusted R-squared:  -0.0005958 </span></span>
+<span id="cb194-22"><a href="statistik-grundlagen.html#cb194-22" tabindex="-1"></a><span class="co">#&gt; F-statistic: 0.06224 on 1 and 1574 DF,  p-value: 0.803</span></span></code></pre></div>
 <p>Dem Output können drei wichtige Ergebnisse entnommen werden:<br>
 (1) Der F-Test besagt, ob das gesammte Modell signifikant ist (wenn p-Wert &gt;0.05, dann nicht signifikannt)<br>
 (2) Bestimmtheitsmaß <span class="math inline">\(R^2\)</span> beschreibt den Anteil der durch das Gesamtmodell aufgeklärten Varianz (liegt zwischen 0 und 1, wobei 0 bedeutet, dass das Modell keine Erklärungskraft hat und 1, dass das Modell die abhängige Variable perfekt erklärt); wird für die Interpretation in Prozent angegeben.<br>
@@ -932,36 +932,36 @@ Interessanter sind die <span class="math inline">\(\beta\)</span>-Koeffizienten,
 <p><span class="math inline">\(Y=\alpha+\beta_1 \cdot X_1 + \beta_2 \cdot X_2 +...+ \beta_k \cdot X_k +\varepsilon\)</span><br></p>
 <p>mit <span class="math inline">\(k\)</span> ist hier gemeint, dass unendlich viele unabhänige Variablen hinzugezogen werden können.<br>
 Die Vorgehensweise ist ähnlich zur einfachen linearen Regression, nur das hier jetzt zusätlich zum Alter auch noch Einkommen (in 100 EUR) und Geschlecht als erklärende Variablen einbezogen werden. Diese werden in der Formel mit einem <span class="math inline">\(+\)</span> hinzugefügt.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="statistik-grundlagen.html#cb194-1" tabindex="-1"></a></span>
-<span id="cb194-2"><a href="statistik-grundlagen.html#cb194-2" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">lm</span>(Zufriedenheit<span class="sc">~</span>Alter<span class="sc">+</span>Einkommen<span class="sc">+</span>Geschlecht,<span class="at">data =</span> Allbus)</span>
-<span id="cb194-3"><a href="statistik-grundlagen.html#cb194-3" tabindex="-1"></a><span class="fu">summary</span>(output)</span>
-<span id="cb194-4"><a href="statistik-grundlagen.html#cb194-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb194-5"><a href="statistik-grundlagen.html#cb194-5" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb194-6"><a href="statistik-grundlagen.html#cb194-6" tabindex="-1"></a><span class="co">#&gt; lm(formula = Zufriedenheit ~ Alter + Einkommen + Geschlecht, </span></span>
-<span id="cb194-7"><a href="statistik-grundlagen.html#cb194-7" tabindex="-1"></a><span class="co">#&gt;     data = Allbus)</span></span>
-<span id="cb194-8"><a href="statistik-grundlagen.html#cb194-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb194-9"><a href="statistik-grundlagen.html#cb194-9" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
-<span id="cb194-10"><a href="statistik-grundlagen.html#cb194-10" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span id="cb194-11"><a href="statistik-grundlagen.html#cb194-11" tabindex="-1"></a><span class="co">#&gt; -7.7490 -0.7313  0.1577  1.0315  2.7668 </span></span>
-<span id="cb194-12"><a href="statistik-grundlagen.html#cb194-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb194-13"><a href="statistik-grundlagen.html#cb194-13" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb194-14"><a href="statistik-grundlagen.html#cb194-14" tabindex="-1"></a><span class="co">#&gt;                     Estimate Std. Error t value Pr(&gt;|t|)</span></span>
-<span id="cb194-15"><a href="statistik-grundlagen.html#cb194-15" tabindex="-1"></a><span class="co">#&gt; (Intercept)         7.522119   0.154954  48.544  &lt; 2e-16</span></span>
-<span id="cb194-16"><a href="statistik-grundlagen.html#cb194-16" tabindex="-1"></a><span class="co">#&gt; Alter              -0.006036   0.003219  -1.875   0.0609</span></span>
-<span id="cb194-17"><a href="statistik-grundlagen.html#cb194-17" tabindex="-1"></a><span class="co">#&gt; Einkommen           0.022417   0.003086   7.264 5.90e-13</span></span>
-<span id="cb194-18"><a href="statistik-grundlagen.html#cb194-18" tabindex="-1"></a><span class="co">#&gt; Geschlechtweiblich  0.354772   0.081627   4.346 1.47e-05</span></span>
-<span id="cb194-19"><a href="statistik-grundlagen.html#cb194-19" tabindex="-1"></a><span class="co">#&gt;                       </span></span>
-<span id="cb194-20"><a href="statistik-grundlagen.html#cb194-20" tabindex="-1"></a><span class="co">#&gt; (Intercept)        ***</span></span>
-<span id="cb194-21"><a href="statistik-grundlagen.html#cb194-21" tabindex="-1"></a><span class="co">#&gt; Alter              .  </span></span>
-<span id="cb194-22"><a href="statistik-grundlagen.html#cb194-22" tabindex="-1"></a><span class="co">#&gt; Einkommen          ***</span></span>
-<span id="cb194-23"><a href="statistik-grundlagen.html#cb194-23" tabindex="-1"></a><span class="co">#&gt; Geschlechtweiblich ***</span></span>
-<span id="cb194-24"><a href="statistik-grundlagen.html#cb194-24" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb194-25"><a href="statistik-grundlagen.html#cb194-25" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  </span></span>
-<span id="cb194-26"><a href="statistik-grundlagen.html#cb194-26" tabindex="-1"></a><span class="co">#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb194-27"><a href="statistik-grundlagen.html#cb194-27" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb194-28"><a href="statistik-grundlagen.html#cb194-28" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 1.506 on 1572 degrees of freedom</span></span>
-<span id="cb194-29"><a href="statistik-grundlagen.html#cb194-29" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.03466,    Adjusted R-squared:  0.03282 </span></span>
-<span id="cb194-30"><a href="statistik-grundlagen.html#cb194-30" tabindex="-1"></a><span class="co">#&gt; F-statistic: 18.81 on 3 and 1572 DF,  p-value: 5.463e-12</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="statistik-grundlagen.html#cb195-1" tabindex="-1"></a></span>
+<span id="cb195-2"><a href="statistik-grundlagen.html#cb195-2" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">lm</span>(Zufriedenheit<span class="sc">~</span>Alter<span class="sc">+</span>Einkommen<span class="sc">+</span>Geschlecht,<span class="at">data =</span> Allbus)</span>
+<span id="cb195-3"><a href="statistik-grundlagen.html#cb195-3" tabindex="-1"></a><span class="fu">summary</span>(output)</span>
+<span id="cb195-4"><a href="statistik-grundlagen.html#cb195-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb195-5"><a href="statistik-grundlagen.html#cb195-5" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb195-6"><a href="statistik-grundlagen.html#cb195-6" tabindex="-1"></a><span class="co">#&gt; lm(formula = Zufriedenheit ~ Alter + Einkommen + Geschlecht, </span></span>
+<span id="cb195-7"><a href="statistik-grundlagen.html#cb195-7" tabindex="-1"></a><span class="co">#&gt;     data = Allbus)</span></span>
+<span id="cb195-8"><a href="statistik-grundlagen.html#cb195-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb195-9"><a href="statistik-grundlagen.html#cb195-9" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb195-10"><a href="statistik-grundlagen.html#cb195-10" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span id="cb195-11"><a href="statistik-grundlagen.html#cb195-11" tabindex="-1"></a><span class="co">#&gt; -7.7490 -0.7313  0.1577  1.0315  2.7668 </span></span>
+<span id="cb195-12"><a href="statistik-grundlagen.html#cb195-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb195-13"><a href="statistik-grundlagen.html#cb195-13" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb195-14"><a href="statistik-grundlagen.html#cb195-14" tabindex="-1"></a><span class="co">#&gt;                     Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb195-15"><a href="statistik-grundlagen.html#cb195-15" tabindex="-1"></a><span class="co">#&gt; (Intercept)         7.522119   0.154954  48.544  &lt; 2e-16</span></span>
+<span id="cb195-16"><a href="statistik-grundlagen.html#cb195-16" tabindex="-1"></a><span class="co">#&gt; Alter              -0.006036   0.003219  -1.875   0.0609</span></span>
+<span id="cb195-17"><a href="statistik-grundlagen.html#cb195-17" tabindex="-1"></a><span class="co">#&gt; Einkommen           0.022417   0.003086   7.264 5.90e-13</span></span>
+<span id="cb195-18"><a href="statistik-grundlagen.html#cb195-18" tabindex="-1"></a><span class="co">#&gt; Geschlechtweiblich  0.354772   0.081627   4.346 1.47e-05</span></span>
+<span id="cb195-19"><a href="statistik-grundlagen.html#cb195-19" tabindex="-1"></a><span class="co">#&gt;                       </span></span>
+<span id="cb195-20"><a href="statistik-grundlagen.html#cb195-20" tabindex="-1"></a><span class="co">#&gt; (Intercept)        ***</span></span>
+<span id="cb195-21"><a href="statistik-grundlagen.html#cb195-21" tabindex="-1"></a><span class="co">#&gt; Alter              .  </span></span>
+<span id="cb195-22"><a href="statistik-grundlagen.html#cb195-22" tabindex="-1"></a><span class="co">#&gt; Einkommen          ***</span></span>
+<span id="cb195-23"><a href="statistik-grundlagen.html#cb195-23" tabindex="-1"></a><span class="co">#&gt; Geschlechtweiblich ***</span></span>
+<span id="cb195-24"><a href="statistik-grundlagen.html#cb195-24" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb195-25"><a href="statistik-grundlagen.html#cb195-25" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  </span></span>
+<span id="cb195-26"><a href="statistik-grundlagen.html#cb195-26" tabindex="-1"></a><span class="co">#&gt; 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb195-27"><a href="statistik-grundlagen.html#cb195-27" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb195-28"><a href="statistik-grundlagen.html#cb195-28" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 1.506 on 1572 degrees of freedom</span></span>
+<span id="cb195-29"><a href="statistik-grundlagen.html#cb195-29" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.03466,    Adjusted R-squared:  0.03282 </span></span>
+<span id="cb195-30"><a href="statistik-grundlagen.html#cb195-30" tabindex="-1"></a><span class="co">#&gt; F-statistic: 18.81 on 3 and 1572 DF,  p-value: 5.463e-12</span></span></code></pre></div>
 <p>Zusätlich gilt es bei multiplen linearen Regressionen auch auf den Wert des <span class="math inline">\(\texttt{Adjusted R-squared}\)</span> zu achten, welches den <span class="math inline">\(\texttt{R-Squared}\)</span>-Wert korrigiert, um den Effekt von zusätzlichen unabhängigen Variablen auszugleichen. Man kann es zum Vergleich verschiedener Modelle nutzen, aber nur das <span class="math inline">\(\texttt{R-Squared}\)</span> kann interpretiert werden.<br></p>
 <p><strong>Interpretation</strong>
 Der p-Wert der F-Statistik liegt für dieses Modell deutlich unter 0.05 und damit ist das gesammte Modell hochsignifikant. <br>

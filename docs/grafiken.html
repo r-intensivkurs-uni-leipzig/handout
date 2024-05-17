@@ -23,7 +23,7 @@
 <meta name="author" content="Christoph Mayer" />
 
 
-<meta name="date" content="2024-05-16" />
+<meta name="date" content="2024-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -435,16 +435,16 @@ und beliebig komplexe (Medium-Level) Graphiken erstellen. Hierunter zählt v.a.
 <ul>
 <li>Datenformat: Variable in Häufigkeitstabelle (<code>table()</code>)</li>
 </ul>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="grafiken.html#cb151-1" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(data<span class="sc">$</span>gruppe)</span>
-<span id="cb151-2"><a href="grafiken.html#cb151-2" tabindex="-1"></a><span class="fu">barplot</span>(tab)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="grafiken.html#cb152-1" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(data<span class="sc">$</span>gruppe)</span>
+<span id="cb152-2"><a href="grafiken.html#cb152-2" tabindex="-1"></a><span class="fu">barplot</span>(tab)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-3-1.png" width="672" height="45%" style="display: block; margin: auto;" /></p>
 <p>Mit einigen zusätzlichen Optionen:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="grafiken.html#cb152-1" tabindex="-1"></a><span class="fu">barplot</span>(tab, </span>
-<span id="cb152-2"><a href="grafiken.html#cb152-2" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Absolute Häufigkeiten der Gruppen&quot;</span>, </span>
-<span id="cb152-3"><a href="grafiken.html#cb152-3" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;darkcyan&quot;</span>, <span class="st">&quot;goldenrod3&quot;</span>), </span>
-<span id="cb152-4"><a href="grafiken.html#cb152-4" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Kontrollgruppe&quot;</span>, <span class="st">&quot;Pilates&quot;</span>, <span class="st">&quot;Yoga&quot;</span>), </span>
-<span id="cb152-5"><a href="grafiken.html#cb152-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Absolute Häufigkeit&quot;</span>, </span>
-<span id="cb152-6"><a href="grafiken.html#cb152-6" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="grafiken.html#cb153-1" tabindex="-1"></a><span class="fu">barplot</span>(tab, </span>
+<span id="cb153-2"><a href="grafiken.html#cb153-2" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Absolute Häufigkeiten der Gruppen&quot;</span>, </span>
+<span id="cb153-3"><a href="grafiken.html#cb153-3" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;darkcyan&quot;</span>, <span class="st">&quot;goldenrod3&quot;</span>), </span>
+<span id="cb153-4"><a href="grafiken.html#cb153-4" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Kontrollgruppe&quot;</span>, <span class="st">&quot;Pilates&quot;</span>, <span class="st">&quot;Yoga&quot;</span>), </span>
+<span id="cb153-5"><a href="grafiken.html#cb153-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Absolute Häufigkeit&quot;</span>, </span>
+<span id="cb153-6"><a href="grafiken.html#cb153-6" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-4-1.png" width="53%" height="47%" style="display: block; margin: auto;" /></p>
 <p><strong>Beschriften der Balken</strong></p>
 <p>Es gibt auch die Möglichkeit die jeweiligen Häufigkeiten über den einzelnen Balken abzutragen mit dem Befehl <code>text(x,y,labels)</code> können diese Labels eingefügt werden</p>
@@ -453,13 +453,13 @@ und beliebig komplexe (Medium-Level) Graphiken erstellen. Hierunter zählt v.a.
 <li><code>y</code>: die y Koordinaten der Labels, da diese dem table entnommen werden kann hier das erstellte table genommen werden. Es muss allerdings noch ein gewisser Wert aufgrechnet werden, damit die Zahlen über den Balken stehen</li>
 <li><code>labels</code>: die eigentlichen Inhalte der Labels. Hier wird auch das table angegeben</li>
 </ul>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="grafiken.html#cb153-1" tabindex="-1"></a>bar<span class="ot">&lt;-</span> <span class="fu">barplot</span>(tab, </span>
-<span id="cb153-2"><a href="grafiken.html#cb153-2" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Absolute Häufigkeiten der Gruppen&quot;</span>, </span>
-<span id="cb153-3"><a href="grafiken.html#cb153-3" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;darkcyan&quot;</span>, <span class="st">&quot;goldenrod3&quot;</span>), </span>
-<span id="cb153-4"><a href="grafiken.html#cb153-4" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Kontrollgruppe&quot;</span>, <span class="st">&quot;Pilates&quot;</span>, <span class="st">&quot;Yoga&quot;</span>), </span>
-<span id="cb153-5"><a href="grafiken.html#cb153-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Absolute Häufigkeit&quot;</span>, </span>
-<span id="cb153-6"><a href="grafiken.html#cb153-6" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span>
-<span id="cb153-7"><a href="grafiken.html#cb153-7" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> bar, <span class="at">y =</span> tab<span class="sc">+</span><span class="dv">2</span>, <span class="at">labels =</span> tab)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="grafiken.html#cb154-1" tabindex="-1"></a>bar<span class="ot">&lt;-</span> <span class="fu">barplot</span>(tab, </span>
+<span id="cb154-2"><a href="grafiken.html#cb154-2" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Absolute Häufigkeiten der Gruppen&quot;</span>, </span>
+<span id="cb154-3"><a href="grafiken.html#cb154-3" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;darkcyan&quot;</span>, <span class="st">&quot;goldenrod3&quot;</span>), </span>
+<span id="cb154-4"><a href="grafiken.html#cb154-4" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Kontrollgruppe&quot;</span>, <span class="st">&quot;Pilates&quot;</span>, <span class="st">&quot;Yoga&quot;</span>), </span>
+<span id="cb154-5"><a href="grafiken.html#cb154-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Absolute Häufigkeit&quot;</span>, </span>
+<span id="cb154-6"><a href="grafiken.html#cb154-6" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span>
+<span id="cb154-7"><a href="grafiken.html#cb154-7" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> bar, <span class="at">y =</span> tab<span class="sc">+</span><span class="dv">2</span>, <span class="at">labels =</span> tab)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-5-1.png" width="53%" height="47%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="histogramme" class="section level3 hasAnchor" number="8.2.3">
@@ -480,12 +480,12 @@ zwischen 0 und 100 (5 Balken)</li>
 </ul></li>
 <li><code>freq</code>: Soll statt der absoluten die relative Häufigkeit geplottet werden? (<code>TRUE</code> = ja)</li>
 </ul>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="grafiken.html#cb154-1" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>alter)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="grafiken.html#cb155-1" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>alter)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-6-1.png" width="90%" height="75%" /></p>
 <p>Mit einigen zusätzlichen Optionen:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="grafiken.html#cb155-1" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>alter, <span class="at">main =</span> <span class="st">&quot;Histogramm von Alter&quot;</span>, </span>
-<span id="cb155-2"><a href="grafiken.html#cb155-2" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;darkolivegreen3&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Alter&quot;</span>,</span>
-<span id="cb155-3"><a href="grafiken.html#cb155-3" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Häufigkeit&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="grafiken.html#cb156-1" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>alter, <span class="at">main =</span> <span class="st">&quot;Histogramm von Alter&quot;</span>, </span>
+<span id="cb156-2"><a href="grafiken.html#cb156-2" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;darkolivegreen3&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Alter&quot;</span>,</span>
+<span id="cb156-3"><a href="grafiken.html#cb156-3" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Häufigkeit&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>))</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-7-1.png" width="60%" height="60%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="boxplot" class="section level3 hasAnchor" number="8.2.4">
@@ -505,11 +505,11 @@ zwischen 0 und 100 (5 Balken)</li>
 </ul></li>
 <li><code>...</code>: Weitere Graphikparameter</li>
 </ul>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="grafiken.html#cb156-1" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>zufri, </span>
-<span id="cb156-2"><a href="grafiken.html#cb156-2" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;darksalmon&quot;</span>,</span>
-<span id="cb156-3"><a href="grafiken.html#cb156-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot der Zufriedenheitswerte&quot;</span>,</span>
-<span id="cb156-4"><a href="grafiken.html#cb156-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Zufriedenheitswert&quot;</span>,</span>
-<span id="cb156-5"><a href="grafiken.html#cb156-5" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="grafiken.html#cb157-1" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>zufri, </span>
+<span id="cb157-2"><a href="grafiken.html#cb157-2" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;darksalmon&quot;</span>,</span>
+<span id="cb157-3"><a href="grafiken.html#cb157-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot der Zufriedenheitswerte&quot;</span>,</span>
+<span id="cb157-4"><a href="grafiken.html#cb157-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Zufriedenheitswert&quot;</span>,</span>
+<span id="cb157-5"><a href="grafiken.html#cb157-5" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>))</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-8-1.png" width="70%" height="65%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -523,12 +523,12 @@ zwischen 0 und 100 (5 Balken)</li>
 <li><code>A</code>: metrische abhängige Variable</li>
 <li><code>B + C</code>: Kategoriale Variablen nach deren Ausprägungen aufgeschlüsselt wird</li>
 </ul>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="grafiken.html#cb157-1" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>angst <span class="sc">~</span> data<span class="sc">$</span>gruppe,</span>
-<span id="cb157-2"><a href="grafiken.html#cb157-2" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;deeppink&quot;</span>,</span>
-<span id="cb157-3"><a href="grafiken.html#cb157-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplots der Angstwerte nach Gruppen getrennt&quot;</span>,</span>
-<span id="cb157-4"><a href="grafiken.html#cb157-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Angstwerte&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb157-5"><a href="grafiken.html#cb157-5" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>),</span>
-<span id="cb157-6"><a href="grafiken.html#cb157-6" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Kontrollgruppe&quot;</span>, <span class="st">&quot;Pilates&quot;</span>, <span class="st">&quot;Yoga&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="grafiken.html#cb158-1" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>angst <span class="sc">~</span> data<span class="sc">$</span>gruppe,</span>
+<span id="cb158-2"><a href="grafiken.html#cb158-2" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;deeppink&quot;</span>,</span>
+<span id="cb158-3"><a href="grafiken.html#cb158-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplots der Angstwerte nach Gruppen getrennt&quot;</span>,</span>
+<span id="cb158-4"><a href="grafiken.html#cb158-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Angstwerte&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb158-5"><a href="grafiken.html#cb158-5" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>),</span>
+<span id="cb158-6"><a href="grafiken.html#cb158-6" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Kontrollgruppe&quot;</span>, <span class="st">&quot;Pilates&quot;</span>, <span class="st">&quot;Yoga&quot;</span>))</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-9-1.png" width="60%" height="55%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="verteilung-zweier-metrischer-variablen" class="section level3 hasAnchor" number="8.3.2">
@@ -539,10 +539,10 @@ zwischen 0 und 100 (5 Balken)</li>
 <li><code>y</code>: Zweite Variable</li>
 <li><code>...</code>: Weitere Graphikparameter (z.B. <code>pch</code>: Punkttyp <span class="math inline">\(\rightarrow\)</span> <code>?pch</code>)</li>
 </ul>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="grafiken.html#cb158-1" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>item1, dataset<span class="sc">$</span>item2,</span>
-<span id="cb158-2"><a href="grafiken.html#cb158-2" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;item1&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;item2&quot;</span>, </span>
-<span id="cb158-3"><a href="grafiken.html#cb158-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Streudiagramm von Item 1 und Item 2&quot;</span>, </span>
-<span id="cb158-4"><a href="grafiken.html#cb158-4" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">pch =</span> <span class="dv">18</span>, <span class="at">col =</span> <span class="st">&quot;firebrick4&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="grafiken.html#cb159-1" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>item1, dataset<span class="sc">$</span>item2,</span>
+<span id="cb159-2"><a href="grafiken.html#cb159-2" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;item1&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;item2&quot;</span>, </span>
+<span id="cb159-3"><a href="grafiken.html#cb159-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Streudiagramm von Item 1 und Item 2&quot;</span>, </span>
+<span id="cb159-4"><a href="grafiken.html#cb159-4" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">pch =</span> <span class="dv">18</span>, <span class="at">col =</span> <span class="st">&quot;firebrick4&quot;</span>)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-11-1.png" width="60%" height="60%" style="display: block; margin: auto;" /></p>
 <p>Der Befehl <code>abline()</code> wird (separat) im Anschluss von <code>plot()</code> ausgeführt</p>
 <p>Mit <code>abline(h = ..., v = ... , lwd = ..., lty = ...)</code> können horizontale (h) bzw. vertikale (v) Linien an beliebiger Position eingefügt werden</p>
@@ -551,32 +551,32 @@ zwischen 0 und 100 (5 Balken)</li>
 <li><code>lwd</code>: legt die Stärke (Dicke) der Geraden fest (<code>default = 1</code>)</li>
 <li><code>lty</code>: legt den Linientyp fest (s. <code>?par</code>)</li>
 </ul>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="grafiken.html#cb159-1" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>item1, dataset<span class="sc">$</span>item2,</span>
-<span id="cb159-2"><a href="grafiken.html#cb159-2" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Item 2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Item 1&quot;</span>, </span>
-<span id="cb159-3"><a href="grafiken.html#cb159-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Streudiagramm von Item 1 und Item 2&quot;</span>, </span>
-<span id="cb159-4"><a href="grafiken.html#cb159-4" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), </span>
-<span id="cb159-5"><a href="grafiken.html#cb159-5" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">18</span>, </span>
-<span id="cb159-6"><a href="grafiken.html#cb159-6" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;firebrick4&quot;</span>)</span>
-<span id="cb159-7"><a href="grafiken.html#cb159-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(dataset<span class="sc">$</span>item2), </span>
-<span id="cb159-8"><a href="grafiken.html#cb159-8" tabindex="-1"></a>       <span class="at">v =</span> <span class="fu">mean</span>(dataset<span class="sc">$</span>item1), </span>
-<span id="cb159-9"><a href="grafiken.html#cb159-9" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, </span>
-<span id="cb159-10"><a href="grafiken.html#cb159-10" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="grafiken.html#cb160-1" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>item1, dataset<span class="sc">$</span>item2,</span>
+<span id="cb160-2"><a href="grafiken.html#cb160-2" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Item 2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Item 1&quot;</span>, </span>
+<span id="cb160-3"><a href="grafiken.html#cb160-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Streudiagramm von Item 1 und Item 2&quot;</span>, </span>
+<span id="cb160-4"><a href="grafiken.html#cb160-4" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), </span>
+<span id="cb160-5"><a href="grafiken.html#cb160-5" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">18</span>, </span>
+<span id="cb160-6"><a href="grafiken.html#cb160-6" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;firebrick4&quot;</span>)</span>
+<span id="cb160-7"><a href="grafiken.html#cb160-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">mean</span>(dataset<span class="sc">$</span>item2), </span>
+<span id="cb160-8"><a href="grafiken.html#cb160-8" tabindex="-1"></a>       <span class="at">v =</span> <span class="fu">mean</span>(dataset<span class="sc">$</span>item1), </span>
+<span id="cb160-9"><a href="grafiken.html#cb160-9" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb160-10"><a href="grafiken.html#cb160-10" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Mit <code>abline(fit)</code> wird die Regressionsgerade in das bestehende Streudiagramm eingezeichnet
 - <code>fit</code> entspricht dem definierten Modell, z.B. <code>fit = lm(item2 ~ item1)</code></p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="grafiken.html#cb160-1" tabindex="-1"></a>model4 <span class="ot">&lt;-</span>  item2 <span class="sc">~</span> item1</span>
-<span id="cb160-2"><a href="grafiken.html#cb160-2" tabindex="-1"></a>fit4 <span class="ot">&lt;-</span>  <span class="fu">lm</span>(model4, dataset)</span>
-<span id="cb160-3"><a href="grafiken.html#cb160-3" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>item1, dataset<span class="sc">$</span>item2, </span>
-<span id="cb160-4"><a href="grafiken.html#cb160-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Item 2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Item 1&quot;</span>, </span>
-<span id="cb160-5"><a href="grafiken.html#cb160-5" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Streudiagramm von Item 1 und Item 2&quot;</span>,</span>
-<span id="cb160-6"><a href="grafiken.html#cb160-6" tabindex="-1"></a>       <span class="at">sub =</span> <span class="st">&quot;Item 2 = 3.5000 - 0.6667 * Item 1&quot;</span>, </span>
-<span id="cb160-7"><a href="grafiken.html#cb160-7" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), </span>
-<span id="cb160-8"><a href="grafiken.html#cb160-8" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">18</span>, </span>
-<span id="cb160-9"><a href="grafiken.html#cb160-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;firebrick4&quot;</span>)</span>
-<span id="cb160-10"><a href="grafiken.html#cb160-10" tabindex="-1"></a><span class="fu">abline</span>(fit4, </span>
-<span id="cb160-11"><a href="grafiken.html#cb160-11" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>, </span>
-<span id="cb160-12"><a href="grafiken.html#cb160-12" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">&quot;darkslategrey&quot;</span>, </span>
-<span id="cb160-13"><a href="grafiken.html#cb160-13" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="grafiken.html#cb161-1" tabindex="-1"></a>model4 <span class="ot">&lt;-</span>  item2 <span class="sc">~</span> item1</span>
+<span id="cb161-2"><a href="grafiken.html#cb161-2" tabindex="-1"></a>fit4 <span class="ot">&lt;-</span>  <span class="fu">lm</span>(model4, dataset)</span>
+<span id="cb161-3"><a href="grafiken.html#cb161-3" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>item1, dataset<span class="sc">$</span>item2, </span>
+<span id="cb161-4"><a href="grafiken.html#cb161-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Item 2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Item 1&quot;</span>, </span>
+<span id="cb161-5"><a href="grafiken.html#cb161-5" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Streudiagramm von Item 1 und Item 2&quot;</span>,</span>
+<span id="cb161-6"><a href="grafiken.html#cb161-6" tabindex="-1"></a>       <span class="at">sub =</span> <span class="st">&quot;Item 2 = 3.5000 - 0.6667 * Item 1&quot;</span>, </span>
+<span id="cb161-7"><a href="grafiken.html#cb161-7" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), </span>
+<span id="cb161-8"><a href="grafiken.html#cb161-8" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">18</span>, </span>
+<span id="cb161-9"><a href="grafiken.html#cb161-9" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;firebrick4&quot;</span>)</span>
+<span id="cb161-10"><a href="grafiken.html#cb161-10" tabindex="-1"></a><span class="fu">abline</span>(fit4, </span>
+<span id="cb161-11"><a href="grafiken.html#cb161-11" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>, </span>
+<span id="cb161-12"><a href="grafiken.html#cb161-12" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">&quot;darkslategrey&quot;</span>, </span>
+<span id="cb161-13"><a href="grafiken.html#cb161-13" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p><strong>Achsen anpassen</strong></p>
 <p>Es gibt die Möglichkeit die Achsen noch zusätzlich anzupassen. Dafür müssen aber zuerst die ursprünglichen Achsen gelöscht werden. Das funktioniert über das zusätzliche Argument <code>axes = FALSE</code> in der <code>plot()</code>-Funktion</p>
@@ -586,15 +586,15 @@ zwischen 0 und 100 (5 Balken)</li>
 <li><code>at</code>: ein Vektor mit dem die ticks auf den Achsen festgelegt werden können</li>
 <li><code>col</code>: Die Farbe der Achsen</li>
 </ul>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="grafiken.html#cb161-1" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>item1, dataset<span class="sc">$</span>item2, </span>
-<span id="cb161-2"><a href="grafiken.html#cb161-2" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Item 2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Item 1&quot;</span>, </span>
-<span id="cb161-3"><a href="grafiken.html#cb161-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Streudiagramm von Item 1 und Item 2&quot;</span>,</span>
-<span id="cb161-4"><a href="grafiken.html#cb161-4" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), </span>
-<span id="cb161-5"><a href="grafiken.html#cb161-5" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">18</span>, </span>
-<span id="cb161-6"><a href="grafiken.html#cb161-6" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;firebrick4&quot;</span>,</span>
-<span id="cb161-7"><a href="grafiken.html#cb161-7" tabindex="-1"></a>     <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb161-8"><a href="grafiken.html#cb161-8" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb161-9"><a href="grafiken.html#cb161-9" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="grafiken.html#cb162-1" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>item1, dataset<span class="sc">$</span>item2, </span>
+<span id="cb162-2"><a href="grafiken.html#cb162-2" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Item 2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Item 1&quot;</span>, </span>
+<span id="cb162-3"><a href="grafiken.html#cb162-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Streudiagramm von Item 1 und Item 2&quot;</span>,</span>
+<span id="cb162-4"><a href="grafiken.html#cb162-4" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), </span>
+<span id="cb162-5"><a href="grafiken.html#cb162-5" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">18</span>, </span>
+<span id="cb162-6"><a href="grafiken.html#cb162-6" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;firebrick4&quot;</span>,</span>
+<span id="cb162-7"><a href="grafiken.html#cb162-7" tabindex="-1"></a>     <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb162-8"><a href="grafiken.html#cb162-8" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb162-9"><a href="grafiken.html#cb162-9" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 </div>
@@ -615,7 +615,7 @@ Figure 8.1: Quelle: <a href="http://r.qcbs.ca/workshop03/book-en/grammar-of-grap
 <p>Zunächst übergeben wir den ersten “Layer” der Graphik: die <strong>Daten</strong>.</p>
 <p>Es passiert augenscheinlich noch nichts. Tatsächlich werden aber die Daten
 bereits hinterlegt.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="grafiken.html#cb162-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="grafiken.html#cb163-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-20-1.png" width="\textwidth" /></p>
 </div>
 <div id="aesthetics" class="section level3 hasAnchor" number="8.4.3">
@@ -623,9 +623,9 @@ bereits hinterlegt.</p>
 <p>Im nächsten Schritt werden über das sogenannte <em>Mapping</em> die <strong>Aesthetics</strong>
 festgelegt. Hierbei wird festgelegt, welches graphische Merkmal die Daten
 representieren soll (z.B. Achsen, Farbe, Größe, etc.)</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="grafiken.html#cb163-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
-<span id="cb163-2"><a href="grafiken.html#cb163-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
-<span id="cb163-3"><a href="grafiken.html#cb163-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent))</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="grafiken.html#cb164-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
+<span id="cb164-2"><a href="grafiken.html#cb164-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
+<span id="cb164-3"><a href="grafiken.html#cb164-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent))</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-21-1.png" width="\textwidth" /></p>
 </div>
 <div id="geome" class="section level3 hasAnchor" number="8.4.4">
@@ -637,11 +637,11 @@ werden (Linien, Striche, Punkte, etc.), wird durch sogenannte <strong>Geome</str
 es sich um <em>zusätzliche</em> Layer handelt. Außerdem wird klar, dass die Reihenfolge
 der Geome relevant ist, da später hinzugefügte Geome die vorher hinzugefügten
 überdecken können.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="grafiken.html#cb164-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
-<span id="cb164-2"><a href="grafiken.html#cb164-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
-<span id="cb164-3"><a href="grafiken.html#cb164-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
-<span id="cb164-4"><a href="grafiken.html#cb164-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb164-5"><a href="grafiken.html#cb164-5" tabindex="-1"></a>  <span class="fu">geom_rug</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="grafiken.html#cb165-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
+<span id="cb165-2"><a href="grafiken.html#cb165-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
+<span id="cb165-3"><a href="grafiken.html#cb165-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
+<span id="cb165-4"><a href="grafiken.html#cb165-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb165-5"><a href="grafiken.html#cb165-5" tabindex="-1"></a>  <span class="fu">geom_rug</span>()</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-22-1.png" width="\textwidth" /></p>
 </div>
 <div id="geome---mapping" class="section level3 hasAnchor" number="8.4.5">
@@ -651,11 +651,11 @@ bestimmtes Geom angepasst werden. Wir können die Eigenschaften der Daten auch
 auf ein spezifisches Geom mappen, ohne das global zu tun.</p>
 <p>Beispiel: Die Farbe der Punkte soll sich nach alten und neuen Bundesländern
 unterscheiden, aber nur für die Punkte, nicht für die Randverteilung.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="grafiken.html#cb165-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
-<span id="cb165-2"><a href="grafiken.html#cb165-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
-<span id="cb165-3"><a href="grafiken.html#cb165-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
-<span id="cb165-4"><a href="grafiken.html#cb165-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb165-5"><a href="grafiken.html#cb165-5" tabindex="-1"></a>  <span class="fu">geom_rug</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="grafiken.html#cb166-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
+<span id="cb166-2"><a href="grafiken.html#cb166-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
+<span id="cb166-3"><a href="grafiken.html#cb166-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
+<span id="cb166-4"><a href="grafiken.html#cb166-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb166-5"><a href="grafiken.html#cb166-5" tabindex="-1"></a>  <span class="fu">geom_rug</span>()</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-23-1.png" width="\textwidth" /></p>
 </div>
 <div id="weitere-argumente" class="section level3 hasAnchor" number="8.4.6">
@@ -664,11 +664,11 @@ unterscheiden, aber nur für die Punkte, nicht für die Randverteilung.</p>
 die nicht an Daten geknüpft sind.</p>
 <p>Die Randverteilung im Plot soll grün (<code>color</code>) dargestellt werden und die Punkte
 sollen durchsichtiger (<code>alpha</code>) und größer (<code>size</code>) werden.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="grafiken.html#cb166-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
-<span id="cb166-2"><a href="grafiken.html#cb166-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
-<span id="cb166-3"><a href="grafiken.html#cb166-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
-<span id="cb166-4"><a href="grafiken.html#cb166-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> region), <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb166-5"><a href="grafiken.html#cb166-5" tabindex="-1"></a>  <span class="fu">geom_rug</span>(<span class="at">color =</span> <span class="st">&quot;darkgreen&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="grafiken.html#cb167-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
+<span id="cb167-2"><a href="grafiken.html#cb167-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
+<span id="cb167-3"><a href="grafiken.html#cb167-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
+<span id="cb167-4"><a href="grafiken.html#cb167-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> region), <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb167-5"><a href="grafiken.html#cb167-5" tabindex="-1"></a>  <span class="fu">geom_rug</span>(<span class="at">color =</span> <span class="st">&quot;darkgreen&quot;</span>)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-24-1.png" width="\textwidth" /></p>
 </div>
 <div id="geome---grundfunktionen" class="section level3 hasAnchor" number="8.4.7">
@@ -731,41 +731,41 @@ Package <code>ggtheme</code> stellt dabei noch deutlich mehr Themes zur Verfügu
 <p>Weitere Eigenschaften lassen sich über <code>theme()</code> beherrschen. Diese Vorgehensweise
 ist aber deutlich komplizierter und erfordert ein wenig Erfahrung im Umgang mit
 diversen Online-Suchmaschinen ;-).</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="grafiken.html#cb167-1" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb167-2"><a href="grafiken.html#cb167-2" tabindex="-1"></a></span>
-<span id="cb167-3"><a href="grafiken.html#cb167-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
-<span id="cb167-4"><a href="grafiken.html#cb167-4" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
-<span id="cb167-5"><a href="grafiken.html#cb167-5" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
-<span id="cb167-6"><a href="grafiken.html#cb167-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb167-7"><a href="grafiken.html#cb167-7" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
-<span id="cb167-8"><a href="grafiken.html#cb167-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Wahlerfolg der AfD in Abhängigkeit der Wahlbeteiligung&quot;</span>,</span>
-<span id="cb167-9"><a href="grafiken.html#cb167-9" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Europawahl 2019, Alle Angaben in %&quot;</span>,</span>
-<span id="cb167-10"><a href="grafiken.html#cb167-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Wahlbeteiligung&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Wählerstimmen der AfD&quot;</span>,</span>
-<span id="cb167-11"><a href="grafiken.html#cb167-11" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Bundesländer&quot;</span>) <span class="sc">+</span></span>
-<span id="cb167-12"><a href="grafiken.html#cb167-12" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="grafiken.html#cb168-1" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb168-2"><a href="grafiken.html#cb168-2" tabindex="-1"></a></span>
+<span id="cb168-3"><a href="grafiken.html#cb168-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
+<span id="cb168-4"><a href="grafiken.html#cb168-4" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
+<span id="cb168-5"><a href="grafiken.html#cb168-5" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
+<span id="cb168-6"><a href="grafiken.html#cb168-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb168-7"><a href="grafiken.html#cb168-7" tabindex="-1"></a>  <span class="fu">geom_rug</span>() <span class="sc">+</span></span>
+<span id="cb168-8"><a href="grafiken.html#cb168-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Wahlerfolg der AfD in Abhängigkeit der Wahlbeteiligung&quot;</span>,</span>
+<span id="cb168-9"><a href="grafiken.html#cb168-9" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Europawahl 2019, Alle Angaben in %&quot;</span>,</span>
+<span id="cb168-10"><a href="grafiken.html#cb168-10" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Wahlbeteiligung&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Wählerstimmen der AfD&quot;</span>,</span>
+<span id="cb168-11"><a href="grafiken.html#cb168-11" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Bundesländer&quot;</span>) <span class="sc">+</span></span>
+<span id="cb168-12"><a href="grafiken.html#cb168-12" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-25-1.png" width="\textwidth" /></p>
 </div>
 <div id="plots-als-objekte" class="section level4 hasAnchor" number="8.5.1.2">
 <h4><span class="header-section-number">8.5.1.2</span> Plots als Objekte<a href="grafiken.html#plots-als-objekte" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Plots sind in R nichts anderes als umfangreiche Listen vom Typ “ggplot”.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="grafiken.html#cb168-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio) <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span>
-<span id="cb168-2"><a href="grafiken.html#cb168-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;gg&quot;     &quot;ggplot&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="grafiken.html#cb169-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio) <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span>
+<span id="cb169-2"><a href="grafiken.html#cb169-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;gg&quot;     &quot;ggplot&quot;</span></span></code></pre></div>
 <p>Daher können wir auch Plots an Namen binden und im Nachhinein entsprechend aufrufen:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="grafiken.html#cb169-1" tabindex="-1"></a>base_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
-<span id="cb169-2"><a href="grafiken.html#cb169-2" tabindex="-1"></a>                    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
-<span id="cb169-3"><a href="grafiken.html#cb169-3" tabindex="-1"></a>                                  <span class="at">y =</span> Europawahl_AFD_percent))</span></code></pre></div>
-<p>Sollen viele Plots nacheinander “durchprobiert” werden bietet sich diese
-Vorgehensweise entsprechend an:</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="grafiken.html#cb170-1" tabindex="-1"></a>base_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
 <span id="cb170-2"><a href="grafiken.html#cb170-2" tabindex="-1"></a>                    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
-<span id="cb170-3"><a href="grafiken.html#cb170-3" tabindex="-1"></a>                                  <span class="at">y =</span> Europawahl_AFD_percent</span>
-<span id="cb170-4"><a href="grafiken.html#cb170-4" tabindex="-1"></a>                                  )</span>
-<span id="cb170-5"><a href="grafiken.html#cb170-5" tabindex="-1"></a>                    )</span></code></pre></div>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="grafiken.html#cb171-1" tabindex="-1"></a>base_plot <span class="sc">+</span></span>
-<span id="cb171-2"><a href="grafiken.html#cb171-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="07-Grafiken_files/figure-html/unnamed-chunk-29-1.png" width="\textwidth" /></p>
+<span id="cb170-3"><a href="grafiken.html#cb170-3" tabindex="-1"></a>                                  <span class="at">y =</span> Europawahl_AFD_percent))</span></code></pre></div>
+<p>Sollen viele Plots nacheinander “durchprobiert” werden bietet sich diese
+Vorgehensweise entsprechend an:</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="grafiken.html#cb171-1" tabindex="-1"></a>base_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
+<span id="cb171-2"><a href="grafiken.html#cb171-2" tabindex="-1"></a>                    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
+<span id="cb171-3"><a href="grafiken.html#cb171-3" tabindex="-1"></a>                                  <span class="at">y =</span> Europawahl_AFD_percent</span>
+<span id="cb171-4"><a href="grafiken.html#cb171-4" tabindex="-1"></a>                                  )</span>
+<span id="cb171-5"><a href="grafiken.html#cb171-5" tabindex="-1"></a>                    )</span></code></pre></div>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="grafiken.html#cb172-1" tabindex="-1"></a>base_plot <span class="sc">+</span></span>
-<span id="cb172-2"><a href="grafiken.html#cb172-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<span id="cb172-2"><a href="grafiken.html#cb172-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="07-Grafiken_files/figure-html/unnamed-chunk-29-1.png" width="\textwidth" /></p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="grafiken.html#cb173-1" tabindex="-1"></a>base_plot <span class="sc">+</span></span>
+<span id="cb173-2"><a href="grafiken.html#cb173-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-30-1.png" width="\textwidth" /></p>
 </div>
 <div id="facets" class="section level4 hasAnchor" number="8.5.1.3">
@@ -779,13 +779,13 @@ angeordnet werden.</p>
 <p><strong>Hinweis:</strong></p>
 <p>Die an <code>facet_grid()</code> übergebenen Variablen müssen erst als Variable expliziert
 werden. Dies erfolgt mit <code>vars()</code>.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="grafiken.html#cb173-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
-<span id="cb173-2"><a href="grafiken.html#cb173-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
-<span id="cb173-3"><a href="grafiken.html#cb173-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
-<span id="cb173-4"><a href="grafiken.html#cb173-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb173-5"><a href="grafiken.html#cb173-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb173-6"><a href="grafiken.html#cb173-6" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb173-7"><a href="grafiken.html#cb173-7" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(region))</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="grafiken.html#cb174-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
+<span id="cb174-2"><a href="grafiken.html#cb174-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
+<span id="cb174-3"><a href="grafiken.html#cb174-3" tabindex="-1"></a>                     <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
+<span id="cb174-4"><a href="grafiken.html#cb174-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb174-5"><a href="grafiken.html#cb174-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb174-6"><a href="grafiken.html#cb174-6" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb174-7"><a href="grafiken.html#cb174-7" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(region))</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-31-1.png" width="\textwidth" /></p>
 </div>
 <div id="speichern-von-graphiken-mit-ggsave" class="section level4 hasAnchor" number="8.5.1.4">
@@ -798,17 +798,17 @@ Graphik an die Funktion übergeben.</p>
 werden soll.</p>
 <p>Außerdem können wir in der Funktion weitere Parameter, wie die gewünschte
 Größe des Bildes, festlegen.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="grafiken.html#cb174-1" tabindex="-1"></a>plot_save <span class="ot">&lt;-</span> </span>
-<span id="cb174-2"><a href="grafiken.html#cb174-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
-<span id="cb174-3"><a href="grafiken.html#cb174-3" tabindex="-1"></a>         <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
-<span id="cb174-4"><a href="grafiken.html#cb174-4" tabindex="-1"></a>                       <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
-<span id="cb174-5"><a href="grafiken.html#cb174-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span>
-<span id="cb174-6"><a href="grafiken.html#cb174-6" tabindex="-1"></a></span>
-<span id="cb174-7"><a href="grafiken.html#cb174-7" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">plot =</span> plot_save,</span>
-<span id="cb174-8"><a href="grafiken.html#cb174-8" tabindex="-1"></a>       <span class="at">filename =</span> <span class="st">&quot;plots/plot.pdf&quot;</span>,</span>
-<span id="cb174-9"><a href="grafiken.html#cb174-9" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">7</span>,</span>
-<span id="cb174-10"><a href="grafiken.html#cb174-10" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">8</span>,</span>
-<span id="cb174-11"><a href="grafiken.html#cb174-11" tabindex="-1"></a>       <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="grafiken.html#cb175-1" tabindex="-1"></a>plot_save <span class="ot">&lt;-</span> </span>
+<span id="cb175-2"><a href="grafiken.html#cb175-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_regio,</span>
+<span id="cb175-3"><a href="grafiken.html#cb175-3" tabindex="-1"></a>         <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Europawahl_Beteiligung_percent,</span>
+<span id="cb175-4"><a href="grafiken.html#cb175-4" tabindex="-1"></a>                       <span class="at">y =</span> Europawahl_AFD_percent)) <span class="sc">+</span></span>
+<span id="cb175-5"><a href="grafiken.html#cb175-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span>
+<span id="cb175-6"><a href="grafiken.html#cb175-6" tabindex="-1"></a></span>
+<span id="cb175-7"><a href="grafiken.html#cb175-7" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">plot =</span> plot_save,</span>
+<span id="cb175-8"><a href="grafiken.html#cb175-8" tabindex="-1"></a>       <span class="at">filename =</span> <span class="st">&quot;plots/plot.pdf&quot;</span>,</span>
+<span id="cb175-9"><a href="grafiken.html#cb175-9" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">7</span>,</span>
+<span id="cb175-10"><a href="grafiken.html#cb175-10" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">8</span>,</span>
+<span id="cb175-11"><a href="grafiken.html#cb175-11" tabindex="-1"></a>       <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
 </div>
 <div id="erweiterungen" class="section level4 hasAnchor" number="8.5.1.5">
 <h4><span class="header-section-number">8.5.1.5</span> Erweiterungen<a href="grafiken.html#erweiterungen" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -817,37 +817,37 @@ ihr <a href="https://exts.ggplot2.tidyverse.org/gallery/"></a>.</p>
 <p>Wir wollen uns noch kurz mit der Erweiterung <strong>GGForce</strong> und <strong>Viridis</strong> beschäftigen. <a href="https://ggforce.data-imaginist.com"></a> findet ihr
 ausführliche Informationen zu GGForce.</p>
 <p>Vorbereitung:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="grafiken.html#cb175-1" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb175-2"><a href="grafiken.html#cb175-2" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
-<span id="cb175-3"><a href="grafiken.html#cb175-3" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb175-4"><a href="grafiken.html#cb175-4" tabindex="-1"></a></span>
-<span id="cb175-5"><a href="grafiken.html#cb175-5" tabindex="-1"></a>df_countries <span class="ot">&lt;-</span> gapminder</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="grafiken.html#cb176-1" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb176-2"><a href="grafiken.html#cb176-2" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb176-3"><a href="grafiken.html#cb176-3" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb176-4"><a href="grafiken.html#cb176-4" tabindex="-1"></a></span>
+<span id="cb176-5"><a href="grafiken.html#cb176-5" tabindex="-1"></a>df_countries <span class="ot">&lt;-</span> gapminder</span></code></pre></div>
 <div id="ggforce" class="section level5 hasAnchor" number="8.5.1.5.1">
 <h5><span class="header-section-number">8.5.1.5.1</span> GGForce<a href="grafiken.html#ggforce" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="grafiken.html#cb176-1" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb176-2"><a href="grafiken.html#cb176-2" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Burundi&quot;</span>,<span class="st">&quot;Germany&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb176-3"><a href="grafiken.html#cb176-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">y =</span> gdpPercap, <span class="at">color =</span> country)) <span class="sc">+</span> </span>
-<span id="cb176-4"><a href="grafiken.html#cb176-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">size =</span> <span class="fl">1.7</span>)</span></code></pre></div>
-<p><img src="07-Grafiken_files/figure-html/unnamed-chunk-34-1.png" width="\textwidth" /></p>
-<p><strong>Problem:</strong> Werte für Burundi “kleben” am Boden der Graphik und sind so
-praktisch nicht interpretierbar.</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="grafiken.html#cb177-1" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
 <span id="cb177-2"><a href="grafiken.html#cb177-2" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Burundi&quot;</span>,<span class="st">&quot;Germany&quot;</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb177-3"><a href="grafiken.html#cb177-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">y =</span> gdpPercap, <span class="at">color =</span> country)) <span class="sc">+</span> </span>
-<span id="cb177-4"><a href="grafiken.html#cb177-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">size =</span> <span class="fl">1.7</span>) <span class="sc">+</span></span>
-<span id="cb177-5"><a href="grafiken.html#cb177-5" tabindex="-1"></a>  <span class="fu">facet_zoom</span>(<span class="at">xy =</span> country <span class="sc">==</span> <span class="st">&quot;Burundi&quot;</span>)</span></code></pre></div>
+<span id="cb177-4"><a href="grafiken.html#cb177-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">size =</span> <span class="fl">1.7</span>)</span></code></pre></div>
+<p><img src="07-Grafiken_files/figure-html/unnamed-chunk-34-1.png" width="\textwidth" /></p>
+<p><strong>Problem:</strong> Werte für Burundi “kleben” am Boden der Graphik und sind so
+praktisch nicht interpretierbar.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="grafiken.html#cb178-1" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb178-2"><a href="grafiken.html#cb178-2" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Burundi&quot;</span>,<span class="st">&quot;Germany&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb178-3"><a href="grafiken.html#cb178-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">y =</span> gdpPercap, <span class="at">color =</span> country)) <span class="sc">+</span> </span>
+<span id="cb178-4"><a href="grafiken.html#cb178-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">size =</span> <span class="fl">1.7</span>) <span class="sc">+</span></span>
+<span id="cb178-5"><a href="grafiken.html#cb178-5" tabindex="-1"></a>  <span class="fu">facet_zoom</span>(<span class="at">xy =</span> country <span class="sc">==</span> <span class="st">&quot;Burundi&quot;</span>)</span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-35-1.png" width="\textwidth" /></p>
 </div>
 <div id="viridis" class="section level5 hasAnchor" number="8.5.1.5.2">
 <h5><span class="header-section-number">8.5.1.5.2</span> Viridis<a href="grafiken.html#viridis" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Für viele nicht sichtbar: die Standardfarben von GGPlot sind nicht geeignet für
 Personen mit Farbblidheit. Hier hilft das Package <code>viridis</code>.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="grafiken.html#cb178-1" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb178-2"><a href="grafiken.html#cb178-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb178-3"><a href="grafiken.html#cb178-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp, </span>
-<span id="cb178-4"><a href="grafiken.html#cb178-4" tabindex="-1"></a>             <span class="at">size =</span> pop,<span class="at">color =</span> continent)) <span class="sc">+</span> </span>
-<span id="cb178-5"><a href="grafiken.html#cb178-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb178-6"><a href="grafiken.html#cb178-6" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="grafiken.html#cb179-1" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb179-2"><a href="grafiken.html#cb179-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb179-3"><a href="grafiken.html#cb179-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp, </span>
+<span id="cb179-4"><a href="grafiken.html#cb179-4" tabindex="-1"></a>             <span class="at">size =</span> pop,<span class="at">color =</span> continent)) <span class="sc">+</span> </span>
+<span id="cb179-5"><a href="grafiken.html#cb179-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb179-6"><a href="grafiken.html#cb179-6" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() </span></code></pre></div>
 <p><img src="07-Grafiken_files/figure-html/unnamed-chunk-36-1.png" width="\textwidth" /></p>
 <p><strong>Letzter Hinweis</strong></p>
 <p>Das Erstellen und Anpassen von Graphiken kann durchaus noch viel komplexer werden.
@@ -889,61 +889,61 @@ item3  0.6123724 -0.4714045  1.0000000</code></pre>
 <div id="anwendung-an-beispielen" class="section level4 hasAnchor" number="8.5.2.4">
 <h4><span class="header-section-number">8.5.2.4</span> Anwendung an Beispielen<a href="grafiken.html#anwendung-an-beispielen" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Korrelationstabelle</strong></p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="grafiken.html#cb181-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb181-2"><a href="grafiken.html#cb181-2" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/Daten.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb181-3"><a href="grafiken.html#cb181-3" tabindex="-1"></a>Korrelationstabelle<span class="ot">&lt;-</span> <span class="fu">cor</span>(dataset[,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span>
-<span id="cb181-4"><a href="grafiken.html#cb181-4" tabindex="-1"></a>Korrelationstabelle</span>
-<span id="cb181-5"><a href="grafiken.html#cb181-5" tabindex="-1"></a>           item1      item2      item3</span>
-<span id="cb181-6"><a href="grafiken.html#cb181-6" tabindex="-1"></a>item1  <span class="fl">1.0000000</span> <span class="sc">-</span><span class="fl">0.7698004</span>  <span class="fl">0.6123724</span></span>
-<span id="cb181-7"><a href="grafiken.html#cb181-7" tabindex="-1"></a>item2 <span class="sc">-</span><span class="fl">0.7698004</span>  <span class="fl">1.0000000</span> <span class="sc">-</span><span class="fl">0.4714045</span></span>
-<span id="cb181-8"><a href="grafiken.html#cb181-8" tabindex="-1"></a>item3  <span class="fl">0.6123724</span> <span class="sc">-</span><span class="fl">0.4714045</span>  <span class="fl">1.0000000</span></span></code></pre></div>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="grafiken.html#cb182-1" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
-<span id="cb182-2"><a href="grafiken.html#cb182-2" tabindex="-1"></a><span class="fu">stargazer</span>(Korrelationstabelle,</span>
-<span id="cb182-3"><a href="grafiken.html#cb182-3" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">&quot;html&quot;</span>, </span>
-<span id="cb182-4"><a href="grafiken.html#cb182-4" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Korellationstabelle&quot;</span>, </span>
-<span id="cb182-5"><a href="grafiken.html#cb182-5" tabindex="-1"></a>          <span class="at">out =</span> <span class="st">&quot;Korellationstabelle.html&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="grafiken.html#cb182-1" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb182-2"><a href="grafiken.html#cb182-2" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/Daten.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb182-3"><a href="grafiken.html#cb182-3" tabindex="-1"></a>Korrelationstabelle<span class="ot">&lt;-</span> <span class="fu">cor</span>(dataset[,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span>
+<span id="cb182-4"><a href="grafiken.html#cb182-4" tabindex="-1"></a>Korrelationstabelle</span>
+<span id="cb182-5"><a href="grafiken.html#cb182-5" tabindex="-1"></a>           item1      item2      item3</span>
+<span id="cb182-6"><a href="grafiken.html#cb182-6" tabindex="-1"></a>item1  <span class="fl">1.0000000</span> <span class="sc">-</span><span class="fl">0.7698004</span>  <span class="fl">0.6123724</span></span>
+<span id="cb182-7"><a href="grafiken.html#cb182-7" tabindex="-1"></a>item2 <span class="sc">-</span><span class="fl">0.7698004</span>  <span class="fl">1.0000000</span> <span class="sc">-</span><span class="fl">0.4714045</span></span>
+<span id="cb182-8"><a href="grafiken.html#cb182-8" tabindex="-1"></a>item3  <span class="fl">0.6123724</span> <span class="sc">-</span><span class="fl">0.4714045</span>  <span class="fl">1.0000000</span></span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="grafiken.html#cb183-1" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb183-2"><a href="grafiken.html#cb183-2" tabindex="-1"></a><span class="fu">stargazer</span>(Korrelationstabelle,</span>
+<span id="cb183-3"><a href="grafiken.html#cb183-3" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">&quot;html&quot;</span>, </span>
+<span id="cb183-4"><a href="grafiken.html#cb183-4" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Korellationstabelle&quot;</span>, </span>
+<span id="cb183-5"><a href="grafiken.html#cb183-5" tabindex="-1"></a>          <span class="at">out =</span> <span class="st">&quot;Korellationstabelle.html&quot;</span>)</span></code></pre></div>
 <p>Aussehen in der html Datei:</p>
 <p><img src="Abbildungen/MehrfeldeTabelle.png" width="50%" height="45%" style="display: block; margin: auto;" /></p>
 <p>Für Übertragung in Word einfach in der html Dateien markieren, kopieren und in Word einfügen</p>
 <p><strong>Regressionsmodelle</strong></p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="grafiken.html#cb183-1" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> dataset, <span class="at">formula =</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3)</span>
-<span id="cb183-2"><a href="grafiken.html#cb183-2" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span>
-<span id="cb183-3"><a href="grafiken.html#cb183-3" tabindex="-1"></a></span>
-<span id="cb183-4"><a href="grafiken.html#cb183-4" tabindex="-1"></a>Call<span class="sc">:</span></span>
-<span id="cb183-5"><a href="grafiken.html#cb183-5" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3, <span class="at">data =</span> dataset)</span>
-<span id="cb183-6"><a href="grafiken.html#cb183-6" tabindex="-1"></a></span>
-<span id="cb183-7"><a href="grafiken.html#cb183-7" tabindex="-1"></a>Residuals<span class="sc">:</span></span>
-<span id="cb183-8"><a href="grafiken.html#cb183-8" tabindex="-1"></a>     Min       1Q   Median       3Q      Max </span>
-<span id="cb183-9"><a href="grafiken.html#cb183-9" tabindex="-1"></a><span class="sc">-</span><span class="fl">0.75000</span> <span class="sc">-</span><span class="fl">0.33036</span> <span class="sc">-</span><span class="fl">0.08929</span>  <span class="fl">0.33036</span>  <span class="fl">0.64286</span> </span>
-<span id="cb183-10"><a href="grafiken.html#cb183-10" tabindex="-1"></a></span>
-<span id="cb183-11"><a href="grafiken.html#cb183-11" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
-<span id="cb183-12"><a href="grafiken.html#cb183-12" tabindex="-1"></a>            Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)  </span>
-<span id="cb183-13"><a href="grafiken.html#cb183-13" tabindex="-1"></a>(Intercept)   <span class="fl">2.8929</span>     <span class="fl">1.1752</span>   <span class="fl">2.462</span>   <span class="fl">0.0434</span> <span class="sc">*</span></span>
-<span id="cb183-14"><a href="grafiken.html#cb183-14" tabindex="-1"></a>item2        <span class="sc">-</span><span class="fl">0.7143</span>     <span class="fl">0.2832</span>  <span class="sc">-</span><span class="fl">2.523</span>   <span class="fl">0.0397</span> <span class="sc">*</span></span>
-<span id="cb183-15"><a href="grafiken.html#cb183-15" tabindex="-1"></a>item3         <span class="fl">0.3929</span>     <span class="fl">0.3003</span>   <span class="fl">1.308</span>   <span class="fl">0.2322</span>  </span>
-<span id="cb183-16"><a href="grafiken.html#cb183-16" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb183-17"><a href="grafiken.html#cb183-17" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  </span>
-<span id="cb183-18"><a href="grafiken.html#cb183-18" tabindex="-1"></a><span class="dv">0</span> <span class="st">&#39;***&#39;</span> <span class="fl">0.001</span> <span class="st">&#39;**&#39;</span> <span class="fl">0.01</span> <span class="st">&#39;*&#39;</span> <span class="fl">0.05</span> <span class="st">&#39;.&#39;</span> <span class="fl">0.1</span> <span class="st">&#39; &#39;</span> <span class="dv">1</span></span>
-<span id="cb183-19"><a href="grafiken.html#cb183-19" tabindex="-1"></a></span>
-<span id="cb183-20"><a href="grafiken.html#cb183-20" tabindex="-1"></a>Residual standard error<span class="sc">:</span> <span class="fl">0.5297</span> on <span class="dv">7</span> degrees of freedom</span>
-<span id="cb183-21"><a href="grafiken.html#cb183-21" tabindex="-1"></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.6726</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5791</span> </span>
-<span id="cb183-22"><a href="grafiken.html#cb183-22" tabindex="-1"></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">7.191</span> on <span class="dv">2</span> and <span class="dv">7</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="fl">0.02008</span></span></code></pre></div>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="grafiken.html#cb184-1" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
-<span id="cb184-2"><a href="grafiken.html#cb184-2" tabindex="-1"></a><span class="fu">stargazer</span>(fit1,</span>
-<span id="cb184-3"><a href="grafiken.html#cb184-3" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">&quot;html&quot;</span>, </span>
-<span id="cb184-4"><a href="grafiken.html#cb184-4" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Beispiel Regression&quot;</span>, </span>
-<span id="cb184-5"><a href="grafiken.html#cb184-5" tabindex="-1"></a>          <span class="at">out =</span> <span class="st">&quot;Regression.html&quot;</span>)</span></code></pre></div>
-<p><img src="Abbildungen/Regression.png" width="40%" height="55%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="grafiken.html#cb184-1" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> dataset, <span class="at">formula =</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3)</span>
+<span id="cb184-2"><a href="grafiken.html#cb184-2" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span>
+<span id="cb184-3"><a href="grafiken.html#cb184-3" tabindex="-1"></a></span>
+<span id="cb184-4"><a href="grafiken.html#cb184-4" tabindex="-1"></a>Call<span class="sc">:</span></span>
+<span id="cb184-5"><a href="grafiken.html#cb184-5" tabindex="-1"></a><span class="fu">lm</span>(<span class="at">formula =</span> item1 <span class="sc">~</span> item2 <span class="sc">+</span> item3, <span class="at">data =</span> dataset)</span>
+<span id="cb184-6"><a href="grafiken.html#cb184-6" tabindex="-1"></a></span>
+<span id="cb184-7"><a href="grafiken.html#cb184-7" tabindex="-1"></a>Residuals<span class="sc">:</span></span>
+<span id="cb184-8"><a href="grafiken.html#cb184-8" tabindex="-1"></a>     Min       1Q   Median       3Q      Max </span>
+<span id="cb184-9"><a href="grafiken.html#cb184-9" tabindex="-1"></a><span class="sc">-</span><span class="fl">0.75000</span> <span class="sc">-</span><span class="fl">0.33036</span> <span class="sc">-</span><span class="fl">0.08929</span>  <span class="fl">0.33036</span>  <span class="fl">0.64286</span> </span>
+<span id="cb184-10"><a href="grafiken.html#cb184-10" tabindex="-1"></a></span>
+<span id="cb184-11"><a href="grafiken.html#cb184-11" tabindex="-1"></a>Coefficients<span class="sc">:</span></span>
+<span id="cb184-12"><a href="grafiken.html#cb184-12" tabindex="-1"></a>            Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)  </span>
+<span id="cb184-13"><a href="grafiken.html#cb184-13" tabindex="-1"></a>(Intercept)   <span class="fl">2.8929</span>     <span class="fl">1.1752</span>   <span class="fl">2.462</span>   <span class="fl">0.0434</span> <span class="sc">*</span></span>
+<span id="cb184-14"><a href="grafiken.html#cb184-14" tabindex="-1"></a>item2        <span class="sc">-</span><span class="fl">0.7143</span>     <span class="fl">0.2832</span>  <span class="sc">-</span><span class="fl">2.523</span>   <span class="fl">0.0397</span> <span class="sc">*</span></span>
+<span id="cb184-15"><a href="grafiken.html#cb184-15" tabindex="-1"></a>item3         <span class="fl">0.3929</span>     <span class="fl">0.3003</span>   <span class="fl">1.308</span>   <span class="fl">0.2322</span>  </span>
+<span id="cb184-16"><a href="grafiken.html#cb184-16" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb184-17"><a href="grafiken.html#cb184-17" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  </span>
+<span id="cb184-18"><a href="grafiken.html#cb184-18" tabindex="-1"></a><span class="dv">0</span> <span class="st">&#39;***&#39;</span> <span class="fl">0.001</span> <span class="st">&#39;**&#39;</span> <span class="fl">0.01</span> <span class="st">&#39;*&#39;</span> <span class="fl">0.05</span> <span class="st">&#39;.&#39;</span> <span class="fl">0.1</span> <span class="st">&#39; &#39;</span> <span class="dv">1</span></span>
+<span id="cb184-19"><a href="grafiken.html#cb184-19" tabindex="-1"></a></span>
+<span id="cb184-20"><a href="grafiken.html#cb184-20" tabindex="-1"></a>Residual standard error<span class="sc">:</span> <span class="fl">0.5297</span> on <span class="dv">7</span> degrees of freedom</span>
+<span id="cb184-21"><a href="grafiken.html#cb184-21" tabindex="-1"></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.6726</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5791</span> </span>
+<span id="cb184-22"><a href="grafiken.html#cb184-22" tabindex="-1"></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">7.191</span> on <span class="dv">2</span> and <span class="dv">7</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="fl">0.02008</span></span></code></pre></div>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="grafiken.html#cb185-1" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
 <span id="cb185-2"><a href="grafiken.html#cb185-2" tabindex="-1"></a><span class="fu">stargazer</span>(fit1,</span>
 <span id="cb185-3"><a href="grafiken.html#cb185-3" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">&quot;html&quot;</span>, </span>
 <span id="cb185-4"><a href="grafiken.html#cb185-4" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Beispiel Regression&quot;</span>, </span>
-<span id="cb185-5"><a href="grafiken.html#cb185-5" tabindex="-1"></a>          <span class="at">out =</span> <span class="st">&quot;Regression.html&quot;</span>,</span>
-<span id="cb185-6"><a href="grafiken.html#cb185-6" tabindex="-1"></a>          <span class="at">ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb185-7"><a href="grafiken.html#cb185-7" tabindex="-1"></a>          <span class="at">covariate.labels =</span> <span class="fu">c</span>(<span class="st">&quot;sozioökonomischer status&quot;</span>, </span>
-<span id="cb185-8"><a href="grafiken.html#cb185-8" tabindex="-1"></a>                               <span class="st">&quot;Alter&quot;</span>,<span class="st">&quot;Konstante&quot;</span>),</span>
-<span id="cb185-9"><a href="grafiken.html#cb185-9" tabindex="-1"></a>          <span class="at">dep.var.labels =</span> <span class="st">&quot;Einkommen&quot;</span>,</span>
-<span id="cb185-10"><a href="grafiken.html#cb185-10" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;Abhängige Variable&quot;</span>)</span></code></pre></div>
+<span id="cb185-5"><a href="grafiken.html#cb185-5" tabindex="-1"></a>          <span class="at">out =</span> <span class="st">&quot;Regression.html&quot;</span>)</span></code></pre></div>
+<p><img src="Abbildungen/Regression.png" width="40%" height="55%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="grafiken.html#cb186-1" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb186-2"><a href="grafiken.html#cb186-2" tabindex="-1"></a><span class="fu">stargazer</span>(fit1,</span>
+<span id="cb186-3"><a href="grafiken.html#cb186-3" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">&quot;html&quot;</span>, </span>
+<span id="cb186-4"><a href="grafiken.html#cb186-4" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">&quot;Beispiel Regression&quot;</span>, </span>
+<span id="cb186-5"><a href="grafiken.html#cb186-5" tabindex="-1"></a>          <span class="at">out =</span> <span class="st">&quot;Regression.html&quot;</span>,</span>
+<span id="cb186-6"><a href="grafiken.html#cb186-6" tabindex="-1"></a>          <span class="at">ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb186-7"><a href="grafiken.html#cb186-7" tabindex="-1"></a>          <span class="at">covariate.labels =</span> <span class="fu">c</span>(<span class="st">&quot;sozioökonomischer status&quot;</span>, </span>
+<span id="cb186-8"><a href="grafiken.html#cb186-8" tabindex="-1"></a>                               <span class="st">&quot;Alter&quot;</span>,<span class="st">&quot;Konstante&quot;</span>),</span>
+<span id="cb186-9"><a href="grafiken.html#cb186-9" tabindex="-1"></a>          <span class="at">dep.var.labels =</span> <span class="st">&quot;Einkommen&quot;</span>,</span>
+<span id="cb186-10"><a href="grafiken.html#cb186-10" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">&quot;Abhängige Variable&quot;</span>)</span></code></pre></div>
 <ul>
 <li><code>ci</code>: wenn <code>TRUE</code> ersetzt die angegebenen Standardfehler mit dem Konfifenzintervall für das Konfidenzniveau von 95 Prozent</li>
 <li><code>covariate.labels</code>: ein Character-Vektor, der die Namen der unabhängigen Variablen ersetzt</li>
