@@ -36,7 +36,7 @@ Gelegentlich kommt es vor, dass beim Import von Datensätzen die Daten im falsch
 character $\rightarrow$ numeric
 
 
-```r
+``` r
 as.numeric("2")
 [1] 2
 ```
@@ -44,7 +44,7 @@ as.numeric("2")
 logical $\rightarrow$ numeric (`FALSE` = 0, `TRUE` = 1)
 
 
-```r
+``` r
 as.numeric(TRUE)
 [1] 1
 ```
@@ -52,7 +52,7 @@ as.numeric(TRUE)
 numeric $\rightarrow$ character 
 
 
-```r
+``` r
 as.character(2024)
 [1] "2024"
 ```
@@ -60,7 +60,7 @@ as.character(2024)
 numeric $\rightarrow$ logical (0 = `FALSE`, jede andere Zahl = `TRUE`) 
 
 
-```r
+``` r
 as.logical(5)
 [1] TRUE
 ```
@@ -72,14 +72,14 @@ as.logical(5)
 - Dezimalzahlen werden in R mit einem Punkt und nicht mit einem Komma angegeben
 
 
-```r
+``` r
 2,5
-Error: <text>:1:2: unexpected ','
+Error in parse(text = input): <text>:1:2: unexpected ','
 1: 2,
      ^
 ```
 
-```r
+``` r
 2.5
 [1] 2.5
 ```
@@ -103,22 +103,22 @@ log(x, base)  |Logarithmus
 #### Beispiele
 
 
-```r
+``` r
 3+2*8
 [1] 19
 ```
 
-```r
+``` r
 (2*10)/(2*2.5)
 [1] 4
 ```
 
-```r
+``` r
 sqrt(2)^2
 [1] 2
 ```
 
-```r
+``` r
 log(100000, base=10)
 [1] 5
 ```
@@ -139,22 +139,22 @@ R Befehl |Bedeutung
 #### Beispiele
 
 
-```r
+``` r
 4<5
 [1] TRUE
 ```
 
-```r
+``` r
 23!=24
 [1] TRUE
 ```
 
-```r
+``` r
 10<=4 | 12==6
 [1] FALSE
 ```
 
-```r
+``` r
 !("a"<"b" & TRUE==TRUE)
 [1] FALSE
 ```
@@ -166,14 +166,14 @@ R Befehl |Bedeutung
 - Werte können in Variablen (Objekten) gespeichert werden
 
 
-```r
+``` r
 x <- 5 + 3
 ```
 
 - Objekte sind nach der Zuweisung mit ihrem Namen abrufbar
 
 
-```r
+``` r
 x
 [1] 8
 ```
@@ -181,19 +181,19 @@ x
 - Gespeicherte Objekte können weiterverwendet werden
 
 
-```r
+``` r
 x <- 5
 x + 10
 [1] 15
 ```
 
-```r
+``` r
 y <- 2 * 3
 y + x
 [1] 11
 ```
 
-```r
+``` r
 z <- y + x
 z
 [1] 11
@@ -203,7 +203,7 @@ z
   - Text:
   
 
-```r
+``` r
 z <- "Textelement"
 z
 [1] "Textelement"
@@ -212,7 +212,7 @@ z
   - logische Werte:
   
 
-```r
+``` r
 y <- 5 < 4
 y
 [1] FALSE
@@ -229,9 +229,9 @@ y
 - Variablennamen dürfen nicht mit einer Zahl oder einem Unterstrich beginnen
 
 
-```r
+``` r
 7b <- 5+5
-Error: <text>:1:2: unexpected symbol
+Error in parse(text = input): <text>:1:2: unexpected symbol
 1: 7b
      ^
 ```
@@ -266,12 +266,12 @@ Error: <text>:1:2: unexpected symbol
 - `c(Argument1, Argument2, Argument3)` definiert einen Vektor mit drei Werten (z.B. Spaltennamen)
   
 
-```r
+``` r
 c(1,2,3,4,5)
 [1] 1 2 3 4 5
 ```
 
-```r
+``` r
 c("Hund","Katze","Maus")
 [1] "Hund"  "Katze" "Maus" 
 ```
@@ -279,7 +279,7 @@ c("Hund","Katze","Maus")
 	  
 - `round(x, digits = 2)` rundet x auf 2 Nachkommastellen
 
-```r
+``` r
 round(3.141593, digits = 2)
 [1] 3.14
 ```
@@ -292,7 +292,7 @@ round(3.141593, digits = 2)
 - default-Werte können in R Documentation nachgesehen werden (s. Help-Funktion)
 
 
-```r
+``` r
 round(3.141593)
 [1] 3
 ```
@@ -301,12 +301,12 @@ round(3.141593)
 - Die Argumente müssen nicht explizit benannt werden
 
 
-```r
+``` r
 round(3.141593,2)
 [1] 3.14
 ```
 
-```r
+``` r
 round(2,3.141593)
 [1] 2
 ```
@@ -320,11 +320,11 @@ round(2,3.141593)
 - Durch die Funktion `help()` und `?` lässt sich unter anderem herausfinden, welche Funktion welche Argumente benötigt
 
 
-```r
+``` r
 help(round)
 ```
 
-```r
+``` r
 ?round
 ```
 
@@ -335,13 +335,13 @@ help(round)
 - Die Ergebnisse von Funktionen können ebenfalls unter Objekten abgespeichert (und weiterverwendet) werden
 
 
-```r
+``` r
 x <- c(1,2,3,4,5)
 x
 [1] 1 2 3 4 5
 ```
 
-```r
+``` r
 r <- round(3.141593,2)
 r+5
 [1] 8.14
@@ -360,13 +360,13 @@ r+5
 - Mathematische und logische Operatoren können auf den Vektor (auf alle Elemente) angewandt werden
 
 
-```r
+``` r
 x <- c(1,2,3,4,5)
 x+1
 [1] 2 3 4 5 6
 ```
 
-```r
+``` r
 x>3
 [1] FALSE FALSE FALSE  TRUE  TRUE
 ```
@@ -376,18 +376,18 @@ Durch eckige Klammern `[]` können durch Angabe ihrer Position einzelne Elemente
 (**Wichtig**: in R beginnt der Index immer mit 1)
 
 
-```r
+``` r
 y <- c(110,120,130,140,150)
 y
 [1] 110 120 130 140 150
 ```
 
-```r
+``` r
 y[3]
 [1] 130
 ```
 
-```r
+``` r
 y[c(1,3,5)]
 [1] 110 130 150
 ```
@@ -395,18 +395,18 @@ y[c(1,3,5)]
 Die Elemente können auch aufgrund von gewissen Bedingungen ausgewählt werden
 
 
-```r
+``` r
 y <- c(110,120,130,140,150)
 y
 [1] 110 120 130 140 150
 ```
 
-```r
+``` r
 y[y>=130]
 [1] 130 140 150
 ```
 
-```r
+``` r
 y[y==120]
 [1] 120
 ```
@@ -414,18 +414,18 @@ y[y==120]
 Steht ein negatives Vorzeichen vor dem Index, so wird jedes Element außer dem indizierten aus dem Vektor ausgewählt
 
 
-```r
+``` r
 x <- c(1,2,3,4,5)
 x
 [1] 1 2 3 4 5
 ```
 
-```r
+``` r
 x[-3]
 [1] 1 2 4 5
 ```
 
-```r
+``` r
 x[c(-1,-3)]
 [1] 2 4 5
 ```
@@ -433,13 +433,13 @@ x[c(-1,-3)]
 Soll eine gewisse Reihe von angrenzenden Elementen (von Element `i` bis Element `j`) vektorisiert werden, werden die Indizes mit `:` verbunden (also `i:j`).
 
 
-```r
+``` r
 x <- c(1:5)
 x
 [1] 1 2 3 4 5
 ```
 
-```r
+``` r
 x[1:3]
 [1] 1 2 3
 ```
@@ -455,7 +455,7 @@ x[1:3]
 
 
 
-```r
+``` r
 d <- c(1:9)
 m <- matrix(data = d, nrow = 3, ncol = 3, byrow = TRUE)
 m
@@ -470,7 +470,7 @@ Die Auswahl von Matrixelementen ist analog zu der Auswahl von Elementen aus eine
 - Allerdings wird bei einer Matrix ein Element durch zwei Positionen (Zeile und Spalte) definiert
   
 
-```r
+``` r
 m
      [,1] [,2] [,3]
 [1,]    1    2    3
@@ -478,7 +478,7 @@ m
 [3,]    7    8    9
 ```
 
-```r
+``` r
 m[3,2]
 [1] 8
 ```
@@ -488,7 +488,7 @@ m[3,2]
 - Negative Indizierung und Mehrfachauswahl auch möglich
 
 
-```r
+``` r
 m
      [,1] [,2] [,3]
 [1,]    1    2    3
@@ -496,12 +496,12 @@ m
 [3,]    7    8    9
 ```
 
-```r
+``` r
 m[3,]
 [1] 7 8 9
 ```
 
-```r
+``` r
 m[,2]
 [1] 2 5 8
 ```
@@ -513,7 +513,7 @@ m[,2]
 - Data Frames können mit `data.frame()` aus mehreren (gleichlangen) Vektoren erstellt werden
 
 
-```r
+``` r
 alter <- c(16,17,15,22)
 geschlecht <- c("w","w","m","m")
 dataframe <- data.frame(alter, geschlecht)
@@ -530,7 +530,7 @@ Verschieden Möglichkeiten für Elementauswahl
 - Zeilen- und Spaltennummer (analog zu Matrizen)
 
 
-```r
+``` r
 dataframe[2,1]
 [1] 17
 ```
@@ -538,12 +538,12 @@ dataframe[2,1]
 - oder mithilfe des **\$}** operators direkt auf Variablen zugreifen
 
 
-```r
+``` r
 dataframe$alter
 [1] 16 17 15 22
 ```
 
-```r
+``` r
 dataframe$alter[2]
 [1] 17
 ```
@@ -551,14 +551,14 @@ dataframe$alter[2]
 - Mit dem `\$` Operator können zudem einzelne Werte verändert werden
 
 
-```r
+``` r
 dataframe$geschlecht[2] <- "m"
 ```
 
 - ... oder ganze Variablen gelöscht werden
 
 
-```r
+``` r
 dataframe$geschlecht <- NULL
 ```
 
@@ -568,14 +568,14 @@ dataframe$geschlecht <- NULL
 - Desweiteren können auch neue Variablen hinzugefügt werden
 
 
-```r
+``` r
 dataframe$aktuellesJahr <- rep(2022, times = 4)
 ```
 
 - ...oder aus bestehenden Variablen gebildet werden
 
 
-```r
+``` r
 dataframe$geburtsjahr <- dataframe$aktuellesJahr - dataframe$alter
 dataframe
   alter aktuellesJahr geburtsjahr

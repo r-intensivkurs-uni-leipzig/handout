@@ -33,14 +33,14 @@ Die Funktion `chisq.test()` berechnet je nach Eingabe einen entsprechenden Test.
 **Beispiel**
 
 
-```r
+``` r
 df_yoga <- read.table("data/YogaPilates.txt", header = TRUE)
 ```
 
 Gleichverteilungstest:
 
 
-```r
+``` r
 tab <- table(df_yoga$gruppe)
 chisq.test(tab)
 
@@ -53,7 +53,7 @@ X-squared = 4.55, df = 2, p-value = 0.1028
 Unanghängigkeitstest:
 
 
-```r
+``` r
 tab2 <- table(df_yoga$gruppe, df_yoga$geschl)
 chisq.test(tab2)
 
@@ -93,7 +93,7 @@ Alle Varianten des t-Tests werden mit `t.test()` berechnet.
 t-Test - Einstichprobentest
 
 
-```r
+``` r
 t.test(df_ex$Revise, mu = 5, alternative = "greater")
 
 	One Sample t-test
@@ -112,7 +112,7 @@ t-Test - Zweistichprobentest - abhängige Stichproben
 
 
 
-```r
+``` r
 t.test(df_ex$Note, df_ex$Note_2, paired = TRUE)
 
 	Paired t-test
@@ -130,7 +130,7 @@ mean difference
 t-Test - Zweistichprobentest - unhängige Stichproben
 
 
-```r
+``` r
 t.test(df_ex$Revise ~ df_ex$bestanden)
 
 	Welch Two Sample t-test
@@ -169,7 +169,7 @@ Wichtige Argumente:
 **Beispiel**
 
 
-```r
+``` r
 df_yoga_clean <- read.table("data/YogaPilates.txt", header = TRUE) |> na.omit()
 library(ez)
 ```
@@ -177,7 +177,7 @@ library(ez)
 **Einfaktorielle ANOVA - Between-Faktor**
 
 
-```r
+``` r
 ezANOVA(data = df_yoga_clean, dv = zufri, wid = vp, between = gruppe, type = 2)
 Coefficient covariances computed by hccm()
 $ANOVA
@@ -200,7 +200,7 @@ Post-hoc-Tests für paarweise Gruppenvergleiche können mit `pairwise.t.test(x, 
 
 
 
-```r
+``` r
 pairwise.t.test(df_yoga_clean$zufri, df_yoga_clean$gruppe, 
                 p.adjust.method = "bonferroni", paired = FALSE)
 
@@ -222,7 +222,7 @@ P value adjustment method: bonferroni
 - „Problem“: in diesem  Datensatz haben wir keine within-Faktoren -> angst sei die Zufriedenheitsmessung vor der jeweiligen Intervention (Gruppe) -> Dadurch kann der Faktor Zeit mit aufgenommen werden
 
 
-```r
+``` r
 df_yoga <- read.table("data/YogaPilates.txt", header = T)
 head(df_yoga, n=5)
     vp geschl alter  gruppe zufri angst
@@ -234,7 +234,7 @@ head(df_yoga, n=5)
 ```
 
 
-```r
+``` r
 # Zufriedenheit t_1
 df_yoga$zufri_t1 <- df_yoga$angst
 # Zufriedenheit t_2
@@ -255,7 +255,7 @@ head(df_yoga, n=5)
 
 
 
-```r
+``` r
 library(reshape2)
 df_yogaL <- melt(df_yoga, 
                  id.vars = c("vp", "geschl", "alter", "gruppe", "angst","zufri"),
@@ -283,7 +283,7 @@ head(df_yogaL, n=5)
 
 
 
-```r
+``` r
 library(psych)
 describeBy(df_yogaL$Zufriedenheit, group = df_yogaL$Zeitpunkt)
 
@@ -305,7 +305,7 @@ X1 -0.42    -0.56 0.1
 - Bei mehr als zwei Stufen des Innersubjektfaktors wird der Mauchly-Test (Test auf Sphärizität) mit ausgegeben
 
 
-```r
+``` r
 library(ez)
 ezANOVA(na.omit(df_yogaL), dv = Zufriedenheit, wid = vp, 
         within = .(Zeitpunkt))
@@ -330,7 +330,7 @@ ezANOVA(na.omit(df_yogaL), dv = Zufriedenheit, wid = vp,
 Wie hängen die Itemantworten zusammen?
 
 
-```r
+``` r
 df_exam <- read.table("data/Daten.txt", header = TRUE)
 head(df_exam, c(5,8))
   Person item1 item2 item3 item4 item5 item6 item7
@@ -374,7 +374,7 @@ everything|  pairwise  |  complete
 
 Korrelation item1, item2
 
-```r
+``` r
 cor.test(df_exam$item1, df_exam$item2, method = "pearson",
          alternative = "less", conf.level = .99)
 
@@ -392,7 +392,7 @@ sample estimates:
 
 Produkt-Moment-Korrelation, Hypothese: negative Korrelation, alpha = 1%
 
-```r
+``` r
 cor.test(df_exam$item1, df_exam$item2, method = "pearson",
          alternative = "less", conf.level = .99)
 
@@ -413,7 +413,7 @@ sample estimates:
 Werden dataframes (oder Teile dessen) in `cov()` oder `cor()` eingefügt, werden Kovarianz- und Korrelationsmatrizen ausgegeben:
 
 
-```r
+``` r
 cov(df_exam[, 2:4])
            item1      item2      item3
 item1  0.6666667 -0.4444444  0.3333333
@@ -438,7 +438,7 @@ item3  0.6123724 -0.4714045  1.0000000
   - `alpha`: Signifikanzniveau $\alpha$    
     
 
-```r
+``` r
 library(psych)
 corr.test(df_exam[ ,2:4], method = "pearson", adjust = "bonferroni")
 Call:corr.test(x = df_exam[, 2:4], method = "pearson", adjust = "bonferroni")
@@ -472,14 +472,14 @@ item3  0.06  0.17  0.00
 Definition eines Objekts mit Inferenzstatistik für df_exam
 
 
-```r
+``` r
 KorMat <- corr.test(df_exam[ ,2:4], method = "pearson", 
                     adjust = "bonferroni")
 ```
 
 Ausgabe Konfidenzintervalle
 
-```r
+``` r
 KorMat$ci
                  lower          r      upper          p
 item1-item2 -0.9425738 -0.7698004 -0.2720171 0.00920665
@@ -525,7 +525,7 @@ Für lineare Regressionen sind folgende Voraussetzungen zu überprüfen:
 
 **Beispiel Modelldefinition** 
 
-```r
+``` r
 model1 <- item1 ~ item2 + item3
 ```
 	
@@ -541,20 +541,20 @@ model1 <- item1 ~ item2 + item3
 
 Modelldefinition
 
-```r
+``` r
 model1 <- item1 ~ item2 + item3
 ```
 
 Modellschätzung und Sicherung in fit1
 
-```r
+``` r
 fit1 <- lm(formula = model1, data = df_exam)
 ```
 
 
 Modell anzeigen
 
-```r
+``` r
 fit1
 
 Call:
@@ -570,7 +570,7 @@ Coefficients:
 
 
 
-```r
+``` r
 summary(fit1)
 
 Call:
@@ -607,7 +607,7 @@ F-statistic: 7.191 on 2 and 7 DF,  p-value: 0.02008
 
 Modelldefinition und Schätzung
 
-```r
+``` r
 model1 <- item1 ~ item2 + item3
 model2 <- item1 ~ item2 + item3 + item4
 
@@ -617,7 +617,7 @@ fit2 <- lm(model2, df_exam)
 
 Modellvergleich, fit1 + fit2
 
-```r
+``` r
 anova(fit1, fit2)
 Analysis of Variance Table
 
@@ -638,7 +638,7 @@ Signif. codes:
 - Kovarianzmatrizen werden mit `cov2cor()` in Korrelationsmatrizen umgewandelt:
 
 
-```r
+``` r
 # Zuweisung
 Kova <- cov(df_exam[ , 2:4])
 # Berechnung
@@ -666,7 +666,7 @@ item3  0.6123724 -0.4714045  1.0000000
 
 
 
-```r
+``` r
 # Unstandartisierte Regressionskoeffizienten
 coefficients(fit1)
 (Intercept)       item2       item3 
@@ -689,7 +689,7 @@ QuantPsyc::lm.beta(fit1)
 
 
 
-```r
+``` r
 # Vorhersage Werte, fit1
 predict(fit1)
        1        2        3        4        5        6 
@@ -719,7 +719,7 @@ fit1$fitted.values
 
 
 
-```r
+``` r
 # Residuen, fit1
 fit1$residuals
           1           2           3           4           5 

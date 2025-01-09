@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Grundlagen | Handout R-Intensivkurs</title>
   <meta name="description" content="3 Grundlagen | Handout R-Intensivkurs" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Grundlagen | Handout R-Intensivkurs" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Christoph Mayer" />
 
 
-<meta name="date" content="2024-05-17" />
+<meta name="date" content="2025-01-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -456,7 +456,7 @@ wiederum komplexere Datentypen konstruieren lassen.</p>
 <li>Dezimalzahlen werden in R mit einem Punkt und nicht mit einem Komma angegeben</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="grundlagen.html#cb6-1" tabindex="-1"></a><span class="dv">2</span>,<span class="dv">5</span></span>
-<span id="cb6-2"><a href="grundlagen.html#cb6-2" tabindex="-1"></a>Error<span class="sc">:</span> <span class="er">&lt;</span>text<span class="sc">&gt;</span><span class="er">:</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span><span class="sc">:</span> unexpected <span class="st">&#39;,&#39;</span></span>
+<span id="cb6-2"><a href="grundlagen.html#cb6-2" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">parse</span>(<span class="at">text =</span> input)<span class="sc">:</span> <span class="er">&lt;</span>text<span class="sc">&gt;</span><span class="er">:</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span><span class="sc">:</span> unexpected <span class="st">&#39;,&#39;</span></span>
 <span id="cb6-3"><a href="grundlagen.html#cb6-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> <span class="dv">2</span>,</span>
 <span id="cb6-4"><a href="grundlagen.html#cb6-4" tabindex="-1"></a>     <span class="sc">^</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="grundlagen.html#cb7-1" tabindex="-1"></a><span class="fl">2.5</span></span>
@@ -628,9 +628,9 @@ wiederum komplexere Datentypen konstruieren lassen.</p>
 <li>Umlaute und ß wenn möglich vermeiden</li>
 <li>Variablennamen dürfen nicht mit einer Zahl oder einem Unterstrich beginnen</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="grundlagen.html#cb23-1" tabindex="-1"></a>7b <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">+</span><span class="dv">5</span></span>
-<span id="cb23-2"><a href="grundlagen.html#cb23-2" tabindex="-1"></a>Error<span class="sc">:</span> <span class="er">&lt;</span>text<span class="sc">&gt;</span><span class="er">:</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span><span class="sc">:</span> unexpected symbol</span>
-<span id="cb23-3"><a href="grundlagen.html#cb23-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> 7b</span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="grundlagen.html#cb23-1" tabindex="-1"></a><span class="dv">7</span>b <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">+</span><span class="dv">5</span></span>
+<span id="cb23-2"><a href="grundlagen.html#cb23-2" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">parse</span>(<span class="at">text =</span> input)<span class="sc">:</span> <span class="er">&lt;</span>text<span class="sc">&gt;</span><span class="er">:</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span><span class="sc">:</span> unexpected symbol</span>
+<span id="cb23-3"><a href="grundlagen.html#cb23-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> <span class="dv">7</span>b</span>
 <span id="cb23-4"><a href="grundlagen.html#cb23-4" tabindex="-1"></a>     <span class="sc">^</span></span></code></pre></div>
 </div>
 <div id="enviroment" class="section level3 hasAnchor" number="3.3.3">

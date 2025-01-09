@@ -65,7 +65,7 @@ Balkendiagramme mit `barplot()` erstellen
 
 
 
-```r
+``` r
 tab <- table(data$gruppe)
 barplot(tab)
 ```
@@ -77,7 +77,7 @@ Mit einigen zusätzlichen Optionen:
 \small
 
 
-```r
+``` r
 barplot(tab, 
         main = "Absolute Häufigkeiten der Gruppen", 
         col = c("coral2", "darkcyan", "goldenrod3"), 
@@ -100,7 +100,7 @@ Es gibt auch die Möglichkeit die jeweiligen Häufigkeiten über den einzelnen B
 
 \small
 
-```r
+``` r
 bar<- barplot(tab, 
         main = "Absolute Häufigkeiten der Gruppen", 
         col = c("coral2", "darkcyan", "goldenrod3"), 
@@ -128,7 +128,7 @@ text(x = bar, y = tab+2, labels = tab)
 
 
 
-```r
+``` r
 hist(data$alter)
 ```
 
@@ -137,7 +137,7 @@ hist(data$alter)
 
 Mit einigen zusätzlichen Optionen:
 
-```r
+``` r
 hist(data$alter, main = "Histogramm von Alter", 
      col = "darkolivegreen3", xlab = "Alter",
      ylab = "Häufigkeit", ylim = c(0, 20))
@@ -160,7 +160,7 @@ hist(data$alter, main = "Histogramm von Alter",
 
 
 
-```r
+``` r
 boxplot(data$zufri, 
         col = "darksalmon",
         main = "Boxplot der Zufriedenheitswerte",
@@ -184,7 +184,7 @@ Mithilfe von Boxplots lässt sich auch die Verteilung einer kategorialen Variabl
 
 
 
-```r
+``` r
 boxplot(data$angst ~ data$gruppe,
         col = "deeppink",
         main = "Boxplots der Angstwerte nach Gruppen getrennt",
@@ -206,7 +206,7 @@ Für zwei metrische Variablen wird meistens die Darstellungsform des **Streudiag
 
 
 
-```r
+``` r
 plot(dataset$item1, dataset$item2,
      ylab = "item1", xlab = "item2", 
      main = "Streudiagramm von Item 1 und Item 2", 
@@ -226,7 +226,7 @@ Mit `abline(h = ..., v = ... , lwd = ..., lty = ...)` können horizontale (h) bz
 
 
 
-```r
+``` r
 plot(dataset$item1, dataset$item2,
      ylab = "Item 2", xlab = "Item 1", 
      main = "Streudiagramm von Item 1 und Item 2", 
@@ -248,7 +248,7 @@ Mit `abline(fit)` wird die Regressionsgerade in das bestehende Streudiagramm ein
 - `fit` entspricht dem definierten Modell, z.B. `fit = lm(item2 ~ item1)`
 
 
-```r
+``` r
 model4 <-  item2 ~ item1
 fit4 <-  lm(model4, dataset)
 plot(dataset$item1, dataset$item2, 
@@ -280,7 +280,7 @@ Mit dem Befehl `axis(side, at, col)` können im Nachhinein die Achsen angepasst 
 - `col`: Die Farbe der Achsen
 
 
-```r
+``` r
 plot(dataset$item1, dataset$item2, 
      ylab = "Item 2", xlab = "Item 1", 
      main = "Streudiagramm von Item 1 und Item 2",
@@ -320,7 +320,7 @@ bereits hinterlegt.
 
 
 
-```r
+``` r
 ggplot(data = df_regio)
 ```
 
@@ -334,7 +334,7 @@ festgelegt. Hierbei wird festgelegt, welches graphische Merkmal die Daten
 representieren soll (z.B. Achsen, Farbe, Größe, etc.)
 
 
-```r
+``` r
 ggplot(data = df_regio,
        mapping = aes(x = Europawahl_Beteiligung_percent,
                      y = Europawahl_AFD_percent))
@@ -356,7 +356,7 @@ der Geome relevant ist, da später hinzugefügte Geome die vorher hinzugefügten
 
 
 
-```r
+``` r
 ggplot(data = df_regio,
        mapping = aes(x = Europawahl_Beteiligung_percent,
                      y = Europawahl_AFD_percent)) +
@@ -377,7 +377,7 @@ unterscheiden, aber nur für die Punkte, nicht für die Randverteilung.
 
 
 
-```r
+``` r
 ggplot(data = df_regio,
        mapping = aes(x = Europawahl_Beteiligung_percent,
                      y = Europawahl_AFD_percent)) +
@@ -396,7 +396,7 @@ Die Randverteilung im Plot soll grün (`color`) dargestellt werden und die Punkt
 sollen durchsichtiger (`alpha`) und größer (`size`) werden.
 
 
-```r
+``` r
 ggplot(data = df_regio,
        mapping = aes(x = Europawahl_Beteiligung_percent,
                      y = Europawahl_AFD_percent)) +
@@ -447,7 +447,7 @@ diversen Online-Suchmaschinen ;-).
 
 
 
-```r
+``` r
 library(ggthemes)
 
 ggplot(data = df_regio,
@@ -469,14 +469,14 @@ ggplot(data = df_regio,
 Plots sind in R nichts anderes als umfangreiche Listen vom Typ "ggplot".
 
 
-```r
+``` r
 ggplot(data = df_regio) %>% class()
 #> [1] "gg"     "ggplot"
 ```
 Daher können wir auch Plots an Namen binden und im Nachhinein entsprechend aufrufen:
 
 
-```r
+``` r
 base_plot <- ggplot(data = df_regio,
                     mapping = aes(x = Europawahl_Beteiligung_percent,
                                   y = Europawahl_AFD_percent))
@@ -486,7 +486,7 @@ Sollen viele Plots nacheinander "durchprobiert" werden bietet sich diese
 Vorgehensweise entsprechend an:
 
 
-```r
+``` r
 base_plot <- ggplot(data = df_regio,
                     mapping = aes(x = Europawahl_Beteiligung_percent,
                                   y = Europawahl_AFD_percent
@@ -500,7 +500,7 @@ base_plot <- ggplot(data = df_regio,
 ```
 
 
-```r
+``` r
 base_plot +
   geom_point()
 ```
@@ -514,7 +514,7 @@ base_plot +
 ```
 
 
-```r
+``` r
 base_plot +
   geom_smooth(method = "lm")
 ```
@@ -542,7 +542,7 @@ werden. Dies erfolgt mit `vars()`.
 
 
 
-```r
+``` r
 ggplot(data = df_regio,
        mapping = aes(x = Europawahl_Beteiligung_percent,
                      y = Europawahl_AFD_percent)) +
@@ -570,7 +570,7 @@ Größe des Bildes, festlegen.
 
 
 
-```r
+``` r
 plot_save <- 
   ggplot(data = df_regio,
          mapping = aes(x = Europawahl_Beteiligung_percent,
@@ -596,7 +596,7 @@ ausführliche Informationen zu GGForce.
 Vorbereitung:
 
 
-```r
+``` r
 library(gapminder)
 library(ggforce)
 library(viridis)
@@ -608,7 +608,7 @@ df_countries <- gapminder
 
 
 
-```r
+``` r
 gapminder %>% 
   filter(country %in% c("Burundi","Germany")) %>% 
   ggplot(aes(x = lifeExp, y = gdpPercap, color = country)) + 
@@ -623,7 +623,7 @@ praktisch nicht interpretierbar.
 
 
 
-```r
+``` r
 gapminder %>% 
   filter(country %in% c("Burundi","Germany")) %>% 
   ggplot(aes(x = lifeExp, y = gdpPercap, color = country)) + 
@@ -640,7 +640,7 @@ Personen mit Farbblidheit. Hier hilft das Package `viridis`.
 
 
 
-```r
+``` r
 gapminder %>% 
   filter(year == 2007) %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, 
@@ -702,7 +702,7 @@ Das Package `stargazer` bietet den Befehl `stargazer(...,type = "html", title = 
 **Korrelationstabelle**
 
 
-```r
+``` r
 library(psych)
 dataset <- read.table("data/Daten.txt", header = TRUE)
 Korrelationstabelle<- cor(dataset[,2:4], method = "pearson")
@@ -713,7 +713,7 @@ item2 -0.7698004  1.0000000 -0.4714045
 item3  0.6123724 -0.4714045  1.0000000
 ```
 
-```r
+``` r
 library(stargazer)
 stargazer(Korrelationstabelle,
           type = "html", 
@@ -731,7 +731,7 @@ Für Übertragung in Word einfach in der html Dateien markieren, kopieren und in
 **Regressionsmodelle**
 
 
-```r
+``` r
 fit1 <- lm(data = dataset, formula = item1 ~ item2 + item3)
 summary(fit1)
 
@@ -758,7 +758,7 @@ F-statistic: 7.191 on 2 and 7 DF,  p-value: 0.02008
 
 
 
-```r
+``` r
 library(stargazer)
 stargazer(fit1,
           type = "html", 
@@ -769,7 +769,7 @@ stargazer(fit1,
 
 
 
-```r
+``` r
 library(stargazer)
 stargazer(fit1,
           type = "html", 

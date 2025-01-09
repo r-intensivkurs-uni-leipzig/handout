@@ -1,7 +1,7 @@
 --- 
 title: "Handout R-Intensivkurs"
 author: "Christoph Mayer"
-date: "2024-05-17"
+date: "2025-01-09"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -30,4 +30,4 @@ Ehemalige Tutor:innen:
 Franz Andersch
 
 \centering
-<img src="Abbildungen/2022_URZ_Förderung-IT-Kurse.jpg" alt="" width="350"/>
+<img src="Abbildungen/EFRE-ESF_LO_Kombination_EU-Logo_FreistaatSachsen_H_RGB_600dpi.jpg" alt="" width="350"/>

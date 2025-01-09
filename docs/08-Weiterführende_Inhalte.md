@@ -13,7 +13,7 @@ Cheatsheet-PDF: (link)https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-
 Um R Markdown in eurer RStudio Umgebung freizuschalten müsst ihr es, falls noch nicht geschehen, zunächst installieren und laden:
 
 
-```r
+``` r
 ## R Markdown installieren
 install.packages("rmarkdown", dependencies = TRUE)
 

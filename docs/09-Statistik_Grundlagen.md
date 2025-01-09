@@ -156,7 +156,7 @@ $H_a:$ Daten sind nicht normalverteilt<br>
 Hier ist also das Ziel ein nicht signifikantes Testergebnis zu erhalten
 
 
-```r
+``` r
 set.seed(6)
 stichprobe <- rnorm(200, 208, 30) #erstellung einer zufälligen Verteilung von 200 Werten mit dem Mittelwert 208 und einer standardabweichung von 30
 shapiro.test(stichprobe)
@@ -170,7 +170,7 @@ Hier gilt es auf den berechneten p-Wert zu achten. Ist dieser über 0.05 können
 
 Dafür gibt es in R den Befehl $\texttt{t.test()}$
 
-```r
+``` r
 t.test(stichprobe, mu = 150) #mit dem mu-Argument wird der wahre Wert des Mittelwerts festgelegt
 
 	One Sample t-test
@@ -215,7 +215,7 @@ Dazu müssen allerdings auch die Voraussetzungen erfüllt sein, dass beide Stich
 
 
 
-```r
+``` r
 shapiro.test(stichprobe2)
 
 	Shapiro-Wilk normality test
@@ -225,7 +225,7 @@ W = 0.99666, p-value = 0.9456
 ```
 ...sowie dass beide Stichproben die gleiche Varianz haben. Dies kann mithilfe des  $\texttt{var.test()}$-Befehls überprüft werden.
 
-```r
+``` r
 var.test(stichprobe,stichprobe2)
 
 	F test to compare two variances
@@ -246,7 +246,7 @@ $H_a: \sigma^2_1 \neq \sigma^2_2$<br>
 Auch hier ist ein nicht signifikantes Ergebnis erwünscht.<br>
 Da also die Bedingung nicht erfüllt ist, muss bei der Berechnung des t-Tests noch eine Einstellung geändert werden. Der Befehl bleibt aber gleich, nur, dass jetzt beide Stichproben in den Befehl eingefügt werden.
 
-```r
+``` r
 t.test(stichprobe,stichprobe2, var.equal = FALSE)#var.equal auf FALSE zu setzen, sorgt dafür, dass eine abgewandelte Form des t-Tests angewandt wird, der die unterschiedlichen Varianzen einkalkuliert
 
 	Welch Two Sample t-test
@@ -300,7 +300,7 @@ In einer Umfrage wurden Personen befragt,ob sie sich in ihrem leben glücklich f
 mit diesen Datens kann dann die Hypothese mithilfe des $\texttt{chisq.test()}$ überprüft werden 
 
 
-```r
+``` r
 chisq.test(stichprobe3$glck,stichprobe3$frnd)
 #> 
 #> 	Pearson's Chi-squared test with Yates' continuity
@@ -342,7 +342,7 @@ Was der Algorithmus hinter der lineare Regression macht, ist eine lineare Funkti
 
 Eine lineare Regression wird in R mit dem Befehl $\texttt{lm()}$ erstellt wobei das erste Argument eine $\texttt{formula}$ mit der Struktur $\texttt{AbhängigeVariable} \sim \texttt{UnabhängigeVariable}$ das erste Argument ist. Hier wird jetzt für den Allbus2018 (allgemeine Bevölkerungsumfrage der Sozialwissenschaften) untersucht, ob das Alter (in Jahre) einen Einfluss auf die allgemeine Zufriedenheit (10 stufige Skala) hat.
 
-```r
+``` r
 Allbus <- readRDS("data/Allbus2018.rds")
 output <- lm(Zufriedenheit~Alter,data = Allbus)
 summary(output)
@@ -392,7 +392,7 @@ mit $k$ ist hier gemeint, dass unendlich viele unabhänige Variablen hinzugezoge
 Die Vorgehensweise ist ähnlich zur einfachen linearen Regression, nur das hier jetzt zusätlich zum Alter auch noch Einkommen (in 100 EUR) und Geschlecht als erklärende Variablen einbezogen werden. Diese werden in der Formel mit einem $+$ hinzugefügt.
 
 
-```r
+``` r
 
 output <- lm(Zufriedenheit~Alter+Einkommen+Geschlecht,data = Allbus)
 summary(output)

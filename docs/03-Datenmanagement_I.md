@@ -25,7 +25,7 @@ Die *relative* Pfadangabe für `Daten.txt` würde also so aussehen:
 ### Daten aus .txt, .csv, .xlsx und weiteren Dateiformaten auslesen
 
 
-```r
+``` r
 dataset <- read.table(file = "data/Daten.txt", header = TRUE)
 ```
 
@@ -39,14 +39,14 @@ dataset <- read.table(file = "data/Daten.txt", header = TRUE)
 **Befehl für .csv Dateien**
 
 
-```r
+``` r
 dataset <- read.csv2("data/Daten.csv")
 ```
 
 **Befehl für .xlsx Dateien**
 
 
-```r
+``` r
 install.packages("xlsx")
 library(xlsx)
 dataset <- read.xlsx("data/Daten.xlsx")
@@ -55,7 +55,7 @@ dataset <- read.xlsx("data/Daten.xlsx")
 **Befehl für .sav Dateien (SPSS)**
 
 
-```r
+``` r
 install.packages("haven")
 library(haven)
 dataset <- read_sav("data/Daten.sav")
@@ -76,7 +76,7 @@ Vorschau mit allen Argumenten, die auch im **read.table()** enthalten sind:
 Eingabe in die Konsole:
 
 
-```r
+``` r
 Daten_2 <- read.csv("data/Daten_2.txt", 
                     sep="")
 View(Daten_2)
@@ -96,7 +96,7 @@ View(Daten_2)
 - `str()` gibt die Struktur des Dataframes aus 
 
 
-```r
+``` r
 str(dataset)
 'data.frame':	10 obs. of  12 variables:
  $ Person: int  1 2 3 4 5 6 7 8 9 10
@@ -115,7 +115,7 @@ str(dataset)
 
 - `dim()` gibt die Dimensionen (Zeilen und Spalten) einer Matrix bzw. Dataframes an
 
-```r
+``` r
 dim(dataset)
 #> [1] 10 12
 ```
@@ -124,7 +124,7 @@ dim(dataset)
 - mit `head()` lassen sich die ersten `n =` `c(Zeilen, Spalten)` anzeigen
 
 
-```r
+``` r
 head(x = dataset, n = c(2,11))
   Person item1 item2 item3 item4 item5 item6 item7 item8
 1      1     3     2     3     2     2     1     4     1
@@ -142,7 +142,7 @@ head(x = dataset, n = c(2,11))
 `names()` gibt die Variablennamen des Datensatzes aus
 
 
-```r
+``` r
 names(dataset)
  [1] "Person" "item1"  "item2"  "item3"  "item4"  "item5" 
  [7] "item6"  "item7"  "item8"  "item9"  "item10" "item11"
@@ -151,7 +151,7 @@ names(dataset)
 Damit lassen sich auch Namen von Variablen im Datenesatz verändern
 
 
-```r
+``` r
 names(dataset)[names(dataset) == "item11"] <- "item12"
 names(dataset)
  [1] "Person" "item1"  "item2"  "item3"  "item4"  "item5" 
@@ -187,7 +187,7 @@ Genauso wie bei den `read`- Funktionen gibt es auch
 - Situation: Es wurde eine weitere Erhebung mit anderen Personen durchgeführt, in der die gleichen Items abgefragt wurden 
 
 
-```r
+``` r
 dataset1 <- read.table("data/Daten.txt", header = TRUE)
 head(dataset1,2)
   Person item1 item2 item3 item4 item5 item6 item7 item8
@@ -199,7 +199,7 @@ head(dataset1,2)
 ```
 
 
-```r
+``` r
 dataset2 <- read.table("data/Daten_2.txt", header = TRUE)
 head(dataset2,2)
   Person item1 item2 item3 item4 item5 item6 item7 item8
@@ -213,12 +213,12 @@ head(dataset2,2)
 - mit `rbind()` lassen sich Daten (Vektoren, Matrizen, Dataframes) zeilenweise (reihenweise) zusammenfügen (rbind = rowbind)
 - es können beliebig viele Datensätze in diesem Befehl zusammengefügt werden
 
-```r
+``` r
 new_dataset <- rbind(dataset1,dataset2)
 ```
 - Überprüfung
 
-```r
+``` r
 dim(new_dataset)
 [1] 20 12
 ```
@@ -234,7 +234,7 @@ dim(new_dataset)
  
 
 
-```r
+``` r
 dataset1 <- read.table("data/Daten.txt", header = TRUE)
 head(dataset1,2)
   Person item1 item2 item3 item4 item5 item6 item7 item8
@@ -246,7 +246,7 @@ head(dataset1,2)
 ```
 
 
-```r
+``` r
 dataset3 <- read.table("data/Daten_FB2.txt", header= TRUE)
 head(dataset3,2)
   Person item12 item13 item14 item15 item16 item17 item18
@@ -260,13 +260,13 @@ head(dataset3,2)
 - Mit `cbind()` lassen sich Daten (Vektoren, Matrizen, Dataframes) spaltenweise zusammenfügen
 
 
-```r
+``` r
 new_dataset2 <- cbind(dataset1, dataset3)
 ```
 
 - Überprüfung
 
-```r
+``` r
 dim(new_dataset2)
 [1] 10 24
 ```
@@ -278,7 +278,7 @@ dim(new_dataset2)
 **Situation**: Innerhalb der Erhebung gab es noch eine Abfrage von weiteren Items, allerdings fehlt eine Person $\rightarrow$ `cbind()` führt nicht zum gewünschten Ergebnis 
 
 
-```r
+``` r
 dataset1 <- read.table("data/Daten.txt", header = TRUE)
 head(dataset1,2)
   Person item1 item2 item3 item4 item5 item6 item7 item8
@@ -290,7 +290,7 @@ head(dataset1,2)
 ```
 
 
-```r
+``` r
 dataset4 <- read.table("data/Daten_FB2_NA.txt", header= TRUE)
 head(dataset4,2)
   Person item12 item13 item14 item15 item16 item17 item18
@@ -310,7 +310,7 @@ head(dataset4,2)
   - `sort`: Neu nach Schlüsselvariable sortieren? (TRUE = ja)
   
 
-```r
+``` r
 new_dataset3 <- merge(dataset1, dataset4, by = "Person", all = FALSE)
 head(new_dataset3,2)
   Person item1 item2 item3 item4 item5 item6 item7 item8
@@ -329,7 +329,7 @@ $\rightarrow$ Person 2 wird raus-gefiltert für alle restlichen Personen werden 
 - `all = FALSE`: Nur die Fälle werden behalten, die in beiden Datensätzen vorhanden sind
 
 
-```r
+``` r
 new_dataset3 <- merge(dataset1, dataset4, by = "Person", all = TRUE)
 head(new_dataset3,2)
   Person item1 item2 item3 item4 item5 item6 item7 item8

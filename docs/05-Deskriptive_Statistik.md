@@ -14,12 +14,12 @@ Absolute Häufigkeiten können durch `table()` in einer Tabelle ausgegeben werde
 \bigskip\small
 
 
-```r
+``` r
 df_yoga <- read.table("data/YogaPilates.txt", header = TRUE)
 ```
 
 
-```r
+``` r
 tab <- table(df_yoga$gruppe)
 tab
 
@@ -32,7 +32,7 @@ Die Gesamtzahl der Beobachtungen kann mit `sum()` ausgegeben werden:
 \bigskip
 
 
-```r
+``` r
 sum(tab)
 [1] 120
 ```
@@ -44,7 +44,7 @@ sum(tab)
 2. Verwenden der Funktion `prop.table()`.
 
 
-```r
+``` r
 tab_rel <- tab/sum(tab)
 
 tab_rel <- prop.table(tab)
@@ -60,7 +60,7 @@ tab_rel <- prop.table(tab)
 - Bei Angabe von mehreren Vektoren werden Kreuztabellen erzeugt, dessen Werte mit `round()` gerundet werden können:
 
 
-```r
+``` r
 tab2 <- table(df_yoga$geschl, df_yoga$gruppe)
 round(prop.table(tab2), 2)
    
@@ -86,7 +86,7 @@ R-Befehl  | Bedeutung
 **Beispiele**
 
 
-```r
+``` r
 range(df_yoga$alter)
 [1] 21 40
 mean(df_yoga$alter)
@@ -100,7 +100,7 @@ var(df_yoga$zufri)
 Enthalten Daten fehlende Werte (`NA`), dann ergeben die deskriptiven Berechnungen auch `NA`. Durch das Argument `na.rm = TRUE` werden `NA`-Werte ignoriert:
 
 
-```r
+``` r
 mean(df_yoga$zufri)
 [1] NA
 mean(df_yoga$zufri, na.rm = TRUE)
@@ -112,7 +112,7 @@ mean(df_yoga$zufri, na.rm = TRUE)
 - Mit `summary()` werden verschiedene deskriptive Statistiken ausgegeben:
 
 
-```r
+``` r
 summary(df_yoga$alter)
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   21.00   26.00   30.50   30.73   35.25   40.00 
@@ -121,7 +121,7 @@ summary(df_yoga$alter)
 - `summary()` gibt zudem die Anzahl fehlender Werte an:
 
 
-```r
+``` r
 summary(df_yoga$zufri)
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
   1.000   3.000   4.000   3.543   4.000   5.000       4 
@@ -133,7 +133,7 @@ Mit der Funktion `describe()` aus dem Paket **psych** lassen sich eine Vielzahl 
 
 
 
-```r
+``` r
 library(psych)
 describe(df_yoga$alter, skew = FALSE)
    vars   n  mean   sd median min max range   se
@@ -150,7 +150,7 @@ Optionale Argumente:
 Wie können wir für die Variablen `alter`, `zufri` und `angst` deskriptive Statistien berechnen, je nachdem in welcher `gruppe` die Person ists?
 
 
-```r
+``` r
 head(df_yoga, 5)
     vp geschl alter  gruppe zufri angst
 1 AA21      w    37    yoga     5     1
@@ -169,7 +169,7 @@ Jeweils Teile der Daten durch logisches Indizieren auswählen:
 
 
 
-```r
+``` r
 mean(df_yoga$alter[df_yoga$gruppe == "yoga"])
 [1] 31.13793
 ```
@@ -177,7 +177,7 @@ mean(df_yoga$alter[df_yoga$gruppe == "yoga"])
 - ...`gruppe == pilates`."
 
 
-```r
+``` r
 mean(df_yoga$alter[df_yoga$gruppe == "pilates"])
 [1] 30.86957
 ```
@@ -197,7 +197,7 @@ Mit `aggregate()` können Funktionen für verschiedene Faktorenstufen (und deren
 Durchschnittliche Zufriedenheit, Gruppen = geschl, gruppe
 
 
-```r
+``` r
 aggregate(zufri ~ geschl + gruppe, FUN = mean, data = df_yoga)
   geschl   gruppe    zufri
 1      m kontroll 3.785714
@@ -221,7 +221,7 @@ aggregate(zufri ~ geschl + gruppe, FUN = mean, data = df_yoga)
 Deskriptive Statistiken zu Zufriedenheit nach Gruppe (= `geschl`)
 
 
-```r
+``` r
 describeBy(x = df_yoga$zufri, group = list(df_yoga$geschl), skew = FALSE)
 
  Descriptive statistics by group 
@@ -243,7 +243,7 @@ Mit `prop.table(…, margin = …)` werden bedingte Wahrscheinlichkeiten für ei
 Bedingte Wahrscheinlichkeit, zeilenweise, gerundet auf 2 Stellen
 
 
-```r
+``` r
 round(prop.table(tab2, margin = 1), 2)
    
     kontroll pilates yoga
@@ -254,7 +254,7 @@ round(prop.table(tab2, margin = 1), 2)
 Bedingte Wahrscheinlichkeit, spaltenweise, gerundet auf 2 Stellen
 
 
-```r
+``` r
 round(prop.table(tab2, margin = 2), 2)
    
     kontroll pilates yoga

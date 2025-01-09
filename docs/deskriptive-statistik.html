@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Deskriptive Statistik | Handout R-Intensivkurs</title>
   <meta name="description" content="6 Deskriptive Statistik | Handout R-Intensivkurs" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Deskriptive Statistik | Handout R-Intensivkurs" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Christoph Mayer" />
 
 
-<meta name="date" content="2024-05-17" />
+<meta name="date" content="2025-01-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -470,13 +470,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Mit <code>summary()</code> werden verschiedene deskriptive Statistiken ausgegeben:</li>
 </ul>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="deskriptive-statistik.html#cb110-1" tabindex="-1"></a><span class="fu">summary</span>(df_yoga<span class="sc">$</span>alter)</span>
-<span id="cb110-2"><a href="deskriptive-statistik.html#cb110-2" tabindex="-1"></a>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span id="cb110-2"><a href="deskriptive-statistik.html#cb110-2" tabindex="-1"></a>   Min. <span class="dv">1</span>st Qu.  Median    Mean <span class="dv">3</span>rd Qu.    Max. </span>
 <span id="cb110-3"><a href="deskriptive-statistik.html#cb110-3" tabindex="-1"></a>  <span class="fl">21.00</span>   <span class="fl">26.00</span>   <span class="fl">30.50</span>   <span class="fl">30.73</span>   <span class="fl">35.25</span>   <span class="fl">40.00</span> </span></code></pre></div>
 <ul>
 <li><code>summary()</code> gibt zudem die Anzahl fehlender Werte an:</li>
 </ul>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="deskriptive-statistik.html#cb111-1" tabindex="-1"></a><span class="fu">summary</span>(df_yoga<span class="sc">$</span>zufri)</span>
-<span id="cb111-2"><a href="deskriptive-statistik.html#cb111-2" tabindex="-1"></a>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA<span class="st">&#39;s </span></span>
+<span id="cb111-2"><a href="deskriptive-statistik.html#cb111-2" tabindex="-1"></a>   Min. <span class="dv">1</span>st Qu.  Median    Mean <span class="dv">3</span>rd Qu.    Max.    NA<span class="st">&#39;s </span></span>
 <span id="cb111-3"><a href="deskriptive-statistik.html#cb111-3" tabindex="-1"></a><span class="st">  1.000   3.000   4.000   3.543   4.000   5.000       4 </span></span></code></pre></div>
 <p><strong>Paket psych</strong></p>
 <p>Mit der Funktion <code>describe()</code> aus dem Paket <strong>psych</strong> lassen sich eine Vielzahl von Verteilungsparametern gleichzeitig ausgeben:</p>

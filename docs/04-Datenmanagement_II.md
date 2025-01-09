@@ -7,7 +7,7 @@
 - Beispieldatensatz:
 
 
-```r
+``` r
 personenDaten <- read.table("data/PersonenDaten.txt", header = TRUE)
 head(x = personenDaten, n = c(5, 12))
   Person item1 item2 item3 item4 item5 item6 item7 item8
@@ -33,7 +33,7 @@ Der `$`- Operator schafft hier abhilfe wenn...
 - eine neue Variable aus einer alten erstellt werden soll
 
 
-```r
+``` r
 personenDaten$sexUmkodiert <- personenDaten$sex - 1
 personenDaten$sexUmkodiert
  [1] 1 0 0 1 0 1 1 1 0 0 1 1 1 1 1 0 0 1 0 1
@@ -42,7 +42,7 @@ personenDaten$sexUmkodiert
 - eine existierende Variable überschrieben werden soll
 
 
-```r
+``` r
 personenDaten$sex <- personenDaten$sex - 1
 personenDaten$sex
  [1] 1 0 0 1 0 1 1 1 0 0 1 1 1 1 1 0 0 1 0 1
@@ -55,7 +55,7 @@ personenDaten$sex
 - Beispiel: Umpolung von Item3 mit 6-stufiger Skala
 
 
-```r
+``` r
 personenDaten$item3_umkodiert <- max(personenDaten$item3) + 1 - personenDaten$item3
 ```
 
@@ -79,7 +79,7 @@ personenDaten$item3_umkodiert <- max(personenDaten$item3) + 1 - personenDaten$it
 - `FALSE`: Welcher Wert soll zugewiesen werden, wenn die Bedingung nicht erfüllt ist?
 
 
-```r
+``` r
 personenDaten$alterDichotom <- ifelse(personenDaten$age <= 30, 0, 1)
 ```
 
@@ -107,7 +107,7 @@ Logisches Indizieren ist ein einfacher Weg, Variablenwerte abhängig von Bedingu
   - `wert`: Welcher Wert soll zugewiesen werden, wenn die Bedingung erfüllt ist?
 
 
-```r
+``` r
 personenDaten$altersgruppen[personenDaten$age <= 25] <- 1
 personenDaten$altersgruppen[personenDaten$age > 25 
                             & personenDaten$age <= 30] <- 2
@@ -141,7 +141,7 @@ personenDaten$altersgruppen[personenDaten$age > 35] <- 4
   Berechnung nicht durchgeführt, sobald ein einzelner Wert fehlt.
 
 
-```r
+``` r
 personenDaten$mittelwertsscore <- 
   rowMeans(personenDaten[,2:12], na.rm = T)
 personenDaten$summenscore <- 
@@ -153,7 +153,7 @@ personenDaten$summenscore <-
 
 
 
-```r
+``` r
 class(personenDaten$Date)
 [1] "character"
 personenDaten$Date <- ymd(personenDaten$Date)
@@ -164,7 +164,7 @@ class(personenDaten$Date)
 Damit können jetzt einzelne Jahre (Monate, Tage) von den Daten extrahiert werden:
 
 
-```r
+``` r
 year(personenDaten$Date[1])
 [1] 2022
 ```
@@ -172,7 +172,7 @@ year(personenDaten$Date[1])
 ... oder auch Daten verglichen werden (früher oder später)
 
 
-```r
+``` r
 personenDaten$Date[1] < personenDaten$Date[2]
 [1] TRUE
 ```
@@ -188,7 +188,7 @@ Die `subset(x, subset, select)` -Funktion bietet die Möglichkeit einen Datensat
   - `select`: Variablen die im Subset beibehalten werden sollen.
 
 
-```r
+``` r
 personenDatenSubset <- subset(personenDaten, 
                               personenDaten$item1 > 4 |
                               personenDaten$item2 > 3, 
@@ -220,7 +220,7 @@ Eigenschaften:
 - Praktisch bei der Dateneingabe
 
 
-```r
+``` r
 dataset <- read.table("data/Daten.txt", header = TRUE)
 head(dataset, 5)
   Person item1 item2 item3 item4 item5 item6 item7 item8
@@ -245,7 +245,7 @@ Eigenschaften:
 - Messwiederholung wird in mehreren Zeilen dargestellt
 
 
-```r
+``` r
 datasetLong <- read.table("data/Daten_Lang.txt", header = TRUE)
 head(datasetLong, 14)
    Person  Item Score
@@ -286,7 +286,7 @@ Für die Umformung wird der Befehl `melt(data, id.vars = "...", variable.name = 
   werden sollen
 
 
-```r
+``` r
 library(reshape2)
 dataset <- read.table("data/Daten.txt", header = TRUE)
 datasetLong <- melt(dataset, id.vars = "Person",
@@ -316,7 +316,7 @@ Ebenfalls aus dem Paket `reshape2` ermöglicht der Befehl `dcast(data, formula, 
 - `value.var`: Welche Variable im Long-Format enthält die Werte, die aufgesplittet werden sollen? (vgl. `value.name`) \
 
 
-```r
+``` r
 head(datasetLong,3)
   Person  item score
 1      1 item1     3
@@ -327,7 +327,7 @@ head(datasetLong,3)
 
 
 
-```r
+``` r
 datasetWide <- dcast(datasetLong, Person ~ item, value.var = "score")
 head(datasetWide)
   Person item1 item2 item3 item4 item5 item6 item7 item8
