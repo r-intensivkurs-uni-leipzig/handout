@@ -1,7 +1,14 @@
 --- 
-title: "Handout R-Intensivkurs"
-author: "Christoph Mayer"
-date: "2025-01-09"
+title: "Handout zum Kurs: R Intensivkurs"
+author: |
+  | Christoph Mayer
+  | christoph.mayer@uni-leipzig.de
+  |  
+  | Ehemalige Kursleiter:innen:
+  |
+  | Franz Andersch
+subtitle: "Academic Lab -- Universität Leipzig"
+date: "Stand: 2025-01-09"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -9,25 +16,27 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 csl: chicago-fullnote-bibliography.csl
 ---
-# Willkommen
 
-Schön, dass ihr Interesse an der Programmiersprache R habt!
+# Vorwort {-}
 
-Hier seid ihr auf der Seite des kursbegleitenden Handouts für den R Intensivkurs des Unirechenzentrums Leipzig in Kooperation mit dem Academic Lab. 
-Teilnehmende des Kurses sollen hiermit die Möglichkeit bekommen, während bzw. nach dem Kurs Inhalte erneut einzusehen.
+Dieses Handout ist Teil des R Intensivkurses am Academic Lab der Uni Leipzig.
 
-**Hinweis:** 
-
-Das Handout wird stetig überarbeitet bzw. erweitert. Über Anmerkungen und Verbesserungsvorschläge freuen wir uns :)
+Besonderer Dank gilt Ingo Seifert und Isabel Gebhardt, sowie  Stephan Poppe und dem Statistik-Team des Instituts für Soziologiefür die Unterstützung beim Erstellen der Materialien für diesen Kurs.
 
 
-**Danksagung:** 
+<img src="Abbildungen/construction.png" width="30%" style="display: block; margin: auto;" />
 
-Das Handout basiert in Teilen auf bereitgestellten Materialien von Ingo Seifert & Isabel Gebhardt. 
+**Hinweis**:
 
-Ehemalige Tutor:innen:
+Dieses Handout ist ständig in Bearbeitung und erhebt keinen Anspruch auf Vollständigkeit. Bitte informiert uns,
+sollten Angaben nicht mehr aktuell sein bzw. sollten sich Fehler eingeschlichen haben. Vielen Dank!
 
-Franz Andersch
+<img src="Abbildungen/EFRE-ESF_LO_Kombination_EU-Logo_FreistaatSachsen_H_RGB_600dpi.jpg" style="display: block; margin: auto;" />
+<img src="Abbildungen/logo_lizenz_cc_by_nc_sa.png" width="30%" style="display: block; margin: auto;" />
 
-\centering
-<img src="Abbildungen/EFRE-ESF_LO_Kombination_EU-Logo_FreistaatSachsen_H_RGB_600dpi.jpg" alt="" width="350"/>
+
+
+
+
+
+

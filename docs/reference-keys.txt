@@ -1,5 +1,4 @@
 fig:unnamed-chunk-18
-willkommen
 einführung-in-r-und-r-studio
 was-ist-r
 sechs-gründe-r-zu-lernen
